@@ -2,8 +2,37 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Memora"
-             StartupUri="MainWindow.xaml">
+             xmlns:viewModel="clr-namespace:Memora.ViewModels"
+             xmlns:view="clr-namespace:Memora.View">
     <Application.Resources>
-         
+        <!-- Binding ViewModels and Views, one by one. -->
+        <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+            <view:RegisterView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+            <view:LoginView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <view:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MyFlashcardsViewModel}">
+            <view:MyFlashcardsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MyFoldersViewModel}">
+            <view:MyFoldersView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MyProfileViewModel}">
+            <view:MyProfileView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <view:SettingsView/>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>
