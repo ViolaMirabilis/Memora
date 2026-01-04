@@ -15,7 +15,7 @@ namespace Memora.Core
         /// </summary>
         /// <param name="canExecute"></param>
         /// <param name="execute"></param>
-        public RelayCommand(Predicate<object> canExecute, Action<object> execute)
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
             _canExecute = canExecute;
             _execute = execute;

@@ -5,5 +5,5 @@ namespace Memora.Interfaces;
 public interface INavigationService
 {
     ViewModel CurrentView { get; }
-    void Navigate<T>() where T : ViewModel;
+    void NavigateTo<T>() where T : ViewModel;
 }

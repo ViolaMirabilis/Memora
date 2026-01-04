@@ -1,8 +1,11 @@
-﻿using Memora.ViewModel;
+﻿using Memora.ViewModels;
+using Memora.Services;
+using Memora.Core;
+using NavigationService = Memora.Services.NavigationService;        // to resolve namespace issues
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
+using Memora.Interfaces;
+using System.Windows.Navigation;
 
 namespace Memora
 {
@@ -23,6 +26,8 @@ namespace Memora
             {
                 DataContext = serviceProvider.GetRequiredService<MainViewModel>()       // assigning a view model to the MainWindow view. It gets it from the DI container. It runs whenever the MainWindow is requested.
             });       
+
+            // view model services
             services.AddSingleton<RegisterViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<HomeViewModel>();
@@ -30,6 +35,11 @@ namespace Memora
             services.AddSingleton<MyFoldersViewModel>();
             services.AddSingleton<MyProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
+
+            // navigation service
+            services.AddSingleton<INavigationService, NavigationService>();
+            // 
+            services.AddSingleton<Func<Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));     // a factory delegate (do some reading)
 
             _serviceProvider = services.BuildServiceProvider();
         }
