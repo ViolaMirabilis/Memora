@@ -5,17 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memora"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="768" Width="1366"
         Background="#6A5BFF">
     <Grid>
-        <Border Height="65" Width="400" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10" Background="#6A5BEF"></Border>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="65" Width="400">
-            <Button Height="50" Width="75" Content="Home" FontSize="14" Margin="2" Background="Transparent" BorderThickness="0"></Button>
-            <Button Height="50" Width="75" Content="Flashcards" FontSize="14" Margin="2" Background="Transparent" BorderThickness="0"></Button>
-            <Button Height="50" Width="75" Content="Folders" FontSize="14" Margin="2" Background="Transparent" BorderThickness="0"></Button>
-            <Button Height="50" Width="75" Content="Profile" FontSize="14" Margin="2" Background="Transparent" BorderThickness="0"></Button>
-            <Button Height="50" Width="75" Content="Settings" FontSize="14" Margin="2" Background="Transparent" BorderThickness="0"></Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Width="400" HorizontalAlignment="Center" CornerRadius="10" Background="#6A5BEF"></Border>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button HorizontalAlignment="Left" Content="Home" FontSize="28" Foreground="WhiteSmoke" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
+                    Command="{Binding NavigateHomeCommand}"></Button>
+            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Flashcards" FontSize="28" Foreground="WhiteSmoke" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
+                    Command="{Binding NavigateMyFlashcardsCommand}"></Button>
+            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Folders" FontSize="28" Foreground="WhiteSmoke" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
+                    Command="{Binding NavigateMyFoldersCommand}"></Button>
+            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Profile" FontSize="28" Foreground="WhiteSmoke" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
+                    Command="{Binding NavigateMyProfileCommand}"></Button>
+            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Settings" FontSize="28" Foreground="WhiteSmoke" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
+                    Command="{Binding NavigateSettingsCommand}"></Button>
         </StackPanel>
-        <Label Content="Main Window view" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Calibri" Foreground="WhiteSmoke"></Label>
+
+        <ContentControl Grid.Column="1" Content="{Binding Navigation.CurrentView}">
+            
+        </ContentControl>
+        
     </Grid>
 </Window>

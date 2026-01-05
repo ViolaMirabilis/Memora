@@ -28,6 +28,7 @@ namespace Memora
             });       
 
             // view model services
+            services.AddSingleton<MainViewModel>();
             services.AddSingleton<RegisterViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<HomeViewModel>();
