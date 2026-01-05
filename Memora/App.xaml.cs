@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using Memora.Interfaces;
 using System.Windows.Navigation;
+using Memora.Authentication;
 
 namespace Memora
 {
@@ -25,7 +26,19 @@ namespace Memora
             services.AddSingleton<MainWindow>(serviceProvider => new MainWindow // Only one instance of MainWindow is created throughout the entire application (Singleton).
             {
                 DataContext = serviceProvider.GetRequiredService<MainViewModel>()       // assigning a view model to the MainWindow view. It gets it from the DI container. It runs whenever the MainWindow is requested.
-            });       
+            });
+
+            //token and auth
+            services.AddSingleton<ITokenStore, TokenStore>();       // singleton, the token is stored ONCE
+            services.AddTransient<ApiClientMessageHandler>();       
+            services.AddHttpClient("ApiClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:1234/");
+            });
+
+            //Api
+            services.AddTransient<FlashcardApiService>();
+            
 
             // view model services
             services.AddSingleton<MainViewModel>();
