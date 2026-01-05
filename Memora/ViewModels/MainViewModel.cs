@@ -6,6 +6,7 @@ namespace Memora.ViewModels
 {
     public class MainViewModel : ViewModel
     {
+        // This navigation is enough to be passed to any view model from which we want to navigate
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -31,6 +32,8 @@ namespace Memora.ViewModels
             NavigateMyFoldersCommand = new RelayCommand(o => { Navigation.NavigateTo<MyFoldersViewModel>(); }, o => true);
             NavigateMyProfileCommand = new RelayCommand(o => { Navigation.NavigateTo<MyProfileViewModel>(); }, o => true);
             NavigateSettingsCommand = new RelayCommand(o => { Navigation.NavigateTo<SettingsViewModel>(); }, o => true);
+
+            Navigation.NavigateTo<LoginViewModel>();
         }
     }
 }

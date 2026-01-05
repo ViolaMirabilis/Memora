@@ -5,9 +5,109 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="#6A5BFF">
+             d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-        <Label Content="Login view" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Calibri" Foreground="WhiteSmoke"></Label>
+        <Border Height="400"
+                Width="400"
+                CornerRadius="25"
+                Background="#4A9EE8">
+            
+            <StackPanel Orientation="Vertical">
+                <Label Content="Memora Login"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="FloralWhite"
+                       HorizontalAlignment="Center"
+                       Margin="10">
+                </Label>
+
+                <Label Content="Email"
+                   FontSize="20"
+                   FontWeight="Medium"
+                   Foreground="FloralWhite"
+                   HorizontalAlignment="Left"
+                   Margin="25,1,25,1">
+                </Label>
+                <TextBox Height="50"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         FontSize="28"
+                         FontWeight="Medium"
+                         Foreground="Black"
+                         BorderThickness="2"
+                         BorderBrush="#81BBEF"
+                         Margin="25,1,25,10">
+                </TextBox>
+
+                <Label Content="Password"
+                       FontSize="20"
+                       FontWeight="Medium"
+                       Foreground="FloralWhite"
+                       HorizontalAlignment="Left"
+                       Margin="25,10,25,1">
+                </Label>
+                <TextBox Height="50"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         FontSize="28"
+                         FontWeight="Medium"
+                         Foreground="Black"
+                         BorderThickness="2"
+                         BorderBrush="#81BBEF"
+                         Margin="25,1,25,1">
+                </TextBox>
+
+                <Button Content="Login"
+                        Foreground="White"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Margin="0,15,0,5"
+                        Command="{Binding NavigateHomeCommand}">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="Background" Value="#268BE3"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#3895E5"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="55"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+
+                    </Button.Template>
+                </Button>
+
+                <Button Content="Don't have an account? Click here to register!"
+                        HorizontalAlignment="Center"
+                        FontWeight="Light"
+                        FontSize="14"
+                        Margin="0,15,0,0"
+                        Cursor="Hand"
+                        Command="{Binding NavigateRegisterCommand}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                    
+                </Button>
+                
+            </StackPanel>
+        </Border>
+        
     </Grid>
 </UserControl>
