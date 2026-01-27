@@ -4,7 +4,7 @@ namespace Memora.Services;
 
 public class NavigationService : ObservableObject, INavigationService
 {
-    private readonly Func<Type, ViewModel> _viewModelFactory;       //Type is what view model we want to navigate to. It's set in App.xaml
+    private readonly Func<Type, ViewModel> _viewModelFactory;       //Type is what view model we want to navigate to. It's set in App.xaml Accepts a method which takes Type as parameter and returns ViewModel
     private  ViewModel _currentView;            // a backing field of type ViewModel (which every ViewModel inherits from)
     public ViewModel CurrentView
     {

@@ -30,14 +30,16 @@ namespace Memora
 
             //token and auth
             services.AddSingleton<ITokenStore, TokenStore>();       // singleton, the token is stored ONCE
-            services.AddTransient<ApiClientMessageHandler>();       
-            services.AddHttpClient("ApiClient", client =>
+            services.AddTransient<ApiClientMessageHandler>();       //@see https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory
+            services.AddHttpClient("ApiClient", client =>           // this is a named client. It'll be used throughout the entire program.
             {
-                client.BaseAddress = new Uri("https://localhost:1234/");
+                client.BaseAddress = new Uri("https://localhost:7153/");
             });
 
             //Api
             services.AddTransient<FlashcardApiService>();
+            services.AddTransient<AuthApiService>();
+            services.AddTransient<FlashcardSetApiService>();
             
 
             // view model services

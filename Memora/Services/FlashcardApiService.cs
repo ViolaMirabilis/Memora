@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using Memora.Model;
+using Memora.Authentication;
 
 namespace Memora.Services
 {
@@ -18,7 +19,7 @@ namespace Memora.Services
 
         public async Task<IEnumerable<Flashcard>> GetAllAsync()
         {
-            var response = await _http.GetAsync("api/Flashcard");
+            var response = await _http.GetAsync("api/Auth/login");
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<List<Flashcard>>();

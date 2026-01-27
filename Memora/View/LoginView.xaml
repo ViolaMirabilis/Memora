@@ -37,7 +37,8 @@
                          Foreground="Black"
                          BorderThickness="2"
                          BorderBrush="#81BBEF"
-                         Margin="25,1,25,10">
+                         Margin="25,1,25,10"
+                         Text="{Binding Username}">
                 </TextBox>
 
                 <Label Content="Password"
@@ -55,7 +56,8 @@
                          Foreground="Black"
                          BorderThickness="2"
                          BorderBrush="#81BBEF"
-                         Margin="25,1,25,1">
+                         Margin="25,1,25,1"
+                         Text="{Binding Password}">
                 </TextBox>
 
                 <Button Content="Login"
@@ -63,7 +65,7 @@
                         FontSize="24"
                         FontWeight="Medium"
                         Margin="0,15,0,5"
-                        Command="{Binding NavigateHomeCommand}">
+                        Command="{Binding LoginCommand}">
 
                     <Button.Style>
                         <Style TargetType="Button">

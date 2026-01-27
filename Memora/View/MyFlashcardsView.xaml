@@ -6,6 +6,32 @@
              xmlns:local="clr-namespace:Memora.View"
              mc:Ignorable="d">
     <Grid>
-        <Label Content="My Flashcards view" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Calibri" Foreground="WhiteSmoke"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="My Flashcards view"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="48"
+               FontFamily="Calibri"
+               Foreground="WhiteSmoke"></Label>
+
+        <Label Grid.Row="1"
+               Content="Flashcard study sets"
+               FontSize="45"
+               HorizontalAlignment="Center"></Label>
+        
+        <ListView Grid.Row="2"
+                  x:Name="FlashcardSetList" 
+                  ItemsSource="{Binding FlashcardSets}"
+                  Height="400"
+                  Width="400"
+                  Margin="15">
+
+        </ListView>
+
     </Grid>
 </UserControl>
