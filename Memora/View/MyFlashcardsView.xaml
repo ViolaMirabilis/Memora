@@ -8,31 +8,47 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.9*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0"
-               Content="My Flashcards view"
+               Content="Flashcard Sets"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                FontSize="48"
                FontFamily="Calibri"
                Foreground="WhiteSmoke"></Label>
 
-        <Label Grid.Row="1"
-               Content="Flashcard study sets"
-               FontSize="45"
-               HorizontalAlignment="Center"></Label>
-        
-        <ListView Grid.Row="2"
-                  x:Name="FlashcardSetList" 
-                  ItemsSource="{Binding FlashcardSets}"
-                  Height="400"
-                  Width="400"
-                  Margin="15"
-                  ItemContainerStyle="{StaticResource FlashcardSetDesign}">
+        <Border
+            Grid.Row="1"
+            Height="505"
+            Width="805"
+            BorderBrush="DimGray"
+            BorderThickness="3"
+            CornerRadius="4">
 
-        </ListView>
+            <ListView
+          x:Name="FlashcardSetList" 
+          ItemsSource="{Binding FlashcardSets}"
+          Background="Transparent"
+          BorderThickness="0"
+          Height="485"
+          Width="785"
+          Margin="15"
+          ItemContainerStyle="{StaticResource FlashcardSetDesign}"> 
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+            </ListView>
+
+
+        </Border>
+
+        
+
 
     </Grid>
 </UserControl>

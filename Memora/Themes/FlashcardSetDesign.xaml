@@ -18,19 +18,26 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
                     <Border Background="{TemplateBinding Background}"
-                            Height="75"
+                            Height="150"
+                            Width="150"
                             CornerRadius="4"
                             Margin="10">
 
                         <StackPanel Orientation="Vertical"
-                                    Margin="10,0,0,0">
+                                    Margin="5">
 
-                            <Label Content="{Binding FlashcardSetName}"
+                            <Label Content="{Binding Name}"
                                    Foreground="White"
-                                   FontSize="18"/>
-                            <Label Content="{Binding FlashcardSetIcon}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   FontSize="14"
+                                   FontWeight="Bold"/>
+                            <Label Content="🗀"
                                    Foreground="White"
-                                   FontSize="34"></Label>
+                                   FontSize="80"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"></Label>
 
                         </StackPanel>
                         
