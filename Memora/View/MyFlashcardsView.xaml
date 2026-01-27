@@ -29,7 +29,8 @@
                   ItemsSource="{Binding FlashcardSets}"
                   Height="400"
                   Width="400"
-                  Margin="15">
+                  Margin="15"
+                  ItemContainerStyle="{StaticResource FlashcardSetDesign}">
 
         </ListView>
 

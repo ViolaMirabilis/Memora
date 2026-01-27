@@ -5,34 +5,46 @@
              xmlns:viewModel="clr-namespace:Memora.ViewModels"
              xmlns:view="clr-namespace:Memora.View">
     <Application.Resources>
-        <!-- Binding ViewModels and Views, one by one. -->
-        <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
-            <view:RegisterView/>
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-            <view:LoginView/>
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-            <view:HomeView/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <!-- resource dictionary for styles -->
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Flashcard Set design-->
+                <ResourceDictionary Source="/Themes/FlashcardSetDesign.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <DataTemplate DataType="{x:Type viewModel:MyFlashcardsViewModel}">
-            <view:MyFlashcardsView/>
-        </DataTemplate>
+            <!-- Binding ViewModels and Views, one by one. -->
+            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                <view:RegisterView/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:MyFoldersViewModel}">
-            <view:MyFoldersView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:MyProfileViewModel}">
-            <view:MyProfileView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-            <view:SettingsView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MyFlashcardsViewModel}">
+                <view:MyFlashcardsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:MyFoldersViewModel}">
+                <view:MyFoldersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:MyProfileViewModel}">
+                <view:MyProfileView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView/>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

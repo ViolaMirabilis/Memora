@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="ListViewItem" x:Key="FlashcardSetDesign">
+        
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <!-- On "IsSelected" background -->
+                <Setter Property="Background" Value="#176BB5"/>
+            </Trigger>
+        </Style.Triggers>
+
+        <!-- default background. The "general looks" is bound to this background-->
+        <Setter Property="Background" Value="#1A76C7"/>
+        
+        <!-- general looks -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}"
+                            Height="75"
+                            CornerRadius="4"
+                            Margin="10">
+
+                        <StackPanel Orientation="Vertical"
+                                    Margin="10,0,0,0">
+
+                            <Label Content="{Binding FlashcardSetName}"
+                                   Foreground="White"
+                                   FontSize="18"/>
+                            <Label Content="{Binding FlashcardSetIcon}"
+                                   Foreground="White"
+                                   FontSize="34"></Label>
+
+                        </StackPanel>
+                        
+                        
+                    </Border>
+
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    
+    
+</ResourceDictionary>
