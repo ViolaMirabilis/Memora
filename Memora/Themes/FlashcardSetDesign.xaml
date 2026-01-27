@@ -32,7 +32,7 @@
                                    VerticalAlignment="Top"
                                    FontSize="14"
                                    FontWeight="Bold"/>
-                            <Label Content="🗀"
+                            <Label Content="📄"
                                    Foreground="White"
                                    FontSize="80"
                                    FontWeight="Bold"
