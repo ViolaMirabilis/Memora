@@ -17,7 +17,7 @@ public class AuthApiService
 
     public AuthApiService(IHttpClientFactory factory, ITokenStore tokenStore) 
     {
-        _http = factory.CreateClient("ApiClient");      // creating a named client
+        _http = factory.CreateClient("AuthClient");      // creating a named client
         _tokenStore = tokenStore;
     }
 
