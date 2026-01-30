@@ -19,8 +19,9 @@ public class FlashcardSetApiService
 
     public async Task<List<FlashcardSetDTO>> GetAllFlashcardSets()
     {
-        var token = _tokenStore.Token;      // setting the token for authorization
-        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);     // adding the header
+        // commenting to check if it will pass with the MessageHandler
+        //var token = _tokenStore.Token;      // setting the token for authorization
+        //_http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);     // adding the header
         var response = await _http.GetAsync("api/FlashcardSet");
         if(!response.IsSuccessStatusCode)
         {

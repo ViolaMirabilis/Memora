@@ -13,7 +13,7 @@ namespace Memora.Authentication
         private readonly ITokenStore _tokenStore;       // stores the JWT token here
         public ApiClientMessageHandler(ITokenStore tokenStore)
         {
-            _tokenStore = tokenStore;       // the token is stored only once, in the constructor
+            _tokenStore = tokenStore;       // the token is stored only once, initialised via the constructor
         }
 
         protected override Task<HttpResponseMessage> SendAsync(
