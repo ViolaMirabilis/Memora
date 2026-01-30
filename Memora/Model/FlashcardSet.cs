@@ -1,6 +1,6 @@
-﻿namespace Memora.DTOs;
+﻿namespace Memora.Model;
 
-public class FlashcardSetDTO
+public class FlashcardSet
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;

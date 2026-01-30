@@ -7,9 +7,9 @@ namespace Memora.Services;
 class JwtTokenHandler : DelegatingHandler
 {
 
-    private readonly ITokenStore _tokenStore;
+    private readonly ITokenStorage _tokenStore;
 
-    public JwtTokenHandler(ITokenStore tokenStore)
+    public JwtTokenHandler(ITokenStorage tokenStore)
     {
         _tokenStore = tokenStore;
     }

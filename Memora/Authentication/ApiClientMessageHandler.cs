@@ -10,8 +10,8 @@ namespace Memora.Authentication
 {
     public class ApiClientMessageHandler : DelegatingHandler
     {
-        private readonly ITokenStore _tokenStore;       // stores the JWT token here
-        public ApiClientMessageHandler(ITokenStore tokenStore)
+        private readonly ITokenStorage _tokenStore;       // stores the JWT token here
+        public ApiClientMessageHandler(ITokenStorage tokenStore)
         {
             _tokenStore = tokenStore;       // the token is stored only once, initialised via the constructor
         }

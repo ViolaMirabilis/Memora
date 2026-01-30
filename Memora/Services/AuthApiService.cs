@@ -13,9 +13,9 @@ namespace Memora.Services;
 public class AuthApiService
 {
     private readonly HttpClient _http;
-    private readonly ITokenStore _tokenStore;
+    private readonly ITokenStorage _tokenStore;
 
-    public AuthApiService(IHttpClientFactory factory, ITokenStore tokenStore) 
+    public AuthApiService(IHttpClientFactory factory, ITokenStorage tokenStore) 
     {
         _http = factory.CreateClient("ApiClient");      // creating a named client
         _tokenStore = tokenStore;
@@ -23,7 +23,6 @@ public class AuthApiService
 
     public async Task LoginAsync(LoginRequest request)
     {
-
         var response = await _http.PostAsJsonAsync("api/Auth/login", request);
 
         if (!response.IsSuccessStatusCode)

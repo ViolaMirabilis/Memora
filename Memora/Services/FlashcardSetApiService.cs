@@ -1,40 +1,35 @@
 ﻿using Memora.Interfaces;
+using Memora.Model;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Memora.DTOs;
-using System.Windows.Documents;
 
 namespace Memora.Services;
 
 public class FlashcardSetApiService
 {
     private readonly HttpClient _http;
-    private readonly ITokenStore _tokenStore;
-    public FlashcardSetApiService(IHttpClientFactory http, ITokenStore tokenstore)
+    private readonly ITokenStorage _tokenStore;
+    public FlashcardSetApiService(IHttpClientFactory http, ITokenStorage tokenstore)
     {
         _http = http.CreateClient("ApiClient");             // named client
         _tokenStore = tokenstore;
     }
 
-    public async Task<List<FlashcardSetDTO>> GetAllFlashcardSets()
+    public async Task<List<FlashcardSet>> GetAllFlashcardSets()
     {
-        // commenting to check if it will pass with the MessageHandler
-        //var token = _tokenStore.Token;      // setting the token for authorization
-        //_http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);     // adding the header
+        // Header is added in the MessagingHandler with each request that is made. Refer to App.xaml.cs for services configuration
         var response = await _http.GetAsync("api/FlashcardSet");
-        if(!response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
-            throw new HttpRequestException($"Error ocurred: {(int)response.StatusCode}");
+            throw new HttpRequestException($"Error ocurred: {response.StatusCode}");
         }
 
-        var result = await response.Content.ReadFromJsonAsync<List<FlashcardSetDTO>>();
+        var result = await response.Content.ReadFromJsonAsync<List<FlashcardSet>>();
         if (result == null)
         {
-            return new List<FlashcardSetDTO>();     // temporarily returns an empty list
+            return new List<FlashcardSet>();     // temporarily returns an empty list
         }
 
         return result;
-        // Further processing of the response can be done here
     }
 }

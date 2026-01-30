@@ -32,7 +32,7 @@ namespace Memora
             // @see https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet?utm_source=YouTube&utm_medium=social&utm_campaign=26.01.2025
             // and this one: https://www.milanjovanovic.tech/blog/extending-httpclient-with-delegating-handlers-in-aspnetcore?utm_source=chatgpt.com
             // //@see https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory
-            services.AddSingleton<ITokenStore, TokenStore>();       // singleton, the token is stored ONCE
+            services.AddSingleton<ITokenStorage, TokenStorage>();       // singleton, the token is stored ONCE
             services.AddTransient<ApiClientMessageHandler>();       
             services.AddHttpClient("ApiClient", client =>           // this is a named client. It'll be used throughout the entire program.
             {

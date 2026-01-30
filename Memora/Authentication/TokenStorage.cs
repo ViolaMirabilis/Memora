@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Memora.Authentication;
 
-public class TokenStore : ITokenStore
+public class TokenStorage : ITokenStorage
 {
     public string? Token { get; private set; }
     public void SetToken(string token)

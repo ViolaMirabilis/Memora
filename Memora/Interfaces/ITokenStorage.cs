@@ -1,6 +1,6 @@
 ﻿namespace Memora.Interfaces;
 
-public interface ITokenStore
+public interface ITokenStorage
 {
     string? Token { get; }
     public void SetToken(string token);
