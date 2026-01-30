@@ -7,6 +7,7 @@ namespace Memora.Core
 {
     public class RelayCommand : ICommand
     {
+        // these two store references to methods
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
 
@@ -25,12 +26,12 @@ namespace Memora.Core
 
         public bool CanExecute(object? parameter)
         {
-            return _canExecute(parameter!);
+            return _canExecute(parameter!);     // the predicate<obj> is passed here
         }
 
         public void Execute(object? parameter)
         {
-            _execute(parameter!);
+            _execute(parameter!);               // action<obj> passed here
         }
     }
 }

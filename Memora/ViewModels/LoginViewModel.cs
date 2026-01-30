@@ -46,7 +46,7 @@ public class LoginViewModel : ViewModel
         _authApi = authService;
         _navigation = navService;
 
-        LoginCommand = new RelayCommand(async _ => {await LoginAsync(); }, o=> true);
+        LoginCommand = new RelayCommand(async _ => { await LoginAsync(); },o=> true);
         NavigateHomeCommand = new RelayCommand(_ => { Navigation.NavigateTo<HomeViewModel>();}, _ => true);
         //NavigateHomeCommand = new RelayCommand(o => { Navigation.NavigateTo<HomeViewModel>(); }, o => true);
         NavigateRegisterCommand = new RelayCommand(_ => { Navigation.NavigateTo<RegisterViewModel>(); }, _ => true);
