@@ -3,11 +3,12 @@
     <Style TargetType="Button" x:Key="HomeNavigationButton">
         <Setter Property="FontFamily" Value="Sans Serif Collection"/>
         <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="#6366F1"/>
+        <Setter Property="Foreground" Value="#FAFBFC"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -25,7 +26,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#EEF2FF"/>
+                            <Setter Property="Background" Value="#4F46E5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
 

@@ -20,34 +20,36 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" HorizontalAlignment="Right" CornerRadius="10" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="1"></Border>
-        <Label Content="Memora" Foreground="#6366F1" FontSize="38" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></Label>
-        <StackPanel Orientation="Vertical" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Home"
-                    Style="{StaticResource HomeNavigationButton}"
-                    Command="{Binding NavigateHomeCommand}"
-                    Margin="3"/>
-            <Button Content="Flashcards"
-                    Style="{StaticResource HomeNavigationButton}"
-                    Command="{Binding NavigateMyFlashcardsCommand}"
-                    Margin="3"/>
-            <Button Content="Folders"
-                    Style="{StaticResource HomeNavigationButton}"
-                    Command="{Binding NavigateMyFoldersCommand}"
-                    Margin="3"/>
-            <Button Content="Profile"
-                    Style="{StaticResource HomeNavigationButton}"
-                    Command="{Binding NavigateMyProfileCommand}"
-                    Margin="3"/>
-            <Button Content="Settings"
-                    Style="{StaticResource HomeNavigationButton}"
-                    Command="{Binding NavigateSettingsCommand}"
-                    Margin="3"/>
-        </StackPanel>
 
+        <Border Grid.Column="0" Margin="10,15,10,15" CornerRadius="10" Background="#6366F1" BorderBrush="#DEE2E6" BorderThickness="1">
+            <StackPanel VerticalAlignment="Center">
+                <Button Content="Home"
+                        Style="{StaticResource HomeNavigationButton}"
+                        Command="{Binding NavigateHomeCommand}"
+                        Margin="3"/>
+                <Button Content="Flashcards"
+                        Style="{StaticResource HomeNavigationButton}"
+                        Command="{Binding NavigateMyFlashcardsCommand}"
+                        Margin="3"/>
+                <Button Content="Folders"
+                        Style="{StaticResource HomeNavigationButton}"
+                        Command="{Binding NavigateMyFoldersCommand}"
+                        Margin="3"/>
+                <Button Content="Profile"
+                        Style="{StaticResource HomeNavigationButton}"
+                        Command="{Binding NavigateMyProfileCommand}"
+                        Margin="3"/>
+                <Button Content="Settings"
+                        Style="{StaticResource HomeNavigationButton}"
+                        Command="{Binding NavigateSettingsCommand}"
+                        Margin="3"/>
+            </StackPanel>
+        </Border>
+        <Label Content="Memora" Margin="0,20,0,0" Foreground="#FAFBFC" FontSize="38" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+        
         <ContentControl Grid.Column="1" Content="{Binding Navigation.CurrentView}">
             
         </ContentControl>
