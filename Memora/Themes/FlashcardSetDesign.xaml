@@ -25,16 +25,70 @@
 
                         <StackPanel Orientation="Vertical"
                                     Margin="5">
+                            <ToggleButton x:Name="FlashcardSetToggleButton"
+                                          Height="20"
+                                          Width="20"
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          HorizontalAlignment="Right"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center">
+                                <StackPanel>
+                                    <!-- three dots -->
+                                    <TextBlock x:Name="ThreeDots"
+                                       FontSize="15"
+                                       Text="…"
+                                       TextAlignment="Center"
+                                       Background="Transparent"
+                                       Foreground="White">
+                                    </TextBlock>
+                                    
+                                    <!-- what appears after clicking the toggle button -->
+                                    <!-- The Binding to IsOpen checks whether the toggle button is pressed or not-->
+                                    <!-- @see https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/popup-overview -->
+                                    <Popup IsOpen="{Binding IsChecked, ElementName=FlashcardSetToggleButton}"
+                                           StaysOpen="False"
+                                           PlacementTarget="{Binding ElementName=FlashcardSetToggleButton}"
+                                           Placement="Left">
+                                        <Border BorderThickness="0.5">
+                                            <StackPanel Orientation="Vertical"
+                                                        Width="auto"
+                                                        Height="auto">
+                                                <Button x:Name="Rename"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Content="Rename"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"></Button>
 
+                                                <Button x:Name="Delete"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Content="Delete"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"></Button>
+                                            </StackPanel>
+                                        </Border>
+                                    </Popup>
+                                </StackPanel>
+                                
+
+
+                            </ToggleButton>
                             <Label Content="{Binding Name}"
                                    Foreground="White"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
                                    FontSize="14"
-                                   FontWeight="Bold"/>
+                                   FontWeight="Bold"
+                                   Margin="0"/>
                             <Label Content="📄"
                                    Foreground="White"
-                                   FontSize="80"
+                                   FontSize="60"
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"></Label>
