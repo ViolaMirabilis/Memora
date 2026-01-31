@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="Memora" Height="768" Width="1366"
         Background="#FAFBFC">
+
+    <!-- needed to use the Themes folder and button styles-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/HomeButtons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.15*"/>
@@ -15,16 +26,26 @@
         <Border Grid.Column="0" HorizontalAlignment="Right" CornerRadius="10" Background="#FFFFFF" BorderBrush="#DEE2E6" BorderThickness="1"></Border>
         <Label Content="Memora" Foreground="#6366F1" FontSize="38" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></Label>
         <StackPanel Orientation="Vertical" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Home" Width="130" FontSize="26" Foreground="#6366F1" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
-                    Command="{Binding NavigateHomeCommand}"></Button>
-            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Flashcards" Width="130" FontSize="26" Foreground="#6366F1" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
-                    Command="{Binding NavigateMyFlashcardsCommand}"></Button>
-            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Folders" Width="130" FontSize="26" Foreground="#6366F1" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
-                    Command="{Binding NavigateMyFoldersCommand}"></Button>
-            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Profile" Width="130" FontSize="26" Foreground="#6366F1" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
-                    Command="{Binding NavigateMyProfileCommand}"></Button>
-            <Button HorizontalAlignment="Left" VerticalContentAlignment="Center" Content="Settings" Width="130" FontSize="26" Foreground="#6366F1" FontWeight="Medium" Margin="10" Background="Transparent" BorderThickness="0"
-                    Command="{Binding NavigateSettingsCommand}"></Button>
+            <Button Content="Home"
+                    Style="{StaticResource HomeNavigationButton}"
+                    Command="{Binding NavigateHomeCommand}"
+                    Margin="3"/>
+            <Button Content="Flashcards"
+                    Style="{StaticResource HomeNavigationButton}"
+                    Command="{Binding NavigateMyFlashcardsCommand}"
+                    Margin="3"/>
+            <Button Content="Folders"
+                    Style="{StaticResource HomeNavigationButton}"
+                    Command="{Binding NavigateMyFoldersCommand}"
+                    Margin="3"/>
+            <Button Content="Profile"
+                    Style="{StaticResource HomeNavigationButton}"
+                    Command="{Binding NavigateMyProfileCommand}"
+                    Margin="3"/>
+            <Button Content="Settings"
+                    Style="{StaticResource HomeNavigationButton}"
+                    Command="{Binding NavigateSettingsCommand}"
+                    Margin="3"/>
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding Navigation.CurrentView}">
