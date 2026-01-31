@@ -32,7 +32,8 @@
                                           BorderThickness="0"
                                           HorizontalAlignment="Right"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center">
+                                          VerticalContentAlignment="Center"
+                                          Cursor="Hand">
                                 <StackPanel>
                                     <!-- three dots -->
                                     <TextBlock x:Name="ThreeDots"
@@ -49,28 +50,81 @@
                                     <Popup IsOpen="{Binding IsChecked, ElementName=FlashcardSetToggleButton}"
                                            StaysOpen="False"
                                            PlacementTarget="{Binding ElementName=FlashcardSetToggleButton}"
-                                           Placement="Left">
-                                        <Border BorderThickness="0.5">
+                                           Placement="Left"
+                                           AllowsTransparency="True">
+                                        <Border BorderThickness="2"
+                                                CornerRadius="5"
+                                                BorderBrush="Black">
                                             <StackPanel Orientation="Vertical"
                                                         Width="auto"
                                                         Height="auto">
                                                 <Button x:Name="Rename"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
-                                                        Content="Rename"
-                                                        FontSize="14"
+                                                        FontSize="18"
                                                         Foreground="White"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"></Button>
+                                                        BorderThickness="0"
+                                                        Width="120">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="✎" Margin="5,2,10,2" HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="Rename" Margin="5,2,5,2" HorizontalAlignment="Left"/>
+                                                    </StackPanel>
+                                                    
+                                                    <!-- https://stackoverflow.com/questions/20073294/change-color-of-button-when-mouse-is-over-->
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Background" Value="CornflowerBlue"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#1561A2"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
 
+                                                <!-- temporarily duplicated. Will be made into a template later on.-->
                                                 <Button x:Name="Delete"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
-                                                        Content="Delete"
-                                                        FontSize="14"
+                                                        FontSize="18"
                                                         Foreground="White"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"></Button>
+                                                        BorderThickness="0"
+                                                        Width="120">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="🗑" Margin="5,2,10,2" HorizontalAlignment="Left" FontSize="14"/>
+                                                        <TextBlock Text="Delete" Margin="5,2,5,2" HorizontalAlignment="Left"/>
+                                                    </StackPanel>
+                                                    <Button.Style>
+                                                        <Style TargetType="{x:Type Button}">
+                                                            <Setter Property="Background" Value="CornflowerBlue"/>
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                        <Border Background="{TemplateBinding Background}">
+                                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#1561A2"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
                                             </StackPanel>
                                         </Border>
                                     </Popup>
