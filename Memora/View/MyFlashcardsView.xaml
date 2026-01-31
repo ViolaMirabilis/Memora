@@ -16,15 +16,17 @@
                VerticalAlignment="Center"
                FontSize="48"
                FontFamily="Calibri"
-               Foreground="WhiteSmoke"></Label>
+               FontWeight="Bold"
+               Foreground="#6366F1"></Label>
 
         <Border
             Grid.Row="1"
             Height="505"
             Width="805"
-            BorderBrush="DimGray"
-            BorderThickness="3"
-            CornerRadius="4">
+            BorderBrush="#DEE2E6"
+            BorderThickness="2"
+            CornerRadius="4"
+            Background="#FFFFFF">
 
             <ListView
           x:Name="FlashcardSetList" 

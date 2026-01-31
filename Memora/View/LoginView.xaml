@@ -11,13 +11,15 @@
         <Border Height="400"
                 Width="400"
                 CornerRadius="25"
-                Background="#4A9EE8">
+                Background="#FFFFFF"
+                BorderBrush="#DEE2E6"
+                BorderThickness="2">
             
             <StackPanel Orientation="Vertical">
                 <Label Content="Memora Login"
                        FontSize="28"
                        FontWeight="Bold"
-                       Foreground="FloralWhite"
+                       Foreground="#6366F1"
                        HorizontalAlignment="Center"
                        Margin="10">
                 </Label>
@@ -25,7 +27,7 @@
                 <Label Content="Email"
                    FontSize="20"
                    FontWeight="Medium"
-                   Foreground="FloralWhite"
+                   Foreground="#6366F1"
                    HorizontalAlignment="Left"
                    Margin="25,1,25,1">
                 </Label>
@@ -34,9 +36,10 @@
                          VerticalContentAlignment="Center"
                          FontSize="28"
                          FontWeight="Medium"
-                         Foreground="Black"
+                         Foreground="#2C3E50"
+                         Background="#FAFBFC"
                          BorderThickness="2"
-                         BorderBrush="#81BBEF"
+                         BorderBrush="#818CF8"
                          Margin="25,1,25,10"
                          Text="{Binding Username}">
                 </TextBox>
@@ -44,7 +47,7 @@
                 <Label Content="Password"
                        FontSize="20"
                        FontWeight="Medium"
-                       Foreground="FloralWhite"
+                       Foreground="#6366F1"
                        HorizontalAlignment="Left"
                        Margin="25,10,25,1">
                 </Label>
@@ -53,9 +56,10 @@
                          VerticalContentAlignment="Center"
                          FontSize="28"
                          FontWeight="Medium"
-                         Foreground="Black"
+                         Foreground="#2C3E50"
+                         Background="#FAFBFC"
                          BorderThickness="2"
-                         BorderBrush="#81BBEF"
+                         BorderBrush="#818CF8"
                          Margin="25,1,25,1"
                          Text="{Binding Password}">
                 </TextBox>
@@ -70,11 +74,11 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="FontFamily" Value="Arial"/>
-                            <Setter Property="Background" Value="#268BE3"/>
+                            <Setter Property="Background" Value="#4F46E5"/> 
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#3895E5"/>
+                                    <Setter Property="Background" Value="#818CF8"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -95,6 +99,7 @@
 
                 <Button Content="Don't have an account? Click here to register!"
                         HorizontalAlignment="Center"
+                        Foreground="#2C3E50"
                         FontWeight="Light"
                         FontSize="14"
                         Margin="0,15,0,0"

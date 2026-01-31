@@ -6,13 +6,13 @@
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <!-- On "IsSelected" background -->
-                <Setter Property="Background" Value="#176BB5"/>
+                <Setter Property="Background" Value="#EEF2FF"/>
             </Trigger>
         </Style.Triggers>
 
         <!-- default background. The "general looks" is bound to this background-->
-        <Setter Property="Background" Value="#1A76C7"/>
-        
+        <Setter Property="Background" Value="#FFFFFF"/>
+
         <!-- general looks -->
         <Setter Property="Template">
             <Setter.Value>
@@ -21,7 +21,9 @@
                             Height="150"
                             Width="150"
                             CornerRadius="4"
-                            Margin="10">
+                            Margin="10"
+                            BorderBrush="#DEE2E6"
+                            BorderThickness="0.8">
 
                         <StackPanel Orientation="Vertical"
                                     Margin="5">
@@ -63,7 +65,7 @@
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="18"
-                                                        Foreground="White"
+                                                        Foreground="#6C757D"
                                                         BorderThickness="0"
                                                         Width="120"
                                                         Margin="5,5,5,0">
@@ -99,7 +101,7 @@
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
                                                         FontSize="18"
-                                                        Foreground="White"
+                                                        Foreground="#6C757D"
                                                         BorderThickness="0"
                                                         Width="120"
                                                         Margin="5,0,5,5">
@@ -137,14 +139,14 @@
 
                             </ToggleButton>
                             <Label Content="{Binding Name}"
-                                   Foreground="White"
+                                   Foreground="#2C3E50"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
                                    FontSize="14"
                                    FontWeight="Bold"
                                    Margin="0"/>
                             <Label Content="📄"
-                                   Foreground="White"
+                                   Foreground="#4F46E5"
                                    FontSize="60"
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"
