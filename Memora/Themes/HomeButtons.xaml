@@ -21,7 +21,8 @@
                             CornerRadius="10"
                             Background="{TemplateBinding Background}">
                         <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                        </ContentPresenter>
                     </Border>
 
                     <ControlTemplate.Triggers>

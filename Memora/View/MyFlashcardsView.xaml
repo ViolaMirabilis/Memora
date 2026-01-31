@@ -14,9 +14,9 @@
                Content="Flashcard Sets"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               FontSize="48"
-               FontFamily="Calibri"
-               FontWeight="Bold"
+               FontSize="35"
+               FontFamily="Sans Serif Collection"
+               FontWeight="SemiBold"
                Foreground="#6366F1"></Label>
 
         <Border

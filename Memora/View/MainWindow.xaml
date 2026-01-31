@@ -24,7 +24,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" Margin="10,15,10,15" CornerRadius="10" Background="#6366F1" BorderBrush="#DEE2E6" BorderThickness="1">
+        <Border Grid.Column="1" HorizontalAlignment="Left" BorderBrush="#DEE2E6" BorderThickness="1"/>
+        <Border Grid.Column="0" Background="#6366F1">
             <StackPanel VerticalAlignment="Center">
                 <Button Content="Home"
                         Style="{StaticResource HomeNavigationButton}"
