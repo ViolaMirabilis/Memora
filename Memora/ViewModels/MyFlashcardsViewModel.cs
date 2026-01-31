@@ -1,10 +1,10 @@
 ﻿using Memora.Core;
-using Memora.DTOs;
 using Memora.Interfaces;
 using Memora.Services;
 using System.Net.Http;
 using System.Windows;
-using Memora.DTOs;
+using Memora.Model;
+
 using System.Collections.ObjectModel;
 
 namespace Memora.ViewModels
@@ -12,7 +12,7 @@ namespace Memora.ViewModels
     public class MyFlashcardsViewModel : ViewModel
     {
         private readonly FlashcardSetApiService _flashcardSetService;
-        public ObservableCollection<FlashcardSetDTO> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSetDTO>();
+        public ObservableCollection<FlashcardSet> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSet>();
 
         private INavigationService _navigation;
         public INavigationService Navigation
@@ -34,7 +34,7 @@ namespace Memora.ViewModels
         }
 
 
-        private async Task<List<FlashcardSetDTO>> GetAllFlashcardSets()
+        private async Task<List<FlashcardSet>> GetAllFlashcardSets()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace Memora.ViewModels
                 MessageBox.Show(ex.ToString());
             }
 
-            return new List<FlashcardSetDTO>();     // returns empty list if fails
+            return new List<FlashcardSet>();     // returns empty list if fails
         }
 
         private async Task LoadFlaschardSetsAsync()
