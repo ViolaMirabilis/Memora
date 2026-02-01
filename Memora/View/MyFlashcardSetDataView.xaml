@@ -29,18 +29,19 @@
         Background="#FFFFFF">
 
             <ListView
-      x:Name="FlashcardSetList" 
-      ItemsSource="{Binding FlashcardSets}"
+      x:Name="FlashcardList" 
+      ItemsSource="{Binding Flashcards}"
       Background="Transparent"
       BorderThickness="0"
       Height="485"
       Width="785"
       Margin="15"
-      ItemContainerStyle="{StaticResource FlashcardSetDesign}">
+      HorizontalAlignment="Center"
+      ItemContainerStyle="{StaticResource FlashcardDataDesign}">
 
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
 

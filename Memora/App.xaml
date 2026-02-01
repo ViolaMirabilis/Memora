@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Flashcard Set design-->
                 <ResourceDictionary Source="/Themes/FlashcardSetDesign.xaml"/>
+                <ResourceDictionary Source="/Themes/FlashcardDataDesign.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Binding ViewModels and Views, one by one. -->

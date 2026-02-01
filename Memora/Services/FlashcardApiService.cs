@@ -17,9 +17,9 @@ namespace Memora.Services
             _http = factory.CreateClient("ApiClient");
         }
 
-        public async Task<IEnumerable<Flashcard>> GetAllAsync()
+        public async Task<List<Flashcard>> GetAllFlashcardsByIdAsync(int id)
         {
-            var response = await _http.GetAsync("api/Auth/login");
+            var response = await _http.GetAsync($"api/Flashcard/set/{id}");
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<List<Flashcard>>();

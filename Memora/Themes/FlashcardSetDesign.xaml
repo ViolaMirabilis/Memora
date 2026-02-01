@@ -27,7 +27,7 @@
                         <!-- responsible for a clickable list view item-->
                         <Border.InputBindings>
                             <MouseBinding Gesture="LeftClick"
-                                          Command="{Binding DataContext.TestCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                          Command="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                           CommandParameter="{Binding}"/>
                         </Border.InputBindings>
                         

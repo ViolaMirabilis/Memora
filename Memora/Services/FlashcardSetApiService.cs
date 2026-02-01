@@ -8,11 +8,9 @@ namespace Memora.Services;
 public class FlashcardSetApiService
 {
     private readonly HttpClient _http;
-    private readonly ITokenStorage _tokenStore;
-    public FlashcardSetApiService(IHttpClientFactory http, ITokenStorage tokenstore)
+    public FlashcardSetApiService(IHttpClientFactory http)
     {
         _http = http.CreateClient("ApiClient");             // named client
-        _tokenStore = tokenstore;
     }
 
     public async Task<List<FlashcardSet>> GetAllFlashcardSets()
