@@ -12,7 +12,6 @@
 
         <!-- default background. The "general looks" is bound to this background-->
         <Setter Property="Background" Value="#FFFFFF"/>
-
         <!-- general looks -->
         <Setter Property="Template">
             <Setter.Value>
@@ -24,6 +23,15 @@
                             Margin="10"
                             BorderBrush="#DEE2E6"
                             BorderThickness="0.8">
+
+                        <!-- responsible for a clickable list view item-->
+                        <Border.InputBindings>
+                            <MouseBinding Gesture="LeftClick"
+                                          Command="{Binding DataContext.NavigateFlashcardSetCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                          CommandParameter="{Binding}"/>
+                        </Border.InputBindings>
+                        
+                        
 
                         <StackPanel Orientation="Vertical"
                                     Margin="5">
@@ -142,13 +150,15 @@
                                    VerticalAlignment="Top"
                                    FontSize="14"
                                    FontWeight="Bold"
-                                   Margin="0"/>
+                                   Margin="0"
+                                   Cursor="Hand"/>
                             <Label Content="📄"
                                    Foreground="#4F46E5"
                                    FontSize="60"
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"></Label>
+                                   VerticalAlignment="Center"
+                                   Cursor="Hand"></Label>
 
                         </StackPanel>
                         

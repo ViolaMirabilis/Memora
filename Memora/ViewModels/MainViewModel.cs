@@ -28,7 +28,7 @@ namespace Memora.ViewModels
         {
             Navigation = navService;
             NavigateHomeCommand = new RelayCommand(o => { Navigation.NavigateTo<HomeViewModel>(); }, o => true);    // action<object> (sth that returns void), predicate<object>
-            NavigateMyFlashcardsCommand = new RelayCommand(o => { Navigation.NavigateTo<MyFlashcardsViewModel>(); }, o => true);
+            NavigateMyFlashcardsCommand = new RelayCommand(o => { Navigation.NavigateTo<MyFlashcardSetDisplayViewModel>(); }, o => true);
             NavigateMyFoldersCommand = new RelayCommand(o => { Navigation.NavigateTo<MyFoldersViewModel>(); }, o => true);
             NavigateMyProfileCommand = new RelayCommand(o => { Navigation.NavigateTo<MyProfileViewModel>(); }, o => true);
             NavigateSettingsCommand = new RelayCommand(o => { Navigation.NavigateTo<SettingsViewModel>(); }, o => true);

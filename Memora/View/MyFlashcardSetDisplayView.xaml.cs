@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Memora.View
 {
     /// <summary>
-    /// Interaction logic for MyFlashcardsView.xaml
+    /// Interaction logic for MyFlashcardSetView.xaml
     /// </summary>
-    public partial class MyFlashcardsView : UserControl
+    public partial class MyFlashcardSetDisplayView : UserControl
     {
-        public MyFlashcardsView()
+        public MyFlashcardSetDisplayView()
         {
             InitializeComponent();
         }

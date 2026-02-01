@@ -27,8 +27,8 @@
                 <view:HomeView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:MyFlashcardsViewModel}">
-                <view:MyFlashcardsView/>
+            <DataTemplate DataType="{x:Type viewModel:MyFlashcardSetDisplayViewModel}">
+                <view:MyFlashcardSetDisplayView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:MyFoldersViewModel}">
@@ -42,7 +42,6 @@
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:SettingsView/>
             </DataTemplate>
-
 
         </ResourceDictionary>
 
