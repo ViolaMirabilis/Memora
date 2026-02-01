@@ -32,12 +32,18 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         _navigation = navService;
         _flashcardSetService = flashcardSetService;
 
-        // temporarily the old view model
-        NavigateFlashcardSetCommand = new RelayCommand(_ => { Navigation.NavigateTo<LoginViewModel>(); }, o => true);
+        // We're using the overloaded method from NavigationService. vm => _ = vm... is set to the TViewModel instance
+        // and we're just using the method this way
+        NavigateFlashcardSetCommand = new RelayCommand(o =>
+        {
+            if (o is not FlashcardSet set) return;
+
+            Navigation.NavigateTo<MyFlashcardSetDataViewModel>(
+                vm => _ = vm.GetSetById(set.Id)); }, _ => true
+        );
 
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
     }
-
 
     private async Task<List<FlashcardSet>> GetAllFlashcardSets()
     {

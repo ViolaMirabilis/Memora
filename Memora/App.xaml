@@ -43,6 +43,10 @@
                 <view:SettingsView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:MyFlashcardSetDataViewModel}">
+                <view:MyFlashcardSetDataView/>
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </Application.Resources>
