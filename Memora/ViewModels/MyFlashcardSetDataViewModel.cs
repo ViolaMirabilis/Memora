@@ -12,6 +12,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     private int _setId { get; set; }
     private readonly FlashcardApiService _flashcardApiService;
     public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
+    
     public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
     {
         _flashcardApiService = flashcardApiService;

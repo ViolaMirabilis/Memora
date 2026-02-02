@@ -65,7 +65,7 @@
                 </TextBox>
 
                 <Button Content="Login"
-                        Foreground="White"
+                        Foreground="#FAFBFC"
                         FontSize="24"
                         FontWeight="Medium"
                         Margin="0,15,0,5"

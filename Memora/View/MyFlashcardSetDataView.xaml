@@ -4,12 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:placeholder="clr-namespace:Memora.Design"
+             d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="0.9*"></RowDefinition>
         </Grid.RowDefinitions>
+
         <Label Grid.Row="0"
            Content="Flashcard Data"
            HorizontalAlignment="Center"
@@ -17,36 +20,68 @@
            FontSize="35"
            FontFamily="Sans Serif Collection"
            FontWeight="SemiBold"
-           Foreground="#6366F1"></Label>
+           Foreground="#6366F1">
+        </Label>
 
-        <Border
-        Grid.Row="1"
-        Height="505"
-        Width="805"
-        BorderBrush="#DEE2E6"
-        BorderThickness="2"
-        CornerRadius="4"
-        Background="#FFFFFF">
+        <!-- Second row-->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
 
-            <ListView
-      x:Name="FlashcardList" 
-      ItemsSource="{Binding Flashcards}"
-      Background="Transparent"
-      BorderThickness="0"
-      Height="485"
-      Width="785"
-      Margin="15"
-      HorizontalAlignment="Center"
-      ItemContainerStyle="{StaticResource FlashcardDataDesign}">
+            <Border
+                Grid.ColumnSpan="2"
+                BorderBrush="#DEE2E6"
+                BorderThickness="2"
+                CornerRadius="4"
+                Background="#FFFFFF">
+            </Border>
 
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+            <ScrollViewer
+                Grid.Column="0"
+                VerticalScrollBarVisibility="Hidden"
+                HorizontalContentAlignment="Center">
+                <ListView
+                  x:Name="FlashcardList" 
+                  ItemsSource="{Binding Flashcards}"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Height="auto"
+                  Width="auto"
+                  Margin="15"
+                  HorizontalAlignment="Center"
+                  HorizontalContentAlignment="Center"
+                  ItemContainerStyle="{StaticResource FlashcardDataDesign}">
 
-            </ListView>
-        </Border>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+            </ScrollViewer>
+
+            <Border Grid.Column="1"
+                    Background="#6366F1"
+                    CornerRadius="4"
+                    BorderThickness="1"
+                    BorderBrush="#DEE2E6"
+                    Margin="10"
+                    Height="auto"
+                    Width="auto">
+
+
+                <StackPanel Orientation="Vertical">
+                    <Button Height="50" Width="50" Margin="10" Content="Test"></Button>
+                    <Button Height="50" Width="50" Margin="10" Content="Revise"></Button>
+                    <Button Height="50" Width="50" Margin="10" Content="Typing test"></Button>
+
+                </StackPanel>
+            </Border>
+
+        </Grid>
 
     </Grid>
 </UserControl>
