@@ -23,65 +23,70 @@
            Foreground="#6366F1">
         </Label>
 
-        <!-- Second row-->
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.6*"/>
-                <ColumnDefinition Width="0.4*"/>
-            </Grid.ColumnDefinitions>
 
-            <Border
-                Grid.ColumnSpan="2"
-                BorderBrush="#DEE2E6"
-                BorderThickness="2"
-                CornerRadius="4"
-                Background="#FFFFFF">
-            </Border>
+        <Border
+            Grid.Row="1"
+            BorderBrush="#DEE2E6"
+            BorderThickness="2"
+            CornerRadius="4"
+            Background="#FFFFFF">
+        </Border>
 
-            <ScrollViewer
-                Grid.Column="0"
-                VerticalScrollBarVisibility="Hidden"
-                HorizontalContentAlignment="Center">
-                <ListView
-                  x:Name="FlashcardList" 
-                  ItemsSource="{Binding Flashcards}"
-                  Background="Transparent"
-                  BorderThickness="0"
-                  Height="auto"
-                  Width="auto"
-                  Margin="15"
-                  HorizontalAlignment="Center"
-                  HorizontalContentAlignment="Center"
-                  ItemContainerStyle="{StaticResource FlashcardDataDesign}">
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
 
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+            <ListView
+            x:Name="FlashcardList" 
+            ItemsSource="{Binding Flashcards}"
+            Background="Transparent"
+            BorderThickness="0"
+            Height="auto"
+            Width="auto"
+            Margin="15"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            ItemContainerStyle="{StaticResource FlashcardDataDesign}"
+            ScrollViewer.CanContentScroll="True"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                </ListView>
-            </ScrollViewer>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
 
             <Border Grid.Column="1"
-                    Background="#6366F1"
-                    CornerRadius="4"
-                    BorderThickness="1"
-                    BorderBrush="#DEE2E6"
-                    Margin="10"
-                    Height="auto"
-                    Width="auto">
-
+            Background="#6366F1"
+            CornerRadius="4"
+            BorderThickness="2"
+            BorderBrush="#DEE2E6"
+            Margin="10"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Padding="50">
 
                 <StackPanel Orientation="Vertical">
-                    <Button Height="50" Width="50" Margin="10" Content="Test"></Button>
-                    <Button Height="50" Width="50" Margin="10" Content="Revise"></Button>
-                    <Button Height="50" Width="50" Margin="10" Content="Typing test"></Button>
+                    <Label Content="Modes"
+                           Foreground="#FAFBFC"
+                           FontSize="38"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           Margin="10"></Label>
+                    <Button Height="50" Width="100" Margin="10" Content="Test"></Button>
+                    <Button Height="50" Width="100" Margin="10" Content="Revise"></Button>
+                    <Button Height="50" Width="100" Margin="10" Content="Typing test"></Button>
 
                 </StackPanel>
             </Border>
 
-        </Grid>
+
+        </StackPanel>
+        
 
     </Grid>
 </UserControl>
