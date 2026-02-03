@@ -10,6 +10,13 @@ namespace Memora.ViewModels;
 public class MyFlashcardSetDataViewModel : ViewModel
 {
     private int _setId { get; set; }
+    private int _flashcardsCount;   // bindable property for flashcard count
+    public int FlashcardsCount
+    {
+        get { return _flashcardsCount; }
+        set { _flashcardsCount = value; OnPropertyChanged();
+        }
+    }
     private readonly FlashcardApiService _flashcardApiService;
     public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
     
@@ -29,6 +36,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         {
             Flashcards.Add(flashcard);
         }
+        FlashcardsCount = flashcards.Count; // updates the count property
     }
 
     private async Task<List<Flashcard>> GetAllFlashcardsById()
