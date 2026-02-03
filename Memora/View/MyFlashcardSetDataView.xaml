@@ -23,7 +23,6 @@
            Foreground="#6366F1">
         </Label>
 
-
         <Border
             Grid.Row="1"
             BorderBrush="#DEE2E6"
@@ -32,48 +31,81 @@
             Background="#FFFFFF">
         </Border>
 
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+
+            <Label Grid.Row="1"
+                    Content="{Binding FlashcardsCount}"
+                    FontWeight="Bold"
+                    FontSize="18"
+                    Foreground="#2C3E50">
+            </Label>
+            <Label Grid.Row="1"
+                    Content="total entries "
+                    FontWeight="Bold"
+                    FontSize="18"
+                    Foreground="#2C3E50">
+            </Label>
+
+        </StackPanel>
+
+
+<!-- Horizontal Stackpanel for individual flashcards and study modes-->
         <StackPanel
             Grid.Row="1"
             Orientation="Horizontal"
-            HorizontalAlignment="Center">
-
-            <ListView
-            x:Name="FlashcardList" 
-            ItemsSource="{Binding Flashcards}"
-            Background="Transparent"
-            BorderThickness="0"
-            Height="auto"
-            Width="auto"
-            Margin="15,15,15,75"
             HorizontalAlignment="Center"
-            HorizontalContentAlignment="Center"
-            ItemContainerStyle="{StaticResource FlashcardDataDesign}"
-            ScrollViewer.CanContentScroll="True"
-            ScrollViewer.VerticalScrollBarVisibility="Hidden"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            Margin="30">
 
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+            <!-- border around the flashcards -->
+            <Border
+                Grid.Row="1"
+                BorderBrush="#DEE2E6"
+                BorderThickness="2"
+                CornerRadius="4"
+                Background="#FAFBFC">
+                <ListView
+                    x:Name="FlashcardList" 
+                    ItemsSource="{Binding Flashcards}"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Height="auto"
+                    Width="auto"
+                    Margin="15,15,15,15"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    ItemContainerStyle="{StaticResource FlashcardDataDesign}"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-            </ListView>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
 
-            <Border Grid.Column="1"
-            Background="#6366F1"
-            CornerRadius="4"
-            BorderThickness="2"
-            BorderBrush="#DEE2E6"
-            Margin="10"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            Padding="50">
+                </ListView>
+            </Border>
+            
+
+            <Border
+                Grid.Column="1"
+                Background="#6366F1"
+                CornerRadius="4"
+                BorderThickness="2"
+                BorderBrush="#DEE2E6"
+                Margin="25,10,10,10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Padding="10">
 
                 <StackPanel Orientation="Vertical">
-                    <Label Content="Modes"
+                    <Label Content="Studying modes"
                            Foreground="#FAFBFC"
-                           FontSize="38"
+                           FontSize="28"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"
@@ -86,29 +118,6 @@
             </Border>
 
         </StackPanel>
-
-        <StackPanel Grid.Row="1" 
-            Orientation="Horizontal"
-                    Margin="0,0,388,30"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom">
-
-
-            <Label Grid.Row="1"
-                   Content="{Binding FlashcardsCount}"
-                   FontWeight="Bold"
-                   FontSize="18"
-                   Foreground="#2C3E50">
-            </Label>
-            <Label Grid.Row="1"
-                    Content="entries "
-                    FontWeight="Bold"
-                    FontSize="18"
-                    Foreground="#2C3E50">
-            </Label>
-
-        </StackPanel>
-        
 
 
     </Grid>
