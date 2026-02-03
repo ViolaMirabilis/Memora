@@ -7,42 +7,38 @@
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.9*"></RowDefinition>
-        </Grid.RowDefinitions>
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
-        <Label Grid.Row="0"
-           Content="Flashcard Data"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Center"
-           FontSize="35"
-           FontFamily="Sans Serif Collection"
-           FontWeight="SemiBold"
-           Foreground="#6366F1">
-        </Label>
+
+
+    <Grid>
 
         <Border
-            Grid.Row="1"
             BorderBrush="#DEE2E6"
             BorderThickness="2"
-            CornerRadius="4"
+            CornerRadius="10"
+            Margin="10"
             Background="#FFFFFF">
         </Border>
 
-        <StackPanel Grid.Row="1" 
-                    Orientation="Horizontal"
+        <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    Margin="10">
 
-            <Label Grid.Row="1"
-                    Content="{Binding FlashcardsCount}"
+            <Label Content="{Binding FlashcardsCount}"
                     FontWeight="Bold"
                     FontSize="18"
                     Foreground="#2C3E50">
             </Label>
-            <Label Grid.Row="1"
+            <Label 
                     Content="total entries "
                     FontWeight="Bold"
                     FontSize="18"
@@ -54,17 +50,15 @@
 
 <!-- Horizontal Stackpanel for individual flashcards and study modes-->
         <StackPanel
-            Grid.Row="1"
             Orientation="Horizontal"
             HorizontalAlignment="Center"
-            Margin="30">
+            Margin="20,40,20,20">
 
             <!-- border around the flashcards -->
             <Border
-                Grid.Row="1"
                 BorderBrush="#DEE2E6"
                 BorderThickness="2"
-                CornerRadius="4"
+                CornerRadius="10"
                 Background="#FAFBFC">
                 <ListView
                     x:Name="FlashcardList" 
@@ -92,9 +86,8 @@
             
 
             <Border
-                Grid.Column="1"
-                Background="#6366F1"
-                CornerRadius="4"
+                Background="#FAFBFC"
+                CornerRadius="10"
                 BorderThickness="2"
                 BorderBrush="#DEE2E6"
                 Margin="25,10,10,10"
@@ -104,15 +97,28 @@
 
                 <StackPanel Orientation="Vertical">
                     <Label Content="Studying modes"
-                           Foreground="#FAFBFC"
+                           Foreground="#2C3E50"
                            FontSize="28"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"
                            Margin="10"></Label>
-                    <Button Height="50" Width="100" Margin="10" Content="Test"></Button>
-                    <Button Height="50" Width="100" Margin="10" Content="Revise"></Button>
-                    <Button Height="50" Width="100" Margin="10" Content="Typing test"></Button>
+                    
+                    <Button Content="Revision"
+                            Style="{StaticResource StudyModeButton}"
+                            Command="{Binding NavigateHomeCommand}"
+                            Margin="3"/>
+
+                    <Button Content="Quiz"
+                            Style="{StaticResource StudyModeButton}"
+                            Command="{Binding NavigateHomeCommand}"
+                        
+                            Margin="3"/>
+
+                    <Button Content="Typing quiz"
+                            Style="{StaticResource StudyModeButton}"
+                            Command="{Binding NavigateHomeCommand}"
+                            Margin="3"/>
 
                 </StackPanel>
             </Border>
