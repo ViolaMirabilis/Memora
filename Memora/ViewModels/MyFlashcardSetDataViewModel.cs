@@ -38,7 +38,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         {
             if (f is not Flashcard flashcard) return;
             RemoveFlashcardFromList(flashcard);
-        }, _ => true);
+        }, _ => CanRemoveFlashcardFromList());
     }       
 
     #region Event Logic
@@ -51,6 +51,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     #region Add and Delete logic 
     // Appends the list with an empty flashcard, where the user can input data.
     // The saving of the flashcard is handled with another command.
+
     private void AddEmptyFlashcardToList()
     {
         Flashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
@@ -61,6 +62,11 @@ public class MyFlashcardSetDataViewModel : ViewModel
     {
         Flashcards.Remove(flashcard);
         OnCountChanged?.Invoke();
+    }
+
+    private bool CanRemoveFlashcardFromList()
+    {
+        return Flashcards.Count > 1;
     }
 
 
