@@ -21,7 +21,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
 
     public RelayCommand AddFlashcardCommand { get; set; }
-    public RelayCommand SaveFlashcardAsyncCommand { get; set; }
+    //public RelayCommand SaveFlashcardAsyncCommand { get; set; }
     
     public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
     {

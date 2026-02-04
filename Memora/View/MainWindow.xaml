@@ -42,7 +42,16 @@
 
         
 
-        <Border Grid.Column="0" Background="#6366F1">
+        <Border Grid.Column="0">
+            <Border.Background>
+                <RadialGradientBrush
+                    GradientOrigin="0.1,0.9" 
+                    Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
+                    <GradientStop Color="#4F46E5" Offset="0" />
+                    <GradientStop Color="#818CF8" Offset="1" />
+                </RadialGradientBrush>
+            </Border.Background>
+            
             <StackPanel VerticalAlignment="Center">
                 <Button Content="Home"
                         Style="{StaticResource HomeNavigationButton}"
