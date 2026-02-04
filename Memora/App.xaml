@@ -13,6 +13,10 @@
                 <!-- Flashcard Set design-->
                 <ResourceDictionary Source="/Themes/FlashcardSetDesign.xaml"/>
                 <ResourceDictionary Source="/Themes/FlashcardDataDesign.xaml"/>
+                <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
+                <ResourceDictionary Source="/Themes/HomeButtons.xaml"/>
+                <ResourceDictionary Source="/Themes/PlusButton.xaml"/>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Binding ViewModels and Views, one by one. -->

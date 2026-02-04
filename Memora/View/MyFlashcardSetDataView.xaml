@@ -13,6 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
+                <ResourceDictionary Source="/Themes/PlusButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -137,9 +138,19 @@
                        FontWeight="Bold"
                        Margin="10"></Label>
                 <!-- add flashcard button-->
-                <Button Content="+"
-                        Style="{StaticResource GeneralConfirmButton}"
-                        Command="{Binding AddFlashcardCommand}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="+"
+                            Style="{StaticResource PlusButton}"
+                            Command="{Binding AddFlashcardCommand}"
+                            Margin="5"/>
+
+                    <Button Content="Save changes"
+                            Style="{StaticResource GeneralConfirmButton}"
+                            Command="{Binding AddFlashcardCommand}"
+                            FontSize="18"
+                            FontWeight="Regular"/>
+                </StackPanel>
+                
 
             </StackPanel>
             
