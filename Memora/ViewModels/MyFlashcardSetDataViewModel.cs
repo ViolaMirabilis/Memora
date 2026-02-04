@@ -9,6 +9,7 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
+    private event Action OnCountChanged;        // when a flashcard is added/deleted, the event is fired and the count is recalculated
     private int _setId { get; set; }
     private int _flashcardsCount;   // bindable property for flashcard count
     public int FlashcardsCount
@@ -26,9 +27,17 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
     {
         _flashcardApiService = flashcardApiService;
+        OnCountChanged += IncreaseCount;
         AddFlashcardCommand = new RelayCommand(_ => AddEmptyFlashcardToList(), _ => true);
 
     }
+
+    #region Event Logic
+    public void IncreaseCount()
+    {
+        FlashcardsCount = Flashcards.Count;
+    }
+    #endregion
 
     #region Buttons Logic 
     // Appends the list with an empty flashcard, where the user can input data.
@@ -36,6 +45,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     private void AddEmptyFlashcardToList()
     {
         Flashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
+        OnCountChanged?.Invoke();
         //OnPropertyChanged("Flashcards");
     }
     #endregion
@@ -51,7 +61,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
         {
             Flashcards.Add(flashcard);
         }
-        FlashcardsCount = flashcards.Count; // updates the count property
+
+        OnCountChanged?.Invoke();
     }
 
     private async Task<List<Flashcard>> GetAllFlashcardsById()

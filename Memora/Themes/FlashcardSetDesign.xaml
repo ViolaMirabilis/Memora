@@ -144,7 +144,8 @@
 
 
                             </ToggleButton>
-                            <Label Content="{Binding Name}"
+                            <TextBlock Text="{Binding Name}"
+                                   TextWrapping="Wrap"
                                    Foreground="#2C3E50"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
@@ -152,13 +153,13 @@
                                    FontWeight="Bold"
                                    Margin="0"
                                    Cursor="Hand"/>
-                            <Label Content="📄"
+                            <TextBlock Text="📄"
                                    Foreground="#4F46E5"
                                    FontSize="60"
                                    FontWeight="Bold"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Cursor="Hand"></Label>
+                                   Cursor="Hand"></TextBlock>
 
                         </StackPanel>
                         
