@@ -23,20 +23,6 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        
-        <Rectangle Grid.Column="1" Height="500" Width="500">
-            <Rectangle.Fill>
-                <RadialGradientBrush 
-                GradientOrigin="0.5,0.5" 
-                Center="0.3,0.5" RadiusX="0.7" RadiusY="0.7">
-                    <RadialGradientBrush.GradientStops>
-                        <GradientStop Color="#6366F1" Offset="0" />
-                        <GradientStop Color="#818CF8" Offset="1" />
-                    </RadialGradientBrush.GradientStops>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
 
         <Border Grid.Column="1" HorizontalAlignment="Left" BorderBrush="#DEE2E6" BorderThickness="1"/>
 
@@ -44,12 +30,10 @@
 
         <Border Grid.Column="0">
             <Border.Background>
-                <RadialGradientBrush
-                    GradientOrigin="0.1,0.9" 
-                    Center="0.5,0.5" RadiusX="0.8" RadiusY="0.8">
+                <LinearGradientBrush  StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#4F46E5" Offset="0" />
-                    <GradientStop Color="#818CF8" Offset="1" />
-                </RadialGradientBrush>
+                    <GradientStop Color="#818CF8" Offset="1.3" />
+                </LinearGradientBrush>
             </Border.Background>
             
             <StackPanel VerticalAlignment="Center">

@@ -114,17 +114,17 @@
                         <Button Content="Revision"
                                 Style="{StaticResource StudyModeButton}"
                                 Command="{Binding NavigateHomeCommand}"
-                                Margin="3"/>
+                                Margin="5"/>
 
                         <Button Content="Quiz"
                                 Style="{StaticResource StudyModeButton}"
                                 Command="{Binding NavigateHomeCommand}"
-                                Margin="3"/>
+                                Margin="5"/>
 
                         <Button Content="Typing quiz"
                                 Style="{StaticResource StudyModeButton}"
                                 Command="{Binding NavigateHomeCommand}"
-                                Margin="3"/>
+                                Margin="5"/>
                     </StackPanel>
                 </Border>
 
@@ -142,7 +142,7 @@
                     <Button Content="+"
                             Style="{StaticResource PlusButton}"
                             Command="{Binding AddFlashcardCommand}"
-                            Margin="5"/>
+                            Margin="10"/>
 
                     <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
