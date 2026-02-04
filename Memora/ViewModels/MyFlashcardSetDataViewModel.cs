@@ -19,11 +19,26 @@ public class MyFlashcardSetDataViewModel : ViewModel
     }
     private readonly FlashcardApiService _flashcardApiService;
     public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
+
+    public RelayCommand AddFlashcardCommand { get; set; }
+    public RelayCommand SaveFlashcardAsyncCommand { get; set; }
     
     public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
     {
         _flashcardApiService = flashcardApiService;
+        AddFlashcardCommand = new RelayCommand(_ => AddEmptyFlashcardToList(), _ => true);
+
     }
+
+    #region Buttons Logic 
+    // Appends the list with an empty flashcard, where the user can input data.
+    // The saving of the flashcard is handled with another command.
+    private void AddEmptyFlashcardToList()
+    {
+        Flashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
+        //OnPropertyChanged("Flashcards");
+    }
+    #endregion
 
 
     public async Task LoadFlaschardsByIdAsync(int id)

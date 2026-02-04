@@ -23,8 +23,25 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
+        
+        <Rectangle Grid.Column="1" Height="500" Width="500">
+            <Rectangle.Fill>
+                <RadialGradientBrush 
+                GradientOrigin="0.5,0.5" 
+                Center="0.3,0.5" RadiusX="0.7" RadiusY="0.7">
+                    <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="#6366F1" Offset="0" />
+                        <GradientStop Color="#818CF8" Offset="1" />
+                    </RadialGradientBrush.GradientStops>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
 
         <Border Grid.Column="1" HorizontalAlignment="Left" BorderBrush="#DEE2E6" BorderThickness="1"/>
+
+        
+
         <Border Grid.Column="0" Background="#6366F1">
             <StackPanel VerticalAlignment="Center">
                 <Button Content="Home"
@@ -47,6 +64,8 @@
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateSettingsCommand}"
                         Margin="3"/>
+
+                
             </StackPanel>
         </Border>
         <Label Content="Memora" Margin="0,20,0,0" Foreground="#FAFBFC" FontSize="38" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></Label>

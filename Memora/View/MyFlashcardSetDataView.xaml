@@ -139,7 +139,7 @@
                 <!-- add flashcard button-->
                 <Button Content="+"
                         Style="{StaticResource GeneralConfirmButton}"
-                        Command="{Binding NavigateHomeCommand}"/>
+                        Command="{Binding AddFlashcardCommand}"/>
 
             </StackPanel>
             
