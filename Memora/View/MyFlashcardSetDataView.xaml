@@ -12,6 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+                <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -83,46 +84,66 @@
 
                 </ListView>
             </Border>
-            
 
-            <Border
-                Background="#FAFBFC"
-                CornerRadius="10"
-                BorderThickness="2"
-                BorderBrush="#DEE2E6"
-                Margin="25,10,10,10"
+
+            <StackPanel 
+                Orientation="Vertical"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Padding="10">
+                Margin="15,0,0,0">
 
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Studying modes"
-                           Foreground="#2C3E50"
-                           FontSize="28"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Center"
-                           FontWeight="Bold"
-                           Margin="10"></Label>
-                    
-                    <Button Content="Revision"
-                            Style="{StaticResource StudyModeButton}"
-                            Command="{Binding NavigateHomeCommand}"
-                            Margin="3"/>
+                <Border
+                        Background="#FAFBFC"
+                        CornerRadius="10"
+                        VerticalAlignment="Center"
+                        BorderThickness="2"
+                        BorderBrush="#DEE2E6"
+                        Margin="10,10,10,10"
+                        Padding="10">
 
-                    <Button Content="Quiz"
-                            Style="{StaticResource StudyModeButton}"
-                            Command="{Binding NavigateHomeCommand}"
-                        
-                            Margin="3"/>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Studying modes"
+                               Foreground="#2C3E50"
+                               FontSize="28"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               Margin="10"></Label>
 
-                    <Button Content="Typing quiz"
-                            Style="{StaticResource StudyModeButton}"
-                            Command="{Binding NavigateHomeCommand}"
-                            Margin="3"/>
+                        <Button Content="Revision"
+                                Style="{StaticResource StudyModeButton}"
+                                Command="{Binding NavigateHomeCommand}"
+                                Margin="3"/>
 
-                </StackPanel>
-            </Border>
+                        <Button Content="Quiz"
+                                Style="{StaticResource StudyModeButton}"
+                                Command="{Binding NavigateHomeCommand}"
+                                Margin="3"/>
 
+                        <Button Content="Typing quiz"
+                                Style="{StaticResource StudyModeButton}"
+                                Command="{Binding NavigateHomeCommand}"
+                                Margin="3"/>
+                    </StackPanel>
+                </Border>
+
+
+
+                <Label Content="Add a new flashcard"
+                       Foreground="#2C3E50"
+                       FontSize="22"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       Margin="10"></Label>
+                <!-- add flashcard button-->
+                <Button Content="+"
+                        Style="{StaticResource GeneralConfirmButton}"
+                        Command="{Binding NavigateHomeCommand}"/>
+
+            </StackPanel>
+            
+            
         </StackPanel>
 
 
