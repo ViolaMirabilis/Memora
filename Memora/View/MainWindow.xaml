@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memora"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Memora" Height="768" Width="1366"
         Background="#FAFBFC">
@@ -40,25 +41,29 @@
                 <Button Content="Home"
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateHomeCommand}"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.House}"
                         Margin="3"/>
                 <Button Content="Flashcards"
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateMyFlashcardsCommand}"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.CardText}"
                         Margin="3"/>
                 <Button Content="Folders"
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateMyFoldersCommand}"
-                        Margin="3"/>
+                        Margin="3"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Folder}"/>
                 <Button Content="Profile"
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateMyProfileCommand}"
-                        Margin="3"/>
+                        Margin="3"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Person}"/>
                 <Button Content="Settings"
                         Style="{StaticResource HomeNavigationButton}"
                         Command="{Binding NavigateSettingsCommand}"
-                        Margin="3"/>
+                        Margin="3"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Gear}"/>
 
-                
             </StackPanel>
         </Border>
         <Label Content="Memora" Margin="0,20,0,0" Foreground="#FAFBFC" FontSize="38" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></Label>
