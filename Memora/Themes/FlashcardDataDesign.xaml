@@ -71,8 +71,20 @@
                                 </Border>
 
                             <StackPanel Grid.RowSpan="2" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Content="✏️" Margin="0,5,5,5" FontWeight="Bold" Height="40" Width="40" HorizontalAlignment="Center" Background="#4F46E5" Foreground="#FFFFFF" BorderThickness="1" BorderBrush="#DEE2E6"></Button>
-                                <Button Content="❌" Margin="5" FontWeight="Bold" Height="40" Width="40" HorizontalAlignment="Center" Background="#4F46E5" Foreground="#FFFFFF" BorderThickness="1" BorderBrush="#DEE2E6"></Button>
+                                <Button Content="❌"
+                                        Margin="5"
+                                        FontWeight="Bold"
+                                        Height="40"
+                                        Width="40"
+                                        HorizontalAlignment="Center"
+                                        Background="#4F46E5"
+                                        Foreground="#FFFFFF"
+                                        BorderThickness="1"
+                                        BorderBrush="#DEE2E6"
+                                        Command="{Binding DataContext.RemoveFlashcardCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        CommandParameter="{Binding}">
+
+                                </Button>
                             </StackPanel>
                             
 

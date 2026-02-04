@@ -4,6 +4,7 @@ using Memora.Services;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Windows;
+using System.Xml;
 
 namespace Memora.ViewModels;
 
@@ -22,15 +23,23 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
 
     public RelayCommand AddFlashcardCommand { get; set; }
+    public RelayCommand RemoveFlashcardCommand { get; set; }
     //public RelayCommand SaveFlashcardAsyncCommand { get; set; }
-    
+    //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
+    //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
+
     public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
     {
         _flashcardApiService = flashcardApiService;
         OnCountChanged += IncreaseCount;
         AddFlashcardCommand = new RelayCommand(_ => AddEmptyFlashcardToList(), _ => true);
-
-    }
+        // checks if the parameter is a flashcard, then removes it from the list
+        RemoveFlashcardCommand = new RelayCommand(f =>
+        {
+            if (f is not Flashcard flashcard) return;
+            RemoveFlashcardFromList(flashcard);
+        }, _ => true);
+    }       
 
     #region Event Logic
     public void IncreaseCount()
@@ -39,15 +48,22 @@ public class MyFlashcardSetDataViewModel : ViewModel
     }
     #endregion
 
-    #region Buttons Logic 
+    #region Add and Delete logic 
     // Appends the list with an empty flashcard, where the user can input data.
     // The saving of the flashcard is handled with another command.
     private void AddEmptyFlashcardToList()
     {
         Flashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
         OnCountChanged?.Invoke();
-        //OnPropertyChanged("Flashcards");
     }
+
+    private void RemoveFlashcardFromList(Flashcard flashcard)
+    {
+        Flashcards.Remove(flashcard);
+        OnCountChanged?.Invoke();
+    }
+
+
     #endregion
 
 
