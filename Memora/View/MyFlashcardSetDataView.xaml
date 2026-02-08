@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" >
@@ -113,16 +114,19 @@
 
                         <Button Content="Revision"
                                 Style="{StaticResource StudyModeButton}"
+                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Book}"
                                 Command="{Binding NavigateHomeCommand}"
                                 Margin="5"/>
 
                         <Button Content="Quiz"
                                 Style="{StaticResource StudyModeButton}"
+                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.PatchQuestion}"
                                 Command="{Binding NavigateHomeCommand}"
                                 Margin="5"/>
 
                         <Button Content="Typing quiz"
                                 Style="{StaticResource StudyModeButton}"
+                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Keyboard}"
                                 Command="{Binding NavigateHomeCommand}"
                                 Margin="5"/>
                     </StackPanel>
