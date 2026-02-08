@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.Controls"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"
+             Focusable="True">
     
+    <!-- RenderTransformOrigin set to 0.5, 0.5 so the center is in the middle of the grid (flashcarD). If it's set to "1", the "center" point is on the right edge.-->
     <Grid Width="300" Height="450" RenderTransformOrigin="0.5,0.5">
 
         <Grid.RenderTransform>
-            <RotateTransform x:Name="FlashcardRotate" Angle="0"/>
+            <ScaleTransform x:Name="FlashcardRotate" ScaleX="1"/>
         </Grid.RenderTransform>
 
         <Border x:Name="FrontSide"
@@ -19,7 +21,7 @@
                 CornerRadius="10"
                 Cursor="Hand">
 
-            <TextBlock Text="This is a test of my flashcard, which should display the content incely in the middle and flip the card if needed."
+            <TextBlock Text="{Binding FrontText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 FontSize="24"
                 Foreground="#FAFBFC"
                 HorizontalAlignment="Center"
@@ -30,18 +32,18 @@
 
             </TextBlock>
 
-
         </Border>
 
 
         <Border x:Name="BackSide"
-                Background="Gray"
+                Background="#4F46E5"
                 BorderThickness="7"
-                BorderBrush="DarkGray"
+                BorderBrush="#6366F1"
                 CornerRadius="10"
-                Cursor="Hand">
+                Cursor="Hand"
+                Visibility="Collapsed">
 
-            <TextBlock Text="BACK"
+            <TextBlock Text="{Binding BackText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         FontSize="24"
                         Foreground="#FAFBFC"
                         HorizontalAlignment="Center"
@@ -52,10 +54,7 @@
 
             </TextBlock>
 
-
         </Border>
-
-
 
     </Grid>
    

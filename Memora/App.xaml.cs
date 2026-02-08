@@ -56,6 +56,7 @@ namespace Memora
             services.AddSingleton<MyProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MyFlashcardSetDataViewModel>();
+            services.AddSingleton<RevisionModeViewModel>();
             services.AddSingleton<SessionService>();
 
             // navigation service

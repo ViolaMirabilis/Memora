@@ -52,8 +52,8 @@
                 <view:MyFlashcardSetDataView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:MyFlashcardSetDataViewModel}">
-                <view:MyFlashcardSetDataView/>
+            <DataTemplate DataType="{x:Type viewModel:RevisionModeViewModel}">
+                <view:RevisionModeView/>
             </DataTemplate>
 
 

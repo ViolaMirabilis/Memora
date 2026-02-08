@@ -16,7 +16,7 @@ namespace Memora.View
     /// <summary>
     /// Interaction logic for RevisionModeView.xaml
     /// </summary>
-    public partial class RevisionModeView : Page
+    public partial class RevisionModeView : UserControl
     {
         public RevisionModeView()
         {

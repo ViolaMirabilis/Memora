@@ -7,7 +7,7 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -115,7 +115,7 @@
                         <Button Content="Revision"
                                 Style="{StaticResource StudyModeButton}"
                                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Book}"
-                                Command="{Binding NavigateHomeCommand}"
+                                Command="{Binding NavigateRevisionModeCommand}"
                                 Margin="5"/>
 
                         <Button Content="Quiz"
@@ -157,11 +157,6 @@
                             FontSize="14"
                             FontWeight="Regular"/>
 
-                    <Button Content="Show changes"
-                        Style="{StaticResource GeneralConfirmButton}"
-                        Command="{Binding ShowChanges}"
-                        FontSize="14"
-                        FontWeight="Regular"/>
                 </StackPanel>
                 
 

@@ -1,16 +1,27 @@
 ﻿using Memora.Core;
+using Memora.Interfaces;
 using Memora.Model;
 using Memora.Services;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Windows;
-using System.Windows.Documents;
-using System.Xml;
+
 
 namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
+    private INavigationService _navigation;
+    public INavigationService Navigation
+    {
+        get => _navigation;
+        set
+        {
+            _navigation = value;
+            OnPropertyChanged();
+        }
+    }
+
     private event Action OnCountChanged;        // when a flashcard is added/deleted, the event is fired and the count is recalculated
     private int _setId { get; set; }
     private int _flashcardsCount;   // bindable property for flashcard count
@@ -25,15 +36,21 @@ public class MyFlashcardSetDataViewModel : ViewModel
     private List<Flashcard> _fetchedFlashcards = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
     public ObservableCollection<Flashcard> ModifiedFlashcards { get; set; } = new ObservableCollection<Flashcard>();   // all the operations are done on this one, in order to compare them to the original and update only the changed flashcards
 
+    #region Commands
     public RelayCommand AddFlashcardCommand { get; set; }
     public RelayCommand RemoveFlashcardCommand { get; set; }
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
     public RelayCommand ShowChanges { get; set; }
+
+    public RelayCommand NavigateRevisionModeCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
-    public MyFlashcardSetDataViewModel(FlashcardApiService flashcardApiService)
+    #endregion
+
+    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService)
     {
+        Navigation = navService;
         _flashcardApiService = flashcardApiService;
         OnCountChanged += IncreaseCount;
         AddFlashcardCommand = new RelayCommand(_ => AddEmptyFlashcardToList(), _ => true);
@@ -44,7 +61,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
 
-        ShowChanges = new RelayCommand(_ => ShowChangesPopUp(), _ => true);
+        NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);        // Navigates to the Revision mode
     }       
 
     #region Event Logic
@@ -160,10 +177,5 @@ public class MyFlashcardSetDataViewModel : ViewModel
         return GetModifiedFlashcards().Count();
     }
 
-    // Temporary pop up for testing purposes.
-    private void ShowChangesPopUp()
-    {
-        MessageBox.Show($"Modified entries: {GetModifiedFlashcardsCount()}");
-    }
     #endregion
 }
