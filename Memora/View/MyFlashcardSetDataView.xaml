@@ -65,7 +65,7 @@
                 Background="#FAFBFC">
                 <ListView
                     x:Name="FlashcardList" 
-                    ItemsSource="{Binding ComparableFlashcards}"
+                    ItemsSource="{Binding ModifiedFlashcards}"
                     Background="Transparent"
                     BorderThickness="0"
                     Height="auto"
@@ -153,9 +153,15 @@
 
                     <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
-                            Command="{Binding AddFlashcardCommand}"
+                            Command="{Binding TempSaveChanges}"
                             FontSize="14"
                             FontWeight="Regular"/>
+
+                    <Button Content="Show changes"
+                        Style="{StaticResource GeneralConfirmButton}"
+                        Command="{Binding ShowChanges}"
+                        FontSize="14"
+                        FontWeight="Regular"/>
                 </StackPanel>
                 
 

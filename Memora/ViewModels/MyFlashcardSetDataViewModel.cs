@@ -4,6 +4,7 @@ using Memora.Services;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Windows;
+using System.Windows.Documents;
 using System.Xml;
 
 namespace Memora.ViewModels;
@@ -27,6 +28,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand AddFlashcardCommand { get; set; }
     public RelayCommand RemoveFlashcardCommand { get; set; }
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
+    public RelayCommand ShowChanges { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -41,6 +43,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
             if (f is not Flashcard flashcard) return;
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
+
+        ShowChanges = new RelayCommand(_ => ShowChangesPopUp(), _ => true);
     }       
 
     #region Event Logic
@@ -56,7 +60,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
     private void AddEmptyFlashcardToList()
     {
-        ModifiedFlashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
+        ModifiedFlashcards.Add(new Flashcard() {Id=0, FlashcardSetId=_setId, Front="", Back=""});
         OnCountChanged?.Invoke();
     }
 
@@ -73,27 +77,28 @@ public class MyFlashcardSetDataViewModel : ViewModel
     #endregion
 
     #region Updating and saving the flashcard/flashcard sets
+
     /// <summary>
-    /// Compares the "modified" list with the original and looks for any differences.
-    /// If a difference is made (even a single letter change), the flashcard is added to this list.
-    /// This list is a basis for updating the flashcards via an API and prevents going through all the flashcards and updating them, despite not changes being made.
+    /// Compares the modified list with the original, to check if any flashcards were added or updated
+    /// If so, append the list.
+    /// Then, compares the original list with the modified, if there's any difference between the IDs.
+    /// If there's an additional ID (that's not in the original), append the list.
     /// </summary>
     /// <returns></returns>
     private List<Flashcard> GetModifiedFlashcards()
     {
-        // if modified front and back is not equal the fetched (original), add to the list.
-        var modifiedList = ModifiedFlashcards.Where(f => !_fetchedFlashcards.Any(m => m.Front == f.Front && m.Back == f.Back)).ToList();
-        return modifiedList;
+        var modifiedList = new List<Flashcard>();
+        
+        // checks if the ID, Front and Back are equal. If not - adds them to the list.
+        var addedAndUpdated = ModifiedFlashcards.Where(f => !_fetchedFlashcards.Any(m => m.Id == f.Id &&  m.Front == f.Front && m.Back == f.Back)).ToList();
+        modifiedList.AddRange(addedAndUpdated);
+
+        // checks if ID match the original list - if there's any difference, it adds it to the list.
+        var deletedFlashcards = _fetchedFlashcards.Where(m => !ModifiedFlashcards.Any(f => f.Id == m.Id));
+        modifiedList.AddRange(deletedFlashcards);
+        return modifiedList;        // returns a fully modified list, which can be passed to the API later on.
     }
-    /// <summary>
-    /// returns the amount of modified flashcards. Will solve nice as a pop up that informs about the amount of flashcards modified.
-    /// TO BE IMPLEMENTED.
-    /// </summary>
-    /// <returns></returns>
-    private int GetModifiedFlashcardsCount()
-    {
-        return GetModifiedFlashcards().Count;
-    }
+    
     private async Task SaveFlashcardAsync()
     {
 
@@ -111,9 +116,16 @@ public class MyFlashcardSetDataViewModel : ViewModel
         foreach (var flashcard in flashcards)
         {
             _fetchedFlashcards.Add(flashcard);      // adds flashcards to the observ
-            ModifiedFlashcards.Add(flashcard);     // adds flashcards to the comparable list, so we can compare them later when we want to update them 
-        }
 
+            ModifiedFlashcards.Add(new Flashcard        // adds flashcards to the comparable list, so we can compare them later when we want to update them
+            {
+                Id = flashcard.Id,
+                FlashcardSetId = flashcard.FlashcardSetId,
+                Front = flashcard.Front,
+                Back = flashcard.Back
+            });
+
+        }
         OnCountChanged?.Invoke();
     }
 
@@ -135,4 +147,23 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
         return new List<Flashcard>();     // returns empty list if fails
     }
+
+
+    #region Helpers
+    /// <summary>
+    /// returns the amount of modified flashcards. Will solve nice as a pop up that informs about the amount of flashcards modified.
+    /// Pop-up to be implemented.
+    /// </summary>
+    /// <returns></returns>
+    private int GetModifiedFlashcardsCount()
+    {
+        return GetModifiedFlashcards().Count();
+    }
+
+    // Temporary pop up for testing purposes.
+    private void ShowChangesPopUp()
+    {
+        MessageBox.Show($"Modified entries: {GetModifiedFlashcardsCount()}");
+    }
+    #endregion
 }
