@@ -6,8 +6,6 @@
         <Setter Property="FontFamily" Value="Sans Serif Collection"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Regular"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#FAFBFC"/>
@@ -28,6 +26,7 @@
                                                               Height="25"
                                                               Width="25"
                                                               VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"
                                                               Margin="10,5,10,5">
                             </iconPacks:PackIconBootstrapIcons>
                             <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
