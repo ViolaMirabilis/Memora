@@ -26,7 +26,6 @@ namespace Memora.Controls
             {
                 if (e.Key == System.Windows.Input.Key.Space)
                 {
-                    this.Focus();
                     IsFront = !IsFront;
                     e.Handled = true;
                 }
@@ -63,7 +62,7 @@ namespace Memora.Controls
 
         // Using a DependencyProperty as the backing store for FlipDuration.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FlipDurationProperty =
-            DependencyProperty.Register(nameof(FlipDuration), typeof(double), typeof(_3DFlashcard), new PropertyMetadata(0.5));
+            DependencyProperty.Register(nameof(FlipDuration), typeof(double), typeof(_3DFlashcard), new PropertyMetadata(0.25));
 
 
 
@@ -93,10 +92,15 @@ namespace Memora.Controls
             control.FlipFlashcard((bool)e.NewValue);     // casting to bool because IsFront is of type bool. NewValue is whatever we set it to later on (xaml/codebehind/bindable property)
         }
 
+        /// <summary>
+        /// It scales the X inwards (from 1 to 0), then scales the X outwards (from 1 to 0)
+        /// RenderTransformOrigin (grid property in .xaml) makes it that the center point is in the middle (0 is on the left, 1 is on the right)
+        /// </summary>
+        /// <param name="isFront"></param>
         private void FlipFlashcard(bool isFront)
         {
 
-            var firstHalf = new DoubleAnimation     // 0 - 90 degrees
+            var firstHalf = new DoubleAnimation     // "0-90 degrees"
             {
                 From = 1,
                 To = 0,

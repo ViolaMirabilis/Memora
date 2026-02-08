@@ -19,8 +19,7 @@
 
         <controls:_3DFlashcard FrontText="{Binding Front}"
                                BackText="{Binding Back}"
-                               FlipDuration="0.25"
-                               IsFront="True">
+                               FlipDuration="0.5">
             
         </controls:_3DFlashcard>
 

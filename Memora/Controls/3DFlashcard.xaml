@@ -31,8 +31,8 @@
                 Margin="10">
 
             </TextBlock>
-
         </Border>
+        
 
 
         <Border x:Name="BackSide"
@@ -44,17 +44,18 @@
                 Visibility="Collapsed">
 
             <TextBlock Text="{Binding BackText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                        FontSize="24"
-                        Foreground="#FAFBFC"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        TextWrapping="Wrap"
-                        TextAlignment="Justify"
-                        Margin="10">
+                FontSize="24"
+                Foreground="#FAFBFC"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                TextWrapping="Wrap"
+                TextAlignment="Justify"
+                Margin="10">
 
             </TextBlock>
 
         </Border>
+        
 
     </Grid>
    
