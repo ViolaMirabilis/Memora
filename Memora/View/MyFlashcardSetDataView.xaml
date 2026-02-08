@@ -14,7 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
-                <ResourceDictionary Source="/Themes/PlusButton.xaml"/>
+                <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -144,7 +144,8 @@
                 <!-- add flashcard button-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="+"
-                            Style="{StaticResource PlusButton}"
+                            Style="{StaticResource SmallSquareButton}"
+                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
                             Command="{Binding AddFlashcardCommand}"
                             Margin="10"/>
 
