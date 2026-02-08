@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace Memora.Design;
 /// <summary>
-/// 
+/// Its purpose is only to server as a XAML design placeholder, so the data can be seen in design time
 /// </summary>
 public class MyFlashcardSetDataDesign
 {
