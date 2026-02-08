@@ -65,7 +65,7 @@
                 Background="#FAFBFC">
                 <ListView
                     x:Name="FlashcardList" 
-                    ItemsSource="{Binding Flashcards}"
+                    ItemsSource="{Binding ComparableFlashcards}"
                     Background="Transparent"
                     BorderThickness="0"
                     Height="auto"

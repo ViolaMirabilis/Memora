@@ -20,11 +20,13 @@ public class MyFlashcardSetDataViewModel : ViewModel
         }
     }
     private readonly FlashcardApiService _flashcardApiService;
-    public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
+    // stores all the flashcards fetched from the API.
+    private List<Flashcard> _fetchedFlashcards = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
+    public ObservableCollection<Flashcard> ModifiedFlashcards { get; set; } = new ObservableCollection<Flashcard>();   // all the operations are done on this one, in order to compare them to the original and update only the changed flashcards
 
     public RelayCommand AddFlashcardCommand { get; set; }
     public RelayCommand RemoveFlashcardCommand { get; set; }
-    //public RelayCommand SaveFlashcardAsyncCommand { get; set; }
+    public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -44,7 +46,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     #region Event Logic
     public void IncreaseCount()
     {
-        FlashcardsCount = Flashcards.Count;
+        FlashcardsCount = ModifiedFlashcards.Count;
     }
     #endregion
 
@@ -54,22 +56,48 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
     private void AddEmptyFlashcardToList()
     {
-        Flashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
+        ModifiedFlashcards.Add(new Flashcard() {FlashcardSetId=_setId, Front="", Back=""});
         OnCountChanged?.Invoke();
     }
 
     private void RemoveFlashcardFromList(Flashcard flashcard)
     {
-        Flashcards.Remove(flashcard);
+        ModifiedFlashcards.Remove(flashcard);
         OnCountChanged?.Invoke();
     }
 
     private bool CanRemoveFlashcardFromList()
     {
-        return Flashcards.Count > 1;
+        return ModifiedFlashcards.Count > 1;
     }
+    #endregion
 
+    #region Updating and saving the flashcard/flashcard sets
+    /// <summary>
+    /// Compares the "modified" list with the original and looks for any differences.
+    /// If a difference is made (even a single letter change), the flashcard is added to this list.
+    /// This list is a basis for updating the flashcards via an API and prevents going through all the flashcards and updating them, despite not changes being made.
+    /// </summary>
+    /// <returns></returns>
+    private List<Flashcard> GetModifiedFlashcards()
+    {
+        // if modified front and back is not equal the fetched (original), add to the list.
+        var modifiedList = ModifiedFlashcards.Where(f => !_fetchedFlashcards.Any(m => m.Front == f.Front && m.Back == f.Back)).ToList();
+        return modifiedList;
+    }
+    /// <summary>
+    /// returns the amount of modified flashcards. Will solve nice as a pop up that informs about the amount of flashcards modified.
+    /// TO BE IMPLEMENTED.
+    /// </summary>
+    /// <returns></returns>
+    private int GetModifiedFlashcardsCount()
+    {
+        return GetModifiedFlashcards().Count;
+    }
+    private async Task SaveFlashcardAsync()
+    {
 
+    }
     #endregion
 
 
@@ -77,11 +105,13 @@ public class MyFlashcardSetDataViewModel : ViewModel
     {
         _setId = id;        // sets the ID, then calls the method
         var flashcards = await GetAllFlashcardsById();
-        Flashcards.Clear();
+        _fetchedFlashcards.Clear();      // clears the set, so they don't get duplicated
+        ModifiedFlashcards.Clear();      // clears the set, so they don't get duplicated
 
         foreach (var flashcard in flashcards)
         {
-            Flashcards.Add(flashcard);
+            _fetchedFlashcards.Add(flashcard);      // adds flashcards to the observ
+            ModifiedFlashcards.Add(flashcard);     // adds flashcards to the comparable list, so we can compare them later when we want to update them 
         }
 
         OnCountChanged?.Invoke();
