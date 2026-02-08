@@ -147,12 +147,14 @@
                             Style="{StaticResource SmallSquareButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
                             Command="{Binding AddFlashcardCommand}"
+                            Height="55"
+                            Width="55"
                             Margin="10"/>
 
                     <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
                             Command="{Binding AddFlashcardCommand}"
-                            FontSize="18"
+                            FontSize="14"
                             FontWeight="Regular"/>
                 </StackPanel>
                 

@@ -18,13 +18,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Width="55"
-                    Height="55"
+                    <Border Width="{TemplateBinding Width}"
+                    Height="{TemplateBinding Height}"
                     CornerRadius="10"
                     Background="{TemplateBinding Background}">
                         <iconPacks:PackIconBootstrapIcons Kind="{TemplateBinding Tag}"
-                                                          Height="25"
-                                                          Width="25"
+                                                          Height="{TemplateBinding FontSize}"
+                                                          Width="{TemplateBinding FontSize}"
                                                           HorizontalAlignment="Center"
                                                           VerticalAlignment="Center">
                             

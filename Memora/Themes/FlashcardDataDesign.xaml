@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+
+    <!-- merged dictionary so that another style can be nested -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="ListViewItem" x:Key="FlashcardDataDesign">
         <Setter Property="Background" Value="#6366F1"/>
         <Setter Property="Template">
@@ -72,26 +78,15 @@
                                 </Border>
 
                             <StackPanel Grid.RowSpan="2" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Margin="5"
-                                        Height="40"
-                                        Width="40"
-                                        HorizontalAlignment="Center"
-                                        Background="#4F46E5"
-                                        Foreground="#FFFFFF"
-                                        BorderThickness="1"
-                                        BorderBrush="#DEE2E6"
+                                <Button Style="{StaticResource SmallSquareButton}"
+                                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Trash3}"
                                         Command="{Binding DataContext.RemoveFlashcardCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                        CommandParameter="{Binding}">
-
-                                        <iconPacks:PackIconBootstrapIcons Kind="Trash3"
-                                            Height="15"
-                                            Width="15"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center">
-                                        </iconPacks:PackIconBootstrapIcons>
-
-
+                                        CommandParameter="{Binding}"
+                                        Height="35"
+                                        Width="35"
+                                        FontSize="15">
                                 </Button>
+                                
                             </StackPanel>
                             
 
