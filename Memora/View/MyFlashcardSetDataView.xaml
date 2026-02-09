@@ -153,7 +153,7 @@
 
                     <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
-                            Command="{Binding TempSaveChanges}"
+                            Command="{Binding SaveChanges}"
                             FontSize="14"
                             FontWeight="Regular"/>
 

@@ -44,7 +44,7 @@ public class NavigationService : ObservableObject, INavigationService
     public void NavigateTo<TViewModel>(Action<TViewModel> initialise) where TViewModel : ViewModel
     {
         var viewModel = (TViewModel)_viewModelFactory?.Invoke(typeof(TViewModel));
-        initialise(viewModel);      // setting the instance of the desired view model
+        initialise(viewModel!);      // setting the instance of the desired view model
         CurrentView = viewModel;
     }
 }

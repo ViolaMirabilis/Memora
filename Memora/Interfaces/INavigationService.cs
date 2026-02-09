@@ -1,5 +1,5 @@
 ﻿using Memora.Core;
-
+using Memora.Services;
 namespace Memora.Interfaces;
 
 public interface INavigationService

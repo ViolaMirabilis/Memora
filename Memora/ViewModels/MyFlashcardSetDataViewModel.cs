@@ -21,6 +21,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
             OnPropertyChanged();
         }
     }
+    private readonly SessionService _sessionService;
 
     private event Action OnCountChanged;        // when a flashcard is added/deleted, the event is fired and the count is recalculated
     private int _setId { get; set; }
@@ -40,16 +41,16 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand AddFlashcardCommand { get; set; }
     public RelayCommand RemoveFlashcardCommand { get; set; }
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
-    public RelayCommand ShowChanges { get; set; }
-
+    public RelayCommand SaveChanges { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
     #endregion
 
-    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService)
+    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService, SessionService sessionService)
     {
+        _sessionService = sessionService;
         Navigation = navService;
         _flashcardApiService = flashcardApiService;
         OnCountChanged += IncreaseCount;
@@ -61,8 +62,9 @@ public class MyFlashcardSetDataViewModel : ViewModel
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
 
+        SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);        // Navigates to the Revision mode
-    }       
+    }
 
     #region Event Logic
     public void IncreaseCount()
@@ -122,7 +124,6 @@ public class MyFlashcardSetDataViewModel : ViewModel
     }
     #endregion
 
-
     public async Task LoadFlaschardsByIdAsync(int id)
     {
         _setId = id;        // sets the ID, then calls the method
@@ -163,6 +164,12 @@ public class MyFlashcardSetDataViewModel : ViewModel
         }
 
         return new List<Flashcard>();     // returns empty list if fails
+    }
+
+    // Assigns session data to the singleton SessionService.
+    private void SetSessionData()
+    {
+        _sessionService.NewSession(ModifiedFlashcards.ToList());
     }
 
 

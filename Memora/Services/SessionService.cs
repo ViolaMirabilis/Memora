@@ -6,8 +6,21 @@ namespace Memora.Services;
 /// </summary>
 public class SessionService
 {
-    // all can be nullable, because everything is optional
-    public Flashcard? flashcard { get; set; }
-    public FlashcardSet? flashcardSet { get; set; }
-    public FlashcardFolder? flashcardFolder { get; set; }
+    // initialises an empty session
+    public Session CurrentSession { get; private set; } = null!;        // cannot be null
+
+    public void NewSession(List<Flashcard> flashcards)
+    {
+        CurrentSession = new Session { FlashcardsCollection = flashcards };
+    }
+
+    public void NewSession(FlashcardSet flashcardSet)
+    {
+        CurrentSession = new Session { FlashcardSet = flashcardSet };
+    }
+
+    public void NewSession(List<Flashcard> flashcards, FlashcardSet flashcardSet)
+    {
+        CurrentSession = new Session { FlashcardsCollection = flashcards, FlashcardSet = flashcardSet };
+    }
 }
