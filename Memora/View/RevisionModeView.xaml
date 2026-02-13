@@ -43,6 +43,7 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
+                        Focusable="True"
                         Margin="0,0,0,30">
                 <Button Content="+"
                         Style="{StaticResource SmallSquareButton}"
@@ -63,7 +64,8 @@
                         Command="{Binding GoNextCommand}"
                         Height="55"
                         Width="55"
-                        Margin="10"/>
+                        Margin="10"
+                        Focusable="False"/>
             </StackPanel>
 
 
