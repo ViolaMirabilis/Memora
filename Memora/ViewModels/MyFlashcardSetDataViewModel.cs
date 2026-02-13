@@ -98,7 +98,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     #region Updating and saving the flashcard/flashcard sets
 
     /// <summary>
-    /// Compares the modified list with the original, to check if any flashcards were added or updated
+    /// Compares the 'modified' list with the original, to check if any flashcards were added or updated
     /// If so, append the list.
     /// Then, compares the original list with the modified, if there's any difference between the IDs.
     /// If there's an additional ID (that's not in the original), append the list.
@@ -118,6 +118,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         return modifiedList;        // returns a fully modified list, which can be passed to the API later on.
     }
     
+    // TO BE DONE
     private async Task SaveFlashcardAsync()
     {
 
@@ -135,7 +136,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         {
             _fetchedFlashcards.Add(flashcard);      // adds flashcards to the observ
 
-            ModifiedFlashcards.Add(new Flashcard        // adds flashcards to the comparable list, so we can compare them later when we want to update them
+            ModifiedFlashcards.Add(new Flashcard        // adds flashcards to the comparable list, so we can compare them later when we want to update them. Added separately in order to NOT pass a reference, but a copy.
             {
                 Id = flashcard.Id,
                 FlashcardSetId = flashcard.FlashcardSetId,

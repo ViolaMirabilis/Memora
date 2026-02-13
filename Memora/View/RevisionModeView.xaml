@@ -4,8 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:controls="clr-namespace:Memora.Controls"
              mc:Ignorable="d" >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
 
         <Border BorderBrush="#DEE2E6"
@@ -17,11 +27,44 @@
                 Width="auto">
         </Border>
 
-        <controls:_3DFlashcard FrontText="{Binding Front}"
-                               BackText="{Binding Back}"
-                               FlipDuration="0.5">
-            
-        </controls:_3DFlashcard>
+            <controls:_3DFlashcard FrontText="{Binding Front}"
+                       BackText="{Binding Back}"
+                       FlipDuration="0.5">
+
+            </controls:_3DFlashcard>
+
+<!-- testing purposes placeholder-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Revision finished: "></TextBlock>
+            <TextBlock Text="{Binding IsRevisionFinished}"></TextBlock>
+        </StackPanel>
+        <!-- ends here-->
+                
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,30">
+                <Button Content="+"
+                        Style="{StaticResource SmallSquareButton}"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowLeft}"
+                        Command="{Binding GoPreviousCommand}"
+                        Height="55"
+                        Width="55"
+                        Margin="10"/>
+
+            <TextBlock Text="{Binding CurrentIndexDisplay}" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18" Foreground="#2C3E50" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="/" Margin="5,0,5,0" VerticalAlignment="Center" FontSize="18" Foreground="#2C3E50" FontWeight="Bold"></TextBlock>
+            <TextBlock Text="{Binding FlashcardsCount}" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="18" Foreground="#2C3E50" FontWeight="Bold"></TextBlock>
+
+                
+                <Button Content="+"
+                        Style="{StaticResource SmallSquareButton}"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowRight}"
+                        Command="{Binding GoNextCommand}"
+                        Height="55"
+                        Width="55"
+                        Margin="10"/>
+            </StackPanel>
 
 
 

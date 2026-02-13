@@ -20,9 +20,58 @@ public class RevisionModeViewModel : ViewModel
         }
     }
     private readonly SessionService _sessionService;         // holds the session context to pass around other study modes
-    public string Front { get; set; } = "Hello";
-    public string Back { get; set; } = "World";
+
+    private string _front;
+
+    public string Front
+    {
+        get { return _front; }
+        set { _front = value; OnPropertyChanged(); }
+    }
+
+    private string _back;
+
+    public string Back
+    {
+        get { return _back; }
+        set { _back = value; OnPropertyChanged(); }
+    }
+
+    private int _flashcardsCount;
+    public int FlashcardsCount
+    {
+        get => _flashcardsCount;
+        set { _flashcardsCount = value; OnPropertyChanged(); }
+    }
+
+    private int _currentIndex = 0;
+    public int CurrentIndex
+    {
+        get => _currentIndex;
+        set { _currentIndex = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(CurrentIndexDisplay));     // nameof instead of "CurrentIndexDisplay", to avoid hard-coded values (even tho i've got plenty XD)
+            GoPreviousCommand.RaiseCanExecuteChanged();         // these two raise an event, which re-checks if the command can be executed.
+            GoNextCommand.RaiseCanExecuteChanged();
+            
+        }
+    }
+
+    public int CurrentIndexDisplay => CurrentIndex + 1;     // always adds 1 to current index for dispalying purposes
+
+    private bool _isRevisionFinished;       // starts as false
+
+    public bool IsRevisionFinished
+    {
+        get => _isRevisionFinished;
+        set { _isRevisionFinished = value; OnPropertyChanged(); }
+    }
+
+
     public List<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
+
+    public RelayCommand GoNextCommand { get; set; }
+    public RelayCommand GoPreviousCommand { get; set; }
 
     public RevisionModeViewModel(INavigationService navService, SessionService session)
     {
@@ -30,8 +79,9 @@ public class RevisionModeViewModel : ViewModel
         _sessionService = session;
         LoadFlashcardsToCollection();
 
-        Front = Flashcards[0].Front;
-        Back = Flashcards[0].Back;
+        _flashcardsCount = SetFlashcardsCount(Flashcards);          // sets flashcards count on view model creation
+        GoNextCommand = new RelayCommand(_ => GoNext(), _ => CanGoNext());
+        GoPreviousCommand = new RelayCommand(_ => GoPrevious(), _ => CanGoPrevious());
     }
 
     private void LoadFlashcardsToCollection()
@@ -44,8 +94,52 @@ public class RevisionModeViewModel : ViewModel
                 Flashcards.Add(flashcard);
             }
         }
-
         return;
         
     }
+
+    private void SetFlashcard()
+    {
+        Front = Flashcards[CurrentIndex].Front;
+        Back = Flashcards[CurrentIndex].Back;
+    }
+
+    #region Command Logic
+    private void GoNext()
+    {
+        CurrentIndex++;
+        if (_currentIndex == Flashcards.Count)
+        {
+            CurrentIndex = 0;
+            ToggleRevisionFinished();
+        }
+        SetFlashcard();
+    }
+    private bool CanGoNext()
+    {
+        return CurrentIndex <= FlashcardsCount;
+    }
+    private void GoPrevious()
+    {
+        CurrentIndex--;
+        SetFlashcard();
+    }
+    private bool CanGoPrevious()
+    {
+        return CurrentIndex >= 1;
+    }
+
+
+    private void ToggleRevisionFinished()
+    {
+        IsRevisionFinished = true;
+    }
+
+    private int SetFlashcardsCount(List<Flashcard> flashcards)
+    {
+        return flashcards.Count;
+    }
+
+
+    #endregion
 }

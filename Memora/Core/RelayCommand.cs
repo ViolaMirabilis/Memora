@@ -33,5 +33,13 @@ namespace Memora.Core
         {
             _execute(parameter!);               // action<obj> passed here
         }
+
+        /// <summary>
+        /// Used to re-check if the command can be executed (i.e. button is enabled/disabled)
+        /// </summary>
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Memora.Services;
 public class SessionService
 {
     // initialises an empty session
-    public Session CurrentSession { get; private set; } = null!;        // cannot be null
+    public Session CurrentSession { get; set; } = null!;        // cannot be null
 
     public void NewSession(List<Flashcard> flashcards)
     {
