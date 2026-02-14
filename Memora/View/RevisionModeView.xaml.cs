@@ -21,6 +21,12 @@ namespace Memora.View
         public RevisionModeView()
         {
             InitializeComponent();
+
+            // Focuses the keyboard on the flashcard control so it is targetable by the "spacebar" right away
+            Loaded += (s, e) =>
+            {
+                Keyboard.Focus(FlashcardControl);
+            };
         }
     }
 }

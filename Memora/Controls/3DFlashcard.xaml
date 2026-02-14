@@ -8,7 +8,11 @@
              Focusable="True">
     
     <!-- RenderTransformOrigin set to 0.5, 0.5 so the center is in the middle of the grid (flashcarD). If it's set to "1", the "center" point is on the right edge.-->
-    <Grid Width="300" Height="450" RenderTransformOrigin="0.5,0.5">
+    <Grid Width="300"
+          Height="450"
+          RenderTransformOrigin="0.5,0.5"
+          Cursor="Hand"
+          Background="Transparent">
 
         <Grid.RenderTransform>
             <ScaleTransform x:Name="FlashcardRotate" ScaleX="1"/>
@@ -28,7 +32,8 @@
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"
                 TextAlignment="Justify"
-                Margin="10">
+                Margin="10"
+                IsHitTestVisible="False">
 
             </TextBlock>
         </Border>
@@ -50,7 +55,8 @@
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"
                 TextAlignment="Justify"
-                Margin="10">
+                Margin="10"
+                IsHitTestVisible="False">
 
             </TextBlock>
 

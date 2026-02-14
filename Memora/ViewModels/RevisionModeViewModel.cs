@@ -78,12 +78,16 @@ public class RevisionModeViewModel : ViewModel
         Navigation = navService;
         _sessionService = session;
         LoadFlashcardsToCollection();
+        SetFlashcard();
 
         _flashcardsCount = SetFlashcardsCount(Flashcards);          // sets flashcards count on view model creation
         GoNextCommand = new RelayCommand(_ => GoNext(), _ => CanGoNext());
         GoPreviousCommand = new RelayCommand(_ => GoPrevious(), _ => CanGoPrevious());
     }
 
+    /// <summary>
+    /// Adds flashcards to the observable collection during the initialisation of the VM
+    /// </summary>
     private void LoadFlashcardsToCollection()
     {
         var sessionContext = _sessionService.CurrentSession.FlashcardsCollection;
@@ -98,19 +102,13 @@ public class RevisionModeViewModel : ViewModel
         
     }
 
-    private void SetFlashcard()
-    {
-        Front = Flashcards[CurrentIndex].Front;
-        Back = Flashcards[CurrentIndex].Back;
-    }
-
     #region Command Logic
     private void GoNext()
     {
         CurrentIndex++;
-        if (_currentIndex == Flashcards.Count)
+        if (_currentIndex == Flashcards.Count)      // if the button is pressed at the max capacity (i.e. 15/15), CurrentIndex is switched to 0 and a bool is toggled.
         {
-            CurrentIndex = 0;
+            CurrentIndex = 0;   
             ToggleRevisionFinished();
         }
         SetFlashcard();
@@ -128,7 +126,18 @@ public class RevisionModeViewModel : ViewModel
     {
         return CurrentIndex >= 1;
     }
+    #endregion
 
+
+    #region Helpers
+    /// <summary>
+    /// Sets the first flashcard to be visible.
+    /// </summary>
+    private void SetFlashcard()
+    {
+        Front = Flashcards[CurrentIndex].Front;
+        Back = Flashcards[CurrentIndex].Back;
+    }
 
     private void ToggleRevisionFinished()
     {

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Memora.View"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:controls="clr-namespace:Memora.Controls"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"
+             FocusManager.FocusedElement="{Binding ElementName=FlashcardControl}">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -16,39 +17,41 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid x:Name="FlashcardGrid">
 
         <Border BorderBrush="#DEE2E6"
-            BorderThickness="1"
-            CornerRadius="10"
-            Margin="10"
-            Background="#FFFFFF"
+                BorderThickness="1"
+                CornerRadius="10"
+                Margin="10"
+                Background="#FFFFFF"
                 Height="auto"
-                Width="auto">
+                Width="auto"
+                Focusable="False">
         </Border>
 
-            <controls:_3DFlashcard FrontText="{Binding Front}"
-                       BackText="{Binding Back}"
-                       FlipDuration="0.5">
-
-            </controls:_3DFlashcard>
+        <controls:_3DFlashcard x:Name="FlashcardControl"
+                               FrontText="{Binding Front}"
+                               BackText="{Binding Back}"
+                               FlipDuration="0.5">
+        </controls:_3DFlashcard>
 
 <!-- testing purposes placeholder-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Revision finished: "></TextBlock>
-            <TextBlock Text="{Binding IsRevisionFinished}"></TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top">
+            <TextBlock Text="Revision finished: " Height="20" VerticalAlignment="Top"></TextBlock>
+            <TextBlock Text="{Binding IsRevisionFinished}" Height="20" VerticalAlignment="Top"></TextBlock>
         </StackPanel>
         <!-- ends here-->
                 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
-                        Focusable="True"
+                        Focusable="False"
                         Margin="0,0,0,30">
                 <Button Content="+"
                         Style="{StaticResource SmallSquareButton}"
                         Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowLeft}"
                         Command="{Binding GoPreviousCommand}"
+                        Focusable="False"
                         Height="55"
                         Width="55"
                         Margin="10"/>
@@ -62,10 +65,10 @@
                         Style="{StaticResource SmallSquareButton}"
                         Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowRight}"
                         Command="{Binding GoNextCommand}"
+                        Focusable="False"
                         Height="55"
                         Width="55"
-                        Margin="10"
-                        Focusable="False"/>
+                        Margin="10"/>
             </StackPanel>
 
 

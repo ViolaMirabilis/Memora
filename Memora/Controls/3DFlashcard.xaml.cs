@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -15,7 +16,6 @@ namespace Memora.Controls
         public _3DFlashcard()
         {
             InitializeComponent();
-
             this.MouseLeftButtonUp += (s, e) =>
             {
                 this.Focus();
