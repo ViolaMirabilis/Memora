@@ -78,7 +78,7 @@ public class RevisionModeViewModel : ViewModel
         Navigation = navService;
         _sessionService = session;
         LoadFlashcardsToCollection();
-
+        SetFlashcard();
         _flashcardsCount = SetFlashcardsCount(Flashcards);          // sets flashcards count on view model creation
         GoNextCommand = new RelayCommand(_ => GoNext(), _ => CanGoNext());
         GoPreviousCommand = new RelayCommand(_ => GoPrevious(), _ => CanGoPrevious());
@@ -89,7 +89,6 @@ public class RevisionModeViewModel : ViewModel
     /// </summary>
     private void LoadFlashcardsToCollection()
     {
-        //var sessionContext = _sessionService.CurrentSession.FlashcardsCollection;
         var sessionContext = GetDataFromSession();
         if (sessionContext != null)
         {

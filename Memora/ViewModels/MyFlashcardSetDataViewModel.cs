@@ -61,7 +61,6 @@ public class MyFlashcardSetDataViewModel : ViewModel
             if (f is not Flashcard flashcard) return;
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
-
         SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);        // Navigates to the Revision mode
     }
@@ -145,6 +144,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
             });
 
         }
+        SetSessionData();       // sets session data here, because this method is called first (from another vm)
         OnCountChanged?.Invoke();
     }
 
