@@ -24,12 +24,19 @@ public class RevisionModeViewModel : StudyModeBase
     {
         Navigation = navService;
         _sessionService = session;
-        OnRevisionFinished += GoToResultPage;
         LoadFlashcardsToCollection();
         SetFlashcard();
         FlashcardsCount = SetFlashcardsCount(Flashcards);          // sets flashcards count on view model creation
         GoNextCommand = new RelayCommand(_ => GoNext(), _ => CanGoNext());
         GoPreviousCommand = new RelayCommand(_ => GoPrevious(), _ => CanGoPrevious());
+    }
+    /// <summary>
+    /// Overrides the method from the base class, but retains the base bool.
+    /// </summary>
+    public override void OnRevisionFinished()
+    {
+        base.IsRevisionFinished = true;
+        GoToResultPage();
     }
 
     private void GoToResultPage()

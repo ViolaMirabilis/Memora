@@ -9,7 +9,6 @@ namespace Memora.ViewModels;
 public abstract class StudyModeBase : ViewModel
 {
     private readonly SessionService _sessionService;
-    public event Action OnRevisionFinished;
     public List<Flashcard> Flashcards { get; set; } = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
 
     #region Properties
@@ -58,7 +57,6 @@ public abstract class StudyModeBase : ViewModel
         get => _isRevisionFinished;
         set { _isRevisionFinished = value;
             OnPropertyChanged();
-            OnRevisionFinished?.Invoke();           // Once revision is finished, it invokes the event, which calls the derived class.
         }
     }
     #endregion
@@ -85,7 +83,7 @@ public abstract class StudyModeBase : ViewModel
         if (CurrentIndex == Flashcards.Count)      // if the button is pressed at the max capacity (i.e. 15/15), CurrentIndex is switched to 0 and a bool is toggled.
         {
             CurrentIndex = 0;
-            ToggleRevisionFinished();
+            OnRevisionFinished();           // Once the revision is done, this method is called.
         }
         SetFlashcard();
     }
@@ -118,7 +116,7 @@ public abstract class StudyModeBase : ViewModel
         Back = Flashcards[CurrentIndex].Back;
     }
 
-    public virtual void ToggleRevisionFinished()
+    public virtual void OnRevisionFinished()
     {
         IsRevisionFinished = true;
     }
