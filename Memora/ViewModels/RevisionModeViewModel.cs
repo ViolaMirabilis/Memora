@@ -43,7 +43,7 @@ public class RevisionModeViewModel : StudyModeBase
     {
         var result = new Result { TotalAnswers = FlashcardsCount };
         _sessionService.NewResult(result);      // testing purposes
-        Navigation.NavigateTo<ResultPageViewModel>();
+        Navigation.NavigateTo<RevisionResultViewModel>();
 
     } 
 

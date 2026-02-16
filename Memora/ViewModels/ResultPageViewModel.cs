@@ -18,9 +18,7 @@ namespace Memora.ViewModels
         public ResultPageViewModel(SessionService sessionService)
         {
             _sessionService = sessionService;
-            TotalAnswers = _sessionService.CurrentSession.Result.TotalAnswers;
+            TotalAnswers = _sessionService.CurrentSession.Result!.TotalAnswers;
         }
-
-
     }
 }

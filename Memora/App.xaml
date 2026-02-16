@@ -56,8 +56,8 @@
                 <view:RevisionModeView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:ResultPageViewModel}">
-                <view:ResultPageView/>
+            <DataTemplate DataType="{x:Type viewModel:RevisionResultViewModel}">
+                <view:RevisionResultView/>
             </DataTemplate>
 
 

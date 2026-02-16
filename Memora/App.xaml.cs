@@ -58,7 +58,7 @@ namespace Memora
             services.AddSingleton<MyFlashcardSetDataViewModel>();
             services.AddTransient<RevisionModeViewModel>();
             services.AddSingleton<SessionService>();
-            services.AddTransient<ResultPageViewModel>();       // I believe transient is a better choice, but will decide once the implementation is done.
+            services.AddTransient<RevisionResultViewModel>();       // I believe transient is a better choice, but will decide once the implementation is done.
 
             // navigation service
             services.AddSingleton<INavigationService, NavigationService>();
