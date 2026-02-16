@@ -34,7 +34,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Margin="10">
+                    Margin="10,10,300,10">
 
             <Label Content="{Binding FlashcardsCount}"
                     FontWeight="Bold"

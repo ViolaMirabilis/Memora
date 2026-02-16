@@ -1,4 +1,5 @@
 ﻿using Memora.Core;
+using Memora.Interfaces;
 using Memora.Model;
 using Memora.Services;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ namespace Memora.ViewModels;
 public abstract class StudyModeBase : ViewModel
 {
     private readonly SessionService _sessionService;
+    public event Action OnRevisionFinished;
     public List<Flashcard> Flashcards { get; set; } = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
 
     #region Properties
@@ -54,7 +56,10 @@ public abstract class StudyModeBase : ViewModel
     public bool IsRevisionFinished
     {
         get => _isRevisionFinished;
-        set { _isRevisionFinished = value; OnPropertyChanged(); }
+        set { _isRevisionFinished = value;
+            OnPropertyChanged();
+            OnRevisionFinished?.Invoke();           // Once revision is finished, it invokes the event, which calls the derived class.
+        }
     }
     #endregion
 

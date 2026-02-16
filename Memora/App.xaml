@@ -56,6 +56,10 @@
                 <view:RevisionModeView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:ResultPageViewModel}">
+                <view:ResultPageView/>
+            </DataTemplate>
+
 
         </ResourceDictionary>
 
