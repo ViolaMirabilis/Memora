@@ -32,7 +32,7 @@
             Foreground="#2C3E50">
             </TextBlock>
 
-            <TextBlock Text="Correct answers: 32"
+                <TextBlock Text="{Binding TotalAnswers}"
                 FontSize="48"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"

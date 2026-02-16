@@ -35,14 +35,17 @@ public class RevisionModeViewModel : StudyModeBase
     /// </summary>
     public override void OnRevisionFinished()
     {
-        base.IsRevisionFinished = true;
+        IsRevisionFinished = true;
         GoToResultPage();
     }
 
     private void GoToResultPage()
     {
+        var result = new Result { TotalAnswers = FlashcardsCount };
+        _sessionService.NewResult(result);      // testing purposes
         Navigation.NavigateTo<ResultPageViewModel>();
-    }
+
+    } 
 
     /// <summary>
     /// Adds flashcards to the observable collection during the initialisation of the VM

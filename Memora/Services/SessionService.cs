@@ -23,4 +23,9 @@ public class SessionService
     {
         CurrentSession = new Session { FlashcardsCollection = flashcards, FlashcardSet = flashcardSet };
     }
+
+    public void NewResult(Result result)
+    {
+        CurrentSession.Result = result;
+    }
 }
