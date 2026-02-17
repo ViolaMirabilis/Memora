@@ -26,13 +26,28 @@
              Background="#E8EAEE">
         </Border>
 
+        <!-- Border wtih the shadow that's BEHIND the results border-->
+        <Border Height="400"
+                Width="400"
+                CornerRadius="10"
+                Background="#E8EAEE">
+            <Border.Effect>
+                <DropShadowEffect
+                    ShadowDepth="4"
+                    Direction="20"
+                    Color="Black"
+                    Opacity="0.5"
+                    BlurRadius="6">
+                </DropShadowEffect>
+            </Border.Effect>
+
+        </Border>
         <!-- Border around the results -->
         <Border
-            
+            Background="#FFFFFF"
             CornerRadius="10"
             VerticalAlignment="Center"
             BorderThickness="2"
-            Background="#FFFFFF"
             BorderBrush="#DEE2E6"
             Margin="10,10,10,10"
             Padding="10"
@@ -54,6 +69,7 @@
                 VerticalAlignment="Top"
                 Margin="10"
                 Foreground="#2C3E50">
+                    
                 </TextBlock>
 
                 <!-- total/learning flashcards-->
@@ -139,9 +155,7 @@
                 
 
             </StackPanel>
-
-
-        </Border>
+            </Border>
         
 
     </Grid>

@@ -1,6 +1,7 @@
 ﻿using Memora.Services;
 using Memora.Core;
 using Memora.Model;
+using Memora.Interfaces;
 
 namespace Memora.ViewModels;
 /// <summary>
@@ -8,6 +9,17 @@ namespace Memora.ViewModels;
 /// </summary>
 public class RevisionResultViewModel : ViewModel
 {
+    private INavigationService _navigation;
+    public INavigationService Navigation
+    {
+        get => _navigation;
+        set
+        {
+            _navigation = value;
+            OnPropertyChanged();
+        }
+    }
+
     private readonly SessionService _sessionService;
 
     private int _totalAnswers = 0;
@@ -23,12 +35,15 @@ public class RevisionResultViewModel : ViewModel
         get => _stillLearning;
         set { _stillLearning = value; OnPropertyChanged(); }
     }
-
-    public RevisionResultViewModel(SessionService sessionService)
+    public RelayCommand NavigateRevisionModeCommand { get; set; }       // repeated...
+    public RevisionResultViewModel(INavigationService navService, SessionService sessionService)
     {
+        _navigation = navService;
         _sessionService = sessionService;
         TotalAnswers = SetTotalAnswers();
         StillLearning = SetStillLearning();
+
+        NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);
     }
 
     private int SetTotalAnswers()
