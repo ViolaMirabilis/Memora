@@ -116,11 +116,16 @@
                                 Style="{StaticResource StudyModeButton}"
                                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Book}"
                                 Command="{Binding NavigateRevisionModeCommand}"
+                                Width="125"
+                                Height="55"
                                 Margin="5"/>
 
                         <Button Content="Quiz"
                                 Style="{StaticResource StudyModeButton}"
-                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.PatchQuestion}"
+                                Tag="{x:Static
+                            iconPacks:PackIconBootstrapIconsKind.PatchQuestion}"
+                                Width="125"
+                                Height="55"
                                 Command="{Binding NavigateHomeCommand}"
                                 Margin="5"/>
 
@@ -128,6 +133,8 @@
                                 Style="{StaticResource StudyModeButton}"
                                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Keyboard}"
                                 Command="{Binding NavigateHomeCommand}"
+                                Width="125"
+                                Height="55"
                                 Margin="5"/>
                     </StackPanel>
                 </Border>

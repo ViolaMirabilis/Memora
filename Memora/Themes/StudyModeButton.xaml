@@ -16,8 +16,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Width="125"
-                        Height="55"
+                    <Border Width="{TemplateBinding Width}"
+                        Height="{TemplateBinding Height}"
                         CornerRadius="10"
                         Background="{TemplateBinding Background}">
                         <!-- displays an icon and text. The icon is bound to the "Tag" that exists on a button. -->

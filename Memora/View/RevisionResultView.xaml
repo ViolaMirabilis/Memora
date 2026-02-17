@@ -3,71 +3,146 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:Memora.View"
              mc:Ignorable="d" >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <!-- border around the result -->
-        <Border BorderBrush="#DEE2E6"
-            BorderThickness="2"
-            CornerRadius="10"
-            Background="#FAFBFC">
+        <!-- border around the entire window -->
+        <Border
+             BorderBrush="#DEE2E6"
+             BorderThickness="2"
+             CornerRadius="10"
+             Margin="10"
+             Background="#E8EAEE">
         </Border>
 
-        <StackPanel
-        Orientation="Vertical"
-        HorizontalAlignment="Center"
-        Margin="20,40,20,20">
+        <!-- Border around the results -->
+        <Border
+            
+            CornerRadius="10"
+            VerticalAlignment="Center"
+            BorderThickness="2"
+            Background="#FFFFFF"
+            BorderBrush="#DEE2E6"
+            Margin="10,10,10,10"
+            Padding="10"
+            Height="400"
+            Width="400">
 
 
-            <TextBlock Text="Results"
-        FontSize="64"
-                   FontWeight="Bold"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Margin="10"
-        Foreground="#2C3E50">
-            </TextBlock>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Width="auto"
+                        Height="auto">
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Incorrect answers:"
-                FontSize="48"
+                <!-- Results banner -->
+                <TextBlock Text="RESULTS"
+                FontSize="64"
+                FontWeight="Bold"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Margin="10"
                 Foreground="#2C3E50">
                 </TextBlock>
 
-                <TextBlock Text="{Binding TotalAnswers}"
-                FontSize="48"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Margin="10"
-                Foreground="#2C3E50">
+                <!-- total/learning flashcards-->
+                <Border Background="#68F38B"
+                        CornerRadius="10"
+                        BorderThickness="2,0,0,2"
+                        BorderBrush="#0FBD3B"
+                        Margin="10">
+ 
+                    <StackPanel Orientation="Horizontal">
+                    
+                    <TextBlock Text="Flashcards studied:"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="10,5,10,5"
+                        Foreground="#2C3E50">
+                    </TextBlock>
+                    
+                    <TextBlock Text="{Binding TotalAnswers}"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,5,10,5"
+                            Foreground="#2C3E50">
+                    </TextBlock>
+
+                </StackPanel>
+                </Border>
+
+                <Border Background="#FFB85C"
+                        CornerRadius="10"
+                        BorderThickness="2,0,0,2"
+                        BorderBrush="#F58B00"
+                        Margin="10">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Still learning:"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="10,5,10,5"
+                            Foreground="#2C3E50">
+                        </TextBlock>
+
+                        <TextBlock Text="{Binding StillLearning}"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,5,10,5"
+                            Foreground="#2C3E50">
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Text="Want to revise again?"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,10,10,10"
+                           Foreground="#2C3E50">
+                    
                 </TextBlock>
+                <!-- buttons-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Replay" 
+                            Style="{StaticResource StudyModeButton}"
+                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowClockwise}"
+                            Command="{Binding NavigateRevisionModeCommand}"
+                            Height="45"
+                            Width="100"
+                            Margin="10"/>
+
+                    <Button Content="Shuffle"
+                            Style="{StaticResource StudyModeButton}"
+                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Shuffle}"
+                            Command="{Binding NavigateRevisionModeCommand}"
+                            Height="45"
+                            Width="100"
+                            FontSize="14"
+                            Margin="10"/>
+                </StackPanel>
+                
+
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Still learning:"
-                FontSize="48"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Margin="10"
-                Foreground="#2C3E50">
-                </TextBlock>
 
-                <TextBlock Text="{Binding StillLearning}"
-                FontSize="48"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Margin="10"
-                Foreground="#2C3E50">
-                </TextBlock>
-            </StackPanel>
-
-
-
-
-        </StackPanel>
+        </Border>
+        
 
     </Grid>
 </UserControl>
