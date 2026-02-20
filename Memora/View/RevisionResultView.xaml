@@ -26,13 +26,13 @@
                     <!-- Targets the RenderTransform.TranslateTransform.X on a control which is using this storyboard-->
                     <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-200" To="0"
-                         Duration="0:0:0.5"
-                         BeginTime="0:0:0.5"/>
+                         Duration="0:0:0.35"
+                         BeginTime="0:0:0.3"/>
 
                     <DoubleAnimation Storyboard.TargetProperty="Opacity"
                          From="0" To="1"
-                         Duration="0:0:0.2"
-                         BeginTime="0:0:0.5"/>
+                         Duration="0:0:0.1"
+                         BeginTime="0:0:0.3"/>
                 </Storyboard>
             </Grid.Resources>
             <!-- exposes the render transform property-->
