@@ -1,4 +1,5 @@
 ﻿using Memora.Model;
+using Memora.Model.StudyModes;
 
 namespace Memora.Services;
 /// <summary>
@@ -9,7 +10,8 @@ public class QuizModeService
 {
     // Imported, original flashcards
     private List<Flashcard> _flashcards = new List<Flashcard>();
-    private Dictionary<int, QuizModeFlashcard> _questions = new Dictionary<int, QuizModeFlashcard>();
+    // holds questions and answers for the quiz mode.
+    private List<QuizAnswer> _quizData = new List<QuizAnswer>();
     public int TotalQuestions { get; private set; }
     public string CurrentAnswer { get; private set; } = string.Empty;
     public string AnswerA { get; private set; } = string.Empty;
@@ -26,6 +28,13 @@ public class QuizModeService
         _flashcards = flashcards.ToList();
         TotalQuestions = flashcards.ToList().Count;
     }
+
+    public void InitialiseQuizData()
+    {
+        // to do
+    }
+
+
 
     public ICollection<Flashcard> GetQuestionsCollection()
     {
