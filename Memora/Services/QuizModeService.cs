@@ -34,7 +34,7 @@ public class QuizModeService
         SetWrongAnswers(_quizAnswers);
     }
 
-    // returns a List of QuizAnswers
+    // returns a List of QuizAnswers, which contains the question, correct answer and wrong answers for each flashcard. This list is 
     public List<QuizAnswer> GetQuizAnswers()
     {
         return _quizAnswers;
@@ -68,7 +68,7 @@ public class QuizModeService
     public string[] SetWrongAnswerPerFlashcard(List<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
     {
         // creates an array to hold 3 "wrong" answers
-        string[] wrongAnswers = new string[3];
+        string[] randomAnswers = new string[4];
         // gets a copy of the flashcards list so we dont erase data after each iteration
         var flashcardsCopy = quizAnswers.ToList();
         // shuffling the list of Flashcards, so we can freely take elements 0, 1, 2 without using random here
@@ -79,15 +79,17 @@ public class QuizModeService
         {
             if (i >= 3) break;
             // if random answer is equal to correct answer (random compared to the original) OR wrong answers already ocntians the answer OR the answer is null = continue;
-            if (randomFlashcard.CorrectAnswer == originalAnswer.CorrectAnswer || wrongAnswers.Contains(randomFlashcard.CorrectAnswer))
+            if (randomFlashcard.CorrectAnswer == originalAnswer.CorrectAnswer || randomAnswers.Contains(randomFlashcard.CorrectAnswer))
                 continue;
 
             // if no duplicate was found, we assign a "wrong" answer to the array
-            wrongAnswers[i] = randomFlashcard.CorrectAnswer;
+            randomAnswers[i] = randomFlashcard.CorrectAnswer;
             i++;
         }
-
-        return wrongAnswers;
+        // Adds the original answer on the last index
+        randomAnswers[3] = originalAnswer.CorrectAnswer;
+        randomAnswers.Shuffle();    // shuffles elements in the array
+        return randomAnswers;
     }
 
 }
