@@ -34,6 +34,11 @@ public class QuizModeService
         SetWrongAnswers(_quizAnswers);
     }
 
+    public List<QuizAnswer> GetQuizAnswers()
+    {
+        return _quizAnswers;
+    }
+
     public void SetQuestionsWithCorrectAnswers(ICollection<Flashcard> flashcards)
     {
         // Adds questions and correct answers to the quiz data list (which serves as the main logic for the quiz)
