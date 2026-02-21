@@ -19,13 +19,13 @@ public class RevisionModeService
 
     #region Logic Methods
     // Sets the front and the back of the flashcard to be visible.
-    public void InitialiseFlashcards(IEnumerable<Flashcard> flashcards)
+    public void InitialiseFlashcards(ICollection<Flashcard> flashcards)
     {
         _flashcards = flashcards.ToList();
         TotalFlashcards = flashcards.ToList().Count;
         CurrentIndex = 0;
     }
-    public List<Flashcard> GetFlashcardsList()
+    public ICollection<Flashcard> GetFlashcardsCollection()
     {
         return _flashcards;
     }
@@ -40,25 +40,26 @@ public class RevisionModeService
     }
     public void GoNext()
     {
-        CurrentIndex++;
-        if (CurrentIndex == TotalFlashcards)      // if the button is pressed at the max capacity (i.e. 15/15), CurrentIndex is switched to 0 and a bool is toggled.
+        if (CurrentIndex >= TotalFlashcards - 1)      // if the button is pressed at the max capacity (i.e. 15/15), CurrentIndex is switched to 0 and a bool is toggled.
         {
-            CurrentIndex = 0;
-            OnRevisionFinished();           // Once the revision is done, this method is called.
+            OnRevisionFinished();
+            return;
         }
-        //SetFlashcard();
+
+        CurrentIndex++;
     }
-    public bool CanGoNext()
+    public bool CanGoNext(int currentIndex)
     {
         return CurrentIndex <= TotalFlashcards;
     }
-    public void GoPrevious()
+    public void GoPrevious(int currentIndex)
     {
-        CurrentIndex--;
+        if (CanGoPrevious(currentIndex))
+            CurrentIndex--;
     }
-    public bool CanGoPrevious()
+    public bool CanGoPrevious(int currentIndex)
     {
-        return CurrentIndex >= 1;
+        return CurrentIndex > 0;
     }
     
     #endregion

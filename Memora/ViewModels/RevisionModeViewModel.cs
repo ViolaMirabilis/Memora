@@ -52,7 +52,7 @@ public class RevisionModeViewModel : ViewModel
         set { _back = value; OnPropertyChanged(); }
     }
 
-    public ObservableCollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
+    public ICollection<Flashcard> Flashcards { get; set; } = new ObservableCollection<Flashcard>();
 
     public RelayCommand GoNextCommand { get; set; }
     public RelayCommand GoPreviousCommand { get; set; }
@@ -65,7 +65,7 @@ public class RevisionModeViewModel : ViewModel
         _revisionService = revision;
         InitialiseRevisionMode();
         GoNextCommand = new RelayCommand(_ => GoNext(), _ => true);
-        GoPreviousCommand = new RelayCommand(_ => _revisionService.GoPrevious(), _ => _revisionService.CanGoPrevious());
+        GoPreviousCommand = new RelayCommand(_ => GoPrevious(), _ => CurrentIndex > 0);
     }
 
     #region Commands
@@ -79,7 +79,23 @@ public class RevisionModeViewModel : ViewModel
         // Notifies the index that is displayed to the user
         OnPropertyChanged(nameof(CurrentIndex));
         OnPropertyChanged(nameof(CurrentIndexDisplay));
+        // notifies the button to reevaluate the condition (can/can't be pressed)
+        GoPreviousCommand.RaiseCanExecuteChanged();
         SetFlashcards();
+    }
+
+    public void GoPrevious()
+    {
+        _revisionService.GoPrevious(CurrentIndex);
+        OnPropertyChanged(nameof(CurrentIndex));
+        OnPropertyChanged(nameof(CurrentIndexDisplay));
+        // notifies the button to reevaluate the condition (can/can't be pressed)
+        GoPreviousCommand.RaiseCanExecuteChanged();
+        SetFlashcards();
+    }
+    public bool CanGoPrevious()
+    {
+        return CurrentIndex > 0;
     }
     #endregion
 
@@ -95,7 +111,7 @@ public class RevisionModeViewModel : ViewModel
         // Initialises current index, total flashcards and the collection
         _revisionService.InitialiseFlashcards(session);
         // assigns the collection to VM's observable collection to be used in the view
-        Flashcards = new ObservableCollection<Flashcard>(_revisionService.GetFlashcardsList());
+        Flashcards = new ObservableCollection<Flashcard>(_revisionService.GetFlashcardsCollection());
     }
 
     public void SetFlashcards()
