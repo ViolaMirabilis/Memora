@@ -1,4 +1,4 @@
-﻿namespace Memora.Model;
+﻿namespace Memora.Model.StudyModes;
 
 /// <summary>
 /// Stores data about the result of one session.

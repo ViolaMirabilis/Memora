@@ -1,4 +1,4 @@
-﻿namespace Memora.Model;
+﻿namespace Memora.Model.StudyModes;
 
 public class Session
 {
