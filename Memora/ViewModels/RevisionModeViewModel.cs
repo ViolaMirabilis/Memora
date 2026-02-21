@@ -1,6 +1,7 @@
 ﻿using Memora.Core;
 using Memora.Interfaces;
 using Memora.Model;
+using Memora.Model.StudyModes;
 using Memora.Services;
 using System.Collections.ObjectModel;
 
