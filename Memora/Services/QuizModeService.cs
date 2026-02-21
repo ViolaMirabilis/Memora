@@ -34,6 +34,7 @@ public class QuizModeService
         SetWrongAnswers(_quizAnswers);
     }
 
+    // returns a List of QuizAnswers
     public List<QuizAnswer> GetQuizAnswers()
     {
         return _quizAnswers;

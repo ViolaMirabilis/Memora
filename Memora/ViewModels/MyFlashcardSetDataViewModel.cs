@@ -2,6 +2,7 @@
 using Memora.Interfaces;
 using Memora.Model;
 using Memora.Services;
+using Memora.ViewModels.StudyModes;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Windows;
@@ -43,6 +44,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
     public RelayCommand SaveChanges { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }
+    public RelayCommand NavigateQuizModeCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -62,7 +64,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
         SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
-        NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);        // Navigates to the Revision mode
+        NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, _ => true);        // Navigates to the Revision mode
+        NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
     }
 
     #region Event Logic

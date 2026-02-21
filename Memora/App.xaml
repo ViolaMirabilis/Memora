@@ -60,6 +60,10 @@
                 <view:RevisionResultView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:QuizModeViewModel}">
+                <view:QuizModeView/>
+            </DataTemplate>
+
 
         </ResourceDictionary>
 

@@ -3,9 +3,8 @@ using Memora.Interfaces;
 using Memora.Model;
 using Memora.Model.StudyModes;
 using Memora.Services;
-using System.Collections.ObjectModel;
 
-namespace Memora.ViewModels.StudyModes;
+namespace Memora.ViewModels;
 
 public class QuizModeViewModel : ViewModel
 {
@@ -46,7 +45,17 @@ public class QuizModeViewModel : ViewModel
     #endregion
 
     #region Command Logic
+    // placeholder
+    public void GoToReusltPage()
+    {
+        // to do
+    }
 
+    // placeholder
+    public bool CanGoToResultPage()
+    {
+        return true;
+    }
 
     #endregion
     void InitialiseFlashcardsFromSession()
@@ -66,15 +75,5 @@ public class QuizModeViewModel : ViewModel
         _quizService.InitialiseQuizData();
         InitialiseQuizAnswers();
     }
-    // placeholder
-    public void GoToReusltPage()
-    {
-        // to do
-    }
-
-    // placeholder
-    public bool CanGoToResultPage()
-    {
-        return true;
-    }
+    
 }

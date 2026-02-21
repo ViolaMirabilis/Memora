@@ -60,6 +60,8 @@ namespace Memora
             services.AddSingleton<SessionService>();
             services.AddTransient<RevisionResultViewModel>();       // I believe transient is a better choice, but will decide once the implementation is done.
             services.AddTransient<RevisionModeService>();
+            services.AddTransient<QuizModeViewModel>();
+            services.AddTransient<QuizModeService>();
 
             // navigation service
             services.AddSingleton<INavigationService, NavigationService>();

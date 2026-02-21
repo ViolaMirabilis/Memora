@@ -16,7 +16,7 @@ namespace Memora.View
     /// <summary>
     /// Interaction logic for QuizModeView.xaml
     /// </summary>
-    public partial class QuizModeView : Page
+    public partial class QuizModeView : UserControl
     {
         public QuizModeView()
         {
