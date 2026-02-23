@@ -6,7 +6,7 @@ namespace Memora.Services;
 /// </summary>
 public class RevisionModeService
 {
-    private List<Flashcard> _flashcards = new List<Flashcard>();
+    private IReadOnlyList<Flashcard> _flashcards = new List<Flashcard>();
 
     #region Properties
     public int TotalFlashcards { get; private set; }
@@ -27,7 +27,7 @@ public class RevisionModeService
     }
     public ICollection<Flashcard> GetFlashcardsCollection()
     {
-        return _flashcards;
+        return _flashcards.ToList();
     }
     public Flashcard GetCurrentFlashcard()
     {

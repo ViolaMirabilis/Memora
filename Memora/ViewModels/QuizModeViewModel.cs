@@ -65,6 +65,7 @@ public class QuizModeViewModel : ViewModel
         // initialises the flashcards for the quiz mode
         _quizService.InitialiseFlashcards(session);
     }
+    // Assigns questions + answers to the collection that is bound to the view
     void InitialiseQuizAnswers()
     {
         QuizAnswers = _quizService.GetQuizAnswers();

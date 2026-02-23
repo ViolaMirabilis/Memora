@@ -9,8 +9,8 @@ namespace Memora.Services;
 /// </summary>
 public class QuizModeService
 {
-    // Imported, original flashcards
-    private List<Flashcard> _flashcards = new List<Flashcard>();
+    // Imported, original flashcards, unchanged. Reused everytime a user resets the quiz. It holds state.
+    private IReadOnlyList<Flashcard> _flashcards = new List<Flashcard>();
     // holds questions and answers for the quiz mode.
     private List<QuizAnswer> _quizAnswers = new List<QuizAnswer>();
     public int TotalQuestions { get; private set; }
@@ -29,7 +29,7 @@ public class QuizModeService
     public void InitialiseQuizData()
     {
         // initialises the quizData list from the fetched flashcards
-        SetQuestionsWithCorrectAnswers(_flashcards);
+        SetQuestionsWithCorrectAnswers(_flashcards.ToList());
         // adds wrong answers to the quiz data list, so each question has 1 correct and 3 wrong answers
         SetWrongAnswers(_quizAnswers);
     }
