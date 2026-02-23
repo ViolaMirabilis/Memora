@@ -3,6 +3,7 @@
 
     <Style TargetType="ListViewItem" x:Key="FlashcardSetDesign">
         
+        <!-- triggers (click, hover over, etc) -->
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <!-- On "IsSelected" background -->
