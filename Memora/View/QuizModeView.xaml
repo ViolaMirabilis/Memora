@@ -7,6 +7,42 @@
       mc:Ignorable="d">
 
     <Grid Background="Transparent">
-        <TextBlock FontSize="64" Text="Quiz mode" Foreground="MediumPurple" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock FontSize="48"
+                   Text="Quiz mode"
+                   Foreground="MediumPurple"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
+        
+        <ScrollViewer HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="auto"
+                      Height="auto">
+
+            <ListView ItemsSource="{Binding QuizAnswers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="MediumPurple"
+                                BorderThickness="2"
+                                CornerRadius="10"
+                                Margin="5"
+                                Padding="10">
+                            
+                            <StackPanel>
+                                <TextBlock Text="{Binding Question}"
+                                           FontSize="24"
+                                           Foreground="Black">
+                                </TextBlock>
+                                <Button Content="{Binding IncorrectAnswers[0]}" FontSize="14"/>
+                                <Button Content="{Binding IncorrectAnswers[1]}" FontSize="14"/>
+                                <Button Content="{Binding IncorrectAnswers[2]}" FontSize="14"/>
+                                <Button Content="{Binding IncorrectAnswers[3]}" FontSize="14"/>
+                            </StackPanel>
+                            
+
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>
