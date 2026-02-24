@@ -29,7 +29,7 @@ public class QuizModeViewModel : ViewModel
     #endregion
 
     #region Commands
-    RelayCommand SubmitQuizCommand { get; set; }
+    public RelayCommand CheckAnswersCommand { get; set; }
     #endregion
 
     #region Constructor
@@ -40,7 +40,7 @@ public class QuizModeViewModel : ViewModel
         _quizService = quiz;
         InitialiseFlashcardsFromSession();
         InitialiseQuizMode();
-        SubmitQuizCommand = new RelayCommand(_ => GoToReusltPage(), _ => CanGoToResultPage());
+        CheckAnswersCommand = new RelayCommand(_ => GoToReusltPage(), _ => CanGoToResultPage());
     }
     #endregion
 
