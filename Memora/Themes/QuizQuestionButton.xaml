@@ -24,9 +24,9 @@
                     Background="{TemplateBinding Background}"
                     CornerRadius="10"
                             Margin="-3">
-                        <ContentPresenter HorizontalAlignment="Center"
+                        <ContentPresenter HorizontalAlignment="Left"
                                           VerticalAlignment="Center"
-                                          Margin="5,0,0,0">
+                                          Margin="10,0,0,0">
                         </ContentPresenter>
                     </Border>
 

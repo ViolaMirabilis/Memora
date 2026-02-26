@@ -55,7 +55,7 @@
 
                                     </TextBlock>
                                     <TextBlock Text="This is a template question to see how the control behaves if the text is way too long."
-                                               HorizontalAlignment="Left"
+                                               HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"
                                                FontWeight="Regular"
