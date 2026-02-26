@@ -29,7 +29,10 @@ public class QuizModeViewModel : ViewModel
     #endregion
 
     #region Commands
+    // A submit button to submit the answers and go to the result page, where the user can see their score and which questions they got right/wrong
     public RelayCommand CheckAnswersCommand { get; set; }
+    // A command for each answer button, which sets the selected answer for each question
+    public RelayCommand SelectAnswerCommand { get; set; }
     #endregion
 
     #region Constructor

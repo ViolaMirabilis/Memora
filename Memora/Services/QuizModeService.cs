@@ -42,10 +42,13 @@ public class QuizModeService
 
     public void SetQuestionsWithCorrectAnswers(ICollection<Flashcard> flashcards)
     {
+        // index to keep track of each question number (1/10, 2/10, 3/10...)
+        int index = 1;
         // Adds questions and correct answers to the quiz data list (which serves as the main logic for the quiz)
         foreach (var flashcard in flashcards)
         {
-            _quizAnswers.Add(new QuizAnswer { Question = flashcard.Front, CorrectAnswer = flashcard.Back });
+            _quizAnswers.Add(new QuizAnswer { Question = flashcard.Front, CorrectAnswer = flashcard.Back, Index = index });
+            index++;
         }
     }
     // Adds wrong answers to the general quiz answer in the entire list

@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+                <ResourceDictionary Source="/Themes/QuizQuestionButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -19,8 +20,8 @@
 
         <ScrollViewer Width="auto">
             <StackPanel Orientation="Vertical">
-                <ItemsControl ItemsSource="{Binding QuizAnswers}"
-                              x:Name="FlashcardList" 
+                <ItemsControl x:Name="FlashcardList" 
+                              ItemsSource="{Binding QuizAnswers}"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Height="auto"
@@ -39,41 +40,37 @@
                                     Padding="10"
                                     BorderBrush="#DEE2E6"
                                     Background="#6366F1"
-                                    Width="auto">
+                                    Width="450"
+                                    Height="auto">
 
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Question}"
+                                    <TextBlock Margin="2"
+                                               Foreground="#FFFFFF"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Right">
+                                        <Run Text="{Binding Index}"/>
+                                        <Run Text="/"/>
+                                        <!-- going up the visual tree, grabbing the QuizModeViewModel and OneWay binding, which is for display only.-->
+                                        <Run Text="{Binding DataContext.TotalFlashcards, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"/>
+
+                                    </TextBlock>
+                                    <TextBlock Text="This is a template question to see how the control behaves if the text is way too long."
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center"
-                                               FontSize="24"
-                                               FontWeight="SemiBold"
-                                               Margin="10"
+                                               FontSize="20"
+                                               FontWeight="Regular"
+                                               Margin="10,2,10,10"
                                                TextWrapping="Wrap"
+                                               TextAlignment="Justify"
                                                Foreground="#FFFFFF">
 
                                     </TextBlock>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Border RenderOptions.EdgeMode="Aliased" CornerRadius="10" Background="#4F46E5" BorderBrush="#4F46E5" BorderThickness="2" Margin="10">
-                                                <ToggleButton Padding="5,0,0,0" HorizontalContentAlignment="Left" Background="Transparent" Foreground="#FFFFFF" Height="35" Width="250" Content="{Binding IncorrectAnswers[0]}" FontSize="18" BorderThickness="0"/>
-                                            </Border>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <RadioButton Style="{StaticResource QuizAnswer}" Content="{Binding IncorrectAnswers[0]}"/>
+                                        <RadioButton Style="{StaticResource QuizAnswer}" Content="{Binding IncorrectAnswers[1]}"/>
+                                        <RadioButton Style="{StaticResource QuizAnswer}" Content="{Binding IncorrectAnswers[2]}"/>
+                                        <RadioButton Style="{StaticResource QuizAnswer}" Content="{Binding IncorrectAnswers[3]}"/>
 
-                                            <Border RenderOptions.EdgeMode="Aliased" CornerRadius="10" Background="#4F46E5" BorderBrush="#4F46E5" BorderThickness="2" Margin="10">
-                                                <ToggleButton Padding="5,0,0,0" HorizontalContentAlignment="Left" Background="Transparent" Foreground="#FFFFFF" Height="35" Width="250" Content="{Binding IncorrectAnswers[1]}" FontSize="18" BorderThickness="0"/>
-                                            </Border>
-
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Border RenderOptions.EdgeMode="Aliased" CornerRadius="10" Background="#4F46E5" BorderBrush="#4F46E5" BorderThickness="2" Margin="10">
-                                                <ToggleButton Padding="5,0,0,0" HorizontalContentAlignment="Left" Background="Transparent" Foreground="#FFFFFF" Height="35" Width="250" Content="{Binding IncorrectAnswers[2]}" FontSize="18" BorderThickness="0"/>
-                                            </Border>
-
-                                            <Border RenderOptions.EdgeMode="Aliased" CornerRadius="10" Background="#4F46E5" BorderBrush="#4F46E5" BorderThickness="2" Margin="10">
-                                                <ToggleButton Padding="5,0,0,0" HorizontalContentAlignment="Left" Background="Transparent" Foreground="#FFFFFF" Height="35" Width="250" Content="{Binding IncorrectAnswers[3]}" FontSize="18" BorderThickness="0"/>
-                                            </Border>
-
-                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
 
@@ -90,7 +87,7 @@
                         FontWeight="SemiBold"
                         Width="155"
                         Height="55"
-                        Margin="5"/>
+                        Margin="10,10,10,20"/>
             </StackPanel>
             
         </ScrollViewer>
