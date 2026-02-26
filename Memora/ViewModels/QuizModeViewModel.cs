@@ -3,6 +3,7 @@ using Memora.Interfaces;
 using Memora.Model;
 using Memora.Model.StudyModes;
 using Memora.Services;
+using System.Windows;
 
 namespace Memora.ViewModels;
 
@@ -25,6 +26,7 @@ public class QuizModeViewModel : ViewModel
     #region Properties
     // Bindable observable collection with question + 4 answers (1 correct and 3 wrong)
     public ICollection<QuizAnswer> QuizAnswers { get; set; }
+    public string SelectedAnswer { get; set; }
     public int TotalFlashcards => _quizService.TotalQuestions;
     #endregion
 
@@ -43,9 +45,12 @@ public class QuizModeViewModel : ViewModel
         _quizService = quiz;
         InitialiseFlashcardsFromSession();
         InitialiseQuizMode();
-        CheckAnswersCommand = new RelayCommand(_ => GoToReusltPage(), _ => CanGoToResultPage());
     }
     #endregion
+    #region Placeholders
+
+    #endregion
+
 
     #region Command Logic
     // placeholder

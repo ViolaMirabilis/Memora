@@ -6,7 +6,9 @@ using System.Net.Http;
 using System.Windows;
 
 namespace Memora.ViewModels;
-
+/// <summary>
+/// Note to self: move this into a separate service
+/// </summary>
 public class LoginViewModel : ViewModel
 {
     private readonly AuthApiService _authApi;
