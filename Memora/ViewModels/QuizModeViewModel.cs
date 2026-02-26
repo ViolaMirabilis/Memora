@@ -45,10 +45,17 @@ public class QuizModeViewModel : ViewModel
         _quizService = quiz;
         InitialiseFlashcardsFromSession();
         InitialiseQuizMode();
+        // Reference: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm
+        //SelectAnswerCommand = new RelayCommand(obj => SelectedAnswer = obj.ToString(), _ => true);
+        SelectAnswerCommand = new RelayCommand(obj => DisplayButtonContent(obj), _ => true);
     }
     #endregion
     #region Placeholders
-
+    void DisplayButtonContent(object obj)
+    {
+        SelectedAnswer = obj.ToString();
+        MessageBox.Show(SelectedAnswer);
+    }
     #endregion
 
 
