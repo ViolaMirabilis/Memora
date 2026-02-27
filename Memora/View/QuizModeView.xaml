@@ -54,7 +54,7 @@
                                         <Run Text="{Binding DataContext.TotalFlashcards, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"/>
 
                                     </TextBlock>
-                                    <TextBlock Text="This is a template question to see how the control behaves if the text is way too long."
+                                    <TextBlock Text="{Binding Question}"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontSize="20"

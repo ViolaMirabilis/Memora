@@ -50,13 +50,13 @@ public class QuizModeViewModel : ViewModel
         // Reference: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm
         //SelectAnswerCommand = new RelayCommand(obj => SelectedAnswer = obj.ToString(), _ => true);
         SelectAnswerCommand = new RelayCommand(obj => AssignSelectedAnswer(obj), _ => true);
-        CheckAnswersCommand = new RelayCommand(_ => CheckResults(), _ => true);
+        CheckAnswersCommand = new RelayCommand(_ => CheckResults(), _ => CanCheckResults());
     }
     #endregion
 
     #region Command Logic
     // PLACEHOLDER
-    void CheckResults()
+    private void CheckResults()
     {
         int correctAnswersCount = 0;
         foreach (var quizAnswer in QuizAnswers)
@@ -69,6 +69,11 @@ public class QuizModeViewModel : ViewModel
 
         MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
     }
+    private bool CanCheckResults()
+    {
+        return QuizAnswers.Any(q => !string.IsNullOrEmpty(q.SelectedAnswer));
+
+    }
     // Assigns the selected answer to its QuizAnswer object
     // Ivoked after pressing on the radio button
     public void AssignSelectedAnswer(object obj)
@@ -77,8 +82,10 @@ public class QuizModeViewModel : ViewModel
         {
             // assigns the content of the RB to the selected answer property of the QuizAnswer object
             quizAnswer.SelectedAnswer = rb.Content.ToString() ?? string.Empty;
-            MessageBox.Show($"Selected answeR: {quizAnswer.SelectedAnswer.ToString()}");
+            //MessageBox.Show($"Selected answeR: {quizAnswer.SelectedAnswer.ToString()}");
         }
+        // Recheks the command condition
+        CheckAnswersCommand.RaiseCanExecuteChanged();
     }
     // placeholder
     public void GoToResultPage()

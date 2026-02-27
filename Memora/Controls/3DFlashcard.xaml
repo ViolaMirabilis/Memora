@@ -18,50 +18,47 @@
             <ScaleTransform x:Name="FlashcardRotate" ScaleX="1"/>
         </Grid.RenderTransform>
 
+            <Rectangle Fill="#4F46E5" Height="440" Width="290"/>
+        
         <Border x:Name="FrontSide"
-                Background="#4F46E5"
+                Background="Transparent"
                 BorderThickness="7"
                 BorderBrush="#6366F1"
-                CornerRadius="10"
+                CornerRadius="7"
                 Cursor="Hand">
 
             <TextBlock Text="{Binding FrontText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                FontSize="24"
-                Foreground="#FAFBFC"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                TextWrapping="Wrap"
-                TextAlignment="Justify"
-                Margin="10"
-                IsHitTestVisible="False">
-
+                        FontSize="24"
+                        Foreground="#FAFBFC"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        TextWrapping="Wrap"
+                        TextAlignment="Justify"
+                        Margin="10"
+                        IsHitTestVisible="False">
             </TextBlock>
         </Border>
-        
-
 
         <Border x:Name="BackSide"
-                Background="#4F46E5"
+                Background="Transparent"
                 BorderThickness="7"
                 BorderBrush="#6366F1"
-                CornerRadius="10"
+                CornerRadius="7"
                 Cursor="Hand"
                 Visibility="Collapsed">
 
             <TextBlock Text="{Binding BackText, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                FontSize="24"
-                Foreground="#FAFBFC"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                TextWrapping="Wrap"
-                TextAlignment="Justify"
-                Margin="10"
-                IsHitTestVisible="False">
-
+                    FontSize="24"
+                    Foreground="#FAFBFC"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextWrapping="Wrap"
+                    TextAlignment="Justify"
+                    Margin="10"
+                    IsHitTestVisible="False">
             </TextBlock>
 
         </Border>
-        
 
     </Grid>
    
