@@ -68,11 +68,15 @@
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <!-- logic explained here: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm -->
                                         <!-- Items control for quiz questions and answers -->
+                                        <!-- Content just returns one of the list elements as a string-->
+                                        <!-- Tag binds to the DataContext of the ItemsControl (so it is one object of QuizAnswer)-->
+                                        <!-- Command refers to the QuizModeViewModel and grab its command "SelectAnswerCommand"-->
                                         <ItemsControl ItemsSource="{Binding IncorrectAnswers}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <RadioButton Style="{StaticResource QuizAnswer}"
                                                                  Content="{Binding}"
+                                                                 Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                                  Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                                  CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
                                                 </DataTemplate>
