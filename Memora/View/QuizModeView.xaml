@@ -71,6 +71,7 @@
                                         <!-- Content just returns one of the list elements as a string-->
                                         <!-- Tag binds to the DataContext of the ItemsControl (so it is one object of QuizAnswer)-->
                                         <!-- Command refers to the QuizModeViewModel and grab its command "SelectAnswerCommand"-->
+                                        <!-- Group name binds to the current index of the question, so each question has a unique set of radio buttons (one clickable at a time)-->
                                         <ItemsControl ItemsSource="{Binding IncorrectAnswers}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
@@ -78,7 +79,8 @@
                                                                  Content="{Binding}"
                                                                  Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                                  Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
+                                                                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                                                                 GroupName="{Binding DataContext.Index, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>

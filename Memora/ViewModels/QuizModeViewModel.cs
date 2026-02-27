@@ -4,6 +4,7 @@ using Memora.Model;
 using Memora.Model.StudyModes;
 using Memora.Services;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Memora.ViewModels;
 
@@ -48,31 +49,39 @@ public class QuizModeViewModel : ViewModel
         InitialiseQuizMode();
         // Reference: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm
         //SelectAnswerCommand = new RelayCommand(obj => SelectedAnswer = obj.ToString(), _ => true);
-        SelectAnswerCommand = new RelayCommand(obj => DisplayButtonContent(obj), _ => true);
+        SelectAnswerCommand = new RelayCommand(obj => AssignSelectedAnswer(obj), _ => true);
+        CheckAnswersCommand = new RelayCommand(_ => CheckResults(), _ => true);
     }
     #endregion
-    #region Placeholders
-    void DisplayButtonContent(object obj)
-    {
-        var text = obj.ToString();
-        MessageBox.Show(text);
-        // this returns an entire object
-
-        //MessageBox.Show(sth.IncorrectAnswers[0]);
-        //MessageBox.Show(sth.IncorrectAnswers[1]);
-        //MessageBox.Show(sth.IncorrectAnswers[2]);
-        //MessageBox.Show(sth.IncorrectAnswers[3]);
-        // this returns the answer as a string
-        // right now it gets the content of the button, but I believe it should grab the object itself
-        //SelectedAnswer = obj.ToString();
-       //MessageBox.Show(SelectedAnswer);
-    }
-    #endregion
-
 
     #region Command Logic
+    // PLACEHOLDER
+    void CheckResults()
+    {
+        int correctAnswersCount = 0;
+        foreach (var quizAnswer in QuizAnswers)
+        {
+            if (quizAnswer.SelectedAnswer == quizAnswer.CorrectAnswer)
+            {
+                correctAnswersCount++;
+            }
+        }
+
+        MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
+    }
+    // Assigns the selected answer to its QuizAnswer object
+    // Ivoked after pressing on the radio button
+    public void AssignSelectedAnswer(object obj)
+    {
+        if (obj is RadioButton rb && rb.Tag is QuizAnswer quizAnswer)
+        {
+            // assigns the content of the RB to the selected answer property of the QuizAnswer object
+            quizAnswer.SelectedAnswer = rb.Content.ToString() ?? string.Empty;
+            MessageBox.Show($"Selected answeR: {quizAnswer.SelectedAnswer.ToString()}");
+        }
+    }
     // placeholder
-    public void GoToReusltPage()
+    public void GoToResultPage()
     {
         // to do
     }
