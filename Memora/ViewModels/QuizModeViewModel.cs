@@ -29,7 +29,10 @@ public class QuizModeViewModel : ViewModel
     public ICollection<QuizAnswer> QuizAnswers { get; set; }
     // a returned QuizAnswer object with already assigned "selected answer" property
     public QuizAnswer SelectedAnswer { get; set; }
+    // sets total/correct/incorrect answers from the service
     public int TotalFlashcards => _quizService.TotalQuestions;
+    public int CorrectAnswers => _quizService.CorrectAnswers;
+    public int IncorrectAnswers => _quizService.IncorrectAnswers;
     #endregion
 
     #region Commands
@@ -55,7 +58,6 @@ public class QuizModeViewModel : ViewModel
     #endregion
 
     #region Command Logic
-    // PLACEHOLDER
     private void CheckResults()
     {
         int correctAnswersCount = 0;
@@ -66,7 +68,8 @@ public class QuizModeViewModel : ViewModel
                 correctAnswersCount++;
             }
         }
-
+        _quizService.CalculateResults(QuizAnswers);
+        //Placeholder
         MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
     }
     private bool CanCheckResults()
@@ -91,12 +94,6 @@ public class QuizModeViewModel : ViewModel
     public void GoToResultPage()
     {
         // to do
-    }
-
-    // placeholder
-    public bool CanGoToResultPage()
-    {
-        return true;
     }
 
     #endregion

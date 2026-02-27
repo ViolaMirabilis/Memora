@@ -14,6 +14,8 @@ public class QuizModeService
     // holds questions and answers for the quiz mode.
     private List<QuizAnswer> _quizAnswers = new List<QuizAnswer>();
     public int TotalQuestions { get; private set; }
+    public int CorrectAnswers { get; private set; }
+    public int IncorrectAnswers { get; private set; }
 
     /// <summary>
     /// Initialises list of flashcards and assigns the total amount of questions
@@ -51,7 +53,7 @@ public class QuizModeService
         }
     }
     // Adds wrong answers to the general quiz answer in the entire list
-    public void SetWrongAnswers(List<QuizAnswer> quizAnswers)
+    public void SetWrongAnswers(ICollection<QuizAnswer> quizAnswers)
     {
         if (quizAnswers.Count < 6)
         {
@@ -62,12 +64,12 @@ public class QuizModeService
 
         foreach (var answer in quizAnswers)
         {
-            answer.IncorrectAnswers = SetWrongAnswerPerFlashcard(quizAnswers, answer);
+            answer.IncorrectAnswers = SetWrongAnswerPerFlashcard(quizAnswers, answer).ToList();
         }
     }
 
     // returns a string[3] with 3 wrong answers. Needs to be called on each QuizAnswer individually
-    public List<string> SetWrongAnswerPerFlashcard(List<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
+    public ICollection<string> SetWrongAnswerPerFlashcard(ICollection<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
     {
         // creates an array to hold 3 "wrong" answers
         // after changing the return type to LIST, I believe we can change this to a List as well, but I will keep it as an array for now since we know the size is always 4 (3 wrong + 1 correct)
@@ -93,6 +95,20 @@ public class QuizModeService
         randomAnswers[3] = originalAnswer.CorrectAnswer;
         randomAnswers.Shuffle();    // shuffles elements in the array
         return randomAnswers.ToList();
+    }
+
+    public void CalculateResults(ICollection<QuizAnswer> quizAnswers)
+    {
+        int correctAnswersCount = 0;
+        foreach (var quizAnswer in quizAnswers)
+        {
+            if (quizAnswer.SelectedAnswer == quizAnswer.CorrectAnswer)
+            {
+                correctAnswersCount++;
+            }
+        }
+        CorrectAnswers = correctAnswersCount;
+        IncorrectAnswers = TotalQuestions - correctAnswersCount;
     }
 
 }
