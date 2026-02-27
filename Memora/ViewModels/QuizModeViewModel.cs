@@ -26,7 +26,8 @@ public class QuizModeViewModel : ViewModel
     #region Properties
     // Bindable observable collection with question + 4 answers (1 correct and 3 wrong)
     public ICollection<QuizAnswer> QuizAnswers { get; set; }
-    public string SelectedAnswer { get; set; }
+    // a returned QuizAnswer object with already assigned "selected answer" property
+    public QuizAnswer SelectedAnswer { get; set; }
     public int TotalFlashcards => _quizService.TotalQuestions;
     #endregion
 
@@ -53,8 +54,18 @@ public class QuizModeViewModel : ViewModel
     #region Placeholders
     void DisplayButtonContent(object obj)
     {
-        SelectedAnswer = obj.ToString();
-        MessageBox.Show(SelectedAnswer);
+        var text = obj.ToString();
+        MessageBox.Show(text);
+        // this returns an entire object
+
+        //MessageBox.Show(sth.IncorrectAnswers[0]);
+        //MessageBox.Show(sth.IncorrectAnswers[1]);
+        //MessageBox.Show(sth.IncorrectAnswers[2]);
+        //MessageBox.Show(sth.IncorrectAnswers[3]);
+        // this returns the answer as a string
+        // right now it gets the content of the button, but I believe it should grab the object itself
+        //SelectedAnswer = obj.ToString();
+       //MessageBox.Show(SelectedAnswer);
     }
     #endregion
 

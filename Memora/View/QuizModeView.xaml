@@ -67,22 +67,18 @@
                                     </TextBlock>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <!-- logic explained here: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm -->
-                                        <RadioButton Style="{StaticResource QuizAnswer}"
-                                                     Content="{Binding IncorrectAnswers[0]}"
-                                                     Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
-                                        <RadioButton Style="{StaticResource QuizAnswer}"
-                                                     Content="{Binding IncorrectAnswers[1]}"
-                                                     Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
-                                        <RadioButton Style="{StaticResource QuizAnswer}"
-                                                     Content="{Binding IncorrectAnswers[2]}"
-                                                     Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
-                                        <RadioButton Style="{StaticResource QuizAnswer}"
-                                                     Content="{Binding IncorrectAnswers[3]}"
-                                                     Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                     CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
+                                        <!-- Items control for quiz questions and answers -->
+                                        <ItemsControl ItemsSource="{Binding IncorrectAnswers}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RadioButton Style="{StaticResource QuizAnswer}"
+                                                                 Content="{Binding}"
+                                                                 Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                            
                                         
 
                                     </StackPanel>

@@ -11,6 +11,6 @@ public class QuizAnswer
     // answer (back of the flashcard)
     public string CorrectAnswer { get; set; } = string.Empty;
     // three incorrect answers + the correct one
-    public string[] IncorrectAnswers { get; set; } = new string[4];
+    public List<string> IncorrectAnswers { get; set; }
     public string SelectedAnswer { get; set; } = string.Empty;
 }

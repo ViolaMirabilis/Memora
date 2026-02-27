@@ -14,7 +14,6 @@ public class QuizModeService
     // holds questions and answers for the quiz mode.
     private List<QuizAnswer> _quizAnswers = new List<QuizAnswer>();
     public int TotalQuestions { get; private set; }
-    public string CurrentAnswer { get; private set; } = string.Empty;
 
     /// <summary>
     /// Initialises list of flashcards and assigns the total amount of questions
@@ -68,9 +67,10 @@ public class QuizModeService
     }
 
     // returns a string[3] with 3 wrong answers. Needs to be called on each QuizAnswer individually
-    public string[] SetWrongAnswerPerFlashcard(List<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
+    public List<string> SetWrongAnswerPerFlashcard(List<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
     {
         // creates an array to hold 3 "wrong" answers
+        // after changing the return type to LIST, I believe we can change this to a List as well, but I will keep it as an array for now since we know the size is always 4 (3 wrong + 1 correct)
         string[] randomAnswers = new string[4];
         // gets a copy of the flashcards list so we dont erase data after each iteration
         var flashcardsCopy = quizAnswers.ToList();
@@ -92,7 +92,7 @@ public class QuizModeService
         // Adds the original answer on the last index
         randomAnswers[3] = originalAnswer.CorrectAnswer;
         randomAnswers.Shuffle();    // shuffles elements in the array
-        return randomAnswers;
+        return randomAnswers.ToList();
     }
 
 }
