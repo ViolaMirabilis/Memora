@@ -25,6 +25,13 @@ public class MyFlashcardSetDataViewModel : ViewModel
     private readonly SessionService _sessionService;
 
     private event Action OnCountChanged;        // when a flashcard is added/deleted, the event is fired and the count is recalculated
+
+    private bool _isSharing;
+    public bool IsSharing
+    {
+        get => _isSharing;
+        set {_isSharing = value; OnPropertyChanged(); }
+    }
     private int _setId { get; set; }
     private int _flashcardsCount;   // bindable property for flashcard count
     public int FlashcardsCount
@@ -45,6 +52,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand SaveChanges { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }
     public RelayCommand NavigateQuizModeCommand { get; set; }
+    public RelayCommand ShareSetCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -66,6 +74,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
         SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, _ => true);        // Navigates to the Revision mode
         NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
+        // toggles the sharing mode ON and OFF
+        ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
     }
 
     #region Event Logic

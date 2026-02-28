@@ -8,15 +8,17 @@
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
              mc:Ignorable="d">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
     </UserControl.Resources>
 
 
@@ -88,22 +90,73 @@
             </Border>
 
 
+            <!-- rightside panel -->
             <StackPanel 
                 Orientation="Vertical"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Margin="15,0,0,0">
+                Margin="15,0,0,0"
+                Height="auto">
 
-                <Border
+                <Border 
                         Background="#FAFBFC"
                         CornerRadius="10"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Bottom"
                         BorderThickness="2"
                         BorderBrush="#DEE2E6"
                         Margin="10,10,10,10"
                         Padding="10">
 
                     <StackPanel Orientation="Vertical">
+
+                        <StackPanel>
+
+
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <TextBlock Text="Share this set"
+                                           FontSize="28"
+                                           FontWeight="Bold"
+                                           Foreground="#2C3E50"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                                <Button Content="+"
+                                        Style="{StaticResource SmallSquareButton}"
+                                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.GlobeAmericas}"
+                                        Command="{Binding ShareSetCommand}"
+                                        Height="40"
+                                        Width="40"
+                                        Margin="10"/>
+                            </StackPanel>
+
+                            <Grid Visibility="{Binding IsSharing, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Top">
+                                <Border BorderThickness="2" BorderBrush="Gray" CornerRadius="10">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
+
+                                        <TextBlock Text="#"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#2C3E50"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                                        <TextBox Text="G8D1J4"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             Height="50"
+                             Width="auto"
+                             FontSize="28"
+                             FontWeight="Bold"
+                             Margin="2"
+                             Foreground="#2C3E50"
+                             BorderThickness="0">
+                                        </TextBox>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+
                         <Label Content="Studying modes"
                                Foreground="#2C3E50"
                                FontSize="28"
@@ -132,25 +185,21 @@
                         <Button Content="Typing quiz"
                                 Style="{StaticResource StudyModeButton}"
                                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Keyboard}"
-                                Command="{Binding NavigateHomeCommand}"
+                                Command="{Binding}"
                                 Width="125"
                                 Height="55"
                                 Margin="5"/>
-                    </StackPanel>
-                </Border>
 
-
-
-                <Label Content="Add a new flashcard"
-                       Foreground="#2C3E50"
-                       FontSize="22"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Center"
-                       FontWeight="Bold"
-                       Margin="10"></Label>
-                <!-- add flashcard button-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="+"
+                        <Label Content="Add a new flashcard"
+                               Foreground="#2C3E50"
+                               FontSize="22"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               Margin="10"></Label>
+                        <!-- add flashcard button-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="+"
                             Style="{StaticResource SmallSquareButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
                             Command="{Binding AddFlashcardCommand}"
@@ -158,20 +207,18 @@
                             Width="55"
                             Margin="10"/>
 
-                    <Button Content="Save changes"
+                            <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
                             Command="{Binding SaveChanges}"
                             FontSize="14"
                             FontWeight="Regular"/>
 
-                </StackPanel>
-                
-
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
-            
-            
+   
         </StackPanel>
-
 
     </Grid>
 </UserControl>
