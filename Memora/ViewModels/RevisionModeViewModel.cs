@@ -130,5 +130,4 @@ public class RevisionModeViewModel : ViewModel
         Navigation.NavigateTo<RevisionResultViewModel>();
     }
 
-
 }

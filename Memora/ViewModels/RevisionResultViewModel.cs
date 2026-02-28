@@ -36,6 +36,7 @@ public class RevisionResultViewModel : ViewModel
         set { _stillLearning = value; OnPropertyChanged(); }
     }
     public RelayCommand NavigateRevisionModeCommand { get; set; }       // repeated...
+    public RelayCommand ShuffleCommand { get; set; }
     public RevisionResultViewModel(INavigationService navService, SessionService sessionService)
     {
         _navigation = navService;
@@ -44,6 +45,7 @@ public class RevisionResultViewModel : ViewModel
         StillLearning = SetStillLearning();
 
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);
+        ShuffleCommand = new RelayCommand(o => Shuffle(), o => true);
     }
 
     private int SetTotalAnswers()
@@ -57,5 +59,11 @@ public class RevisionResultViewModel : ViewModel
             return 0;
 
         return _sessionService.CurrentSession.Result.StillLearning.Count;
+    }
+    private void Shuffle()
+    {
+        var shuffledList = _sessionService.CurrentSession.FlashcardsCollection!.Shuffle();
+        _sessionService.CurrentSession.FlashcardsCollection = shuffledList.ToList();
+        Navigation.NavigateTo<RevisionModeViewModel>();
     }
 }

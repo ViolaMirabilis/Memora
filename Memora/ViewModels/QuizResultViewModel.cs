@@ -41,6 +41,7 @@ public class QuizResultViewModel : ViewModel
     }
 
     public RelayCommand NavigateQuizModeCommand { get; set; }       // repeated...
+    public RelayCommand ShuffleCommand { get; set; }
     public QuizResultViewModel(INavigationService navService, SessionService sessionService)
     {
         _navigation = navService;
@@ -50,6 +51,7 @@ public class QuizResultViewModel : ViewModel
         IncorrectAnswers = SetIncorrectAnswers();
 
         NavigateQuizModeCommand = new RelayCommand(o => { Navigation.NavigateTo<QuizModeViewModel>(); }, o => true);
+        ShuffleCommand = new RelayCommand(o => Shuffle(), o => true);
     }
 
     private int SetTotalQuestions()
@@ -64,5 +66,11 @@ public class QuizResultViewModel : ViewModel
     private int SetIncorrectAnswers()
     {
         return _sessionService.CurrentSession.Result!.IncorrectAnswers;
+    }
+    private void Shuffle()
+    {
+        var shuffledList = _sessionService.CurrentSession.FlashcardsCollection!.Shuffle();
+        _sessionService.CurrentSession.FlashcardsCollection = shuffledList.ToList();
+        Navigation.NavigateTo<QuizModeViewModel>();
     }
 }

@@ -118,7 +118,7 @@
                             <Button Content="Shuffle"
                                     Style="{StaticResource StudyModeButton}"
                                     Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Shuffle}"
-                                    Command="{Binding NavigateRevisionModeCommand}"
+                                    Command="{Binding ShuffleCommand}"
                                     Height="45"
                                     Width="100"
                                     FontSize="14"
