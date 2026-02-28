@@ -7,7 +7,10 @@
              mc:Ignorable="d"
              x:Name="Result">
     <Grid>
-        <Border Background="{Binding BorderBackground, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        <Border Margin="10"
+                Background="{Binding BorderBackground, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CornerRadius="10"></Border>
+        <Border Background="Transparent"
                 CornerRadius="10"
                 BorderThickness="2,0,0,2"
                 BorderBrush="{Binding LeftShade, RelativeSource={RelativeSource AncestorType=UserControl}}"

@@ -40,7 +40,7 @@ public class QuizResultViewModel : ViewModel
         set { _incorrectAnswers = value; OnPropertyChanged(); }
     }
 
-    public RelayCommand NavigateRevisionModeCommand { get; set; }       // repeated...
+    public RelayCommand NavigateQuizModeCommand { get; set; }       // repeated...
     public QuizResultViewModel(INavigationService navService, SessionService sessionService)
     {
         _navigation = navService;
@@ -49,7 +49,7 @@ public class QuizResultViewModel : ViewModel
         CorrectAnswers = SetCorrectAnswers();
         IncorrectAnswers = SetIncorrectAnswers();
 
-        NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, o => true);
+        NavigateQuizModeCommand = new RelayCommand(o => { Navigation.NavigateTo<QuizModeViewModel>(); }, o => true);
     }
 
     private int SetTotalQuestions()

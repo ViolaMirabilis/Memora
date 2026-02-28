@@ -80,8 +80,8 @@
                         </TextBlock>
 
                         <!-- Total Questions-->
-                        <controls:ResultLabel LeftShade="#1B57DA"
-                                          BorderBackground="#497CE9"
+                        <controls:ResultLabel LeftShade="#2563EB"
+                                          BorderBackground="#3B82F6"
                                           Label="Total questions: "
                                           Text="{Binding TotalQuestions}"
                                           TextColor="#2C3E50">
@@ -118,7 +118,7 @@
                             <Button Content="Replay" 
                                 Style="{StaticResource StudyModeButton}"
                                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowClockwise}"
-                                Command="{Binding NavigateRevisionModeCommand}"
+                                Command="{Binding NavigateQuizModeCommand}"
                                 Height="45"
                                 Width="100"
                                 Margin="10"/>
