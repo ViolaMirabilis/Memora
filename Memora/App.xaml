@@ -56,8 +56,6 @@
                 <view:RevisionModeView/>
             </DataTemplate>
 
-            <!-- temporary. Change it later on. Caused by the creation of a new folder in the ViewModels folder. -->
-
             <DataTemplate DataType="{x:Type viewModel:RevisionResultViewModel}">
                 <view:RevisionResultView/>
             </DataTemplate>
@@ -69,8 +67,6 @@
             <DataTemplate DataType="{x:Type viewModel:QuizResultViewModel}">
                 <view:QuizResultView/>
             </DataTemplate>
-
-
 
 
         </ResourceDictionary>

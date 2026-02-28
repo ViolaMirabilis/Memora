@@ -16,9 +16,9 @@ namespace Memora.View
     /// <summary>
     /// Interaction logic for QuizResultScreen.xaml
     /// </summary>
-    public partial class QuizResultScreen : UserControl
+    public partial class QuizResultView : UserControl
     {
-        public QuizResultScreen()
+        public QuizResultView()
         {
             InitializeComponent();
         }
