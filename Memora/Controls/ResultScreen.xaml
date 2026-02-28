@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="Memora.Controls.ResultScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:Memora.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <!-- @see https://stackoverflow.com/questions/51803869/wpf-animation-how-do-i-make-it-slide-in for more info.-->
+        <!-- Empty grid around the border with content. Starts with opacity 0. -->
+        <Grid Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Background="Transparent">
+            <Grid.Resources>
+                <Storyboard x:Key="SlideToRightWithFadeIn">
+                    <!-- Targets the RenderTransform.TranslateTransform.X on a control which is using this storyboard-->
+                    <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                     From="-200" To="0"
+                     Duration="0:0:0.35"
+                     BeginTime="0:0:0.3"/>
+
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                     From="0" To="1"
+                     Duration="0:0:0.1"
+                     BeginTime="0:0:0.3"/>
+                </Storyboard>
+            </Grid.Resources>
+            <!-- exposes the render transform property-->
+            <Grid.RenderTransform>
+                <TranslateTransform/>
+            </Grid.RenderTransform>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource SlideToRightWithFadeIn}"/>
+                </EventTrigger>
+            </Grid.Triggers>
+            <!-- border around the entire window -->
+            <Border BorderBrush="#DEE2E6"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Margin="10"
+                    Background="#E8EAEE">  
+                <Border>
+
+                </Border>
+            </Border>
+
+            <!-- Grid holding both borders together -->
+            <Grid>
+                <Border Height="400"
+                        Width="400"
+                        CornerRadius="10"
+                        Background="#E8EAEE">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="4"
+                                          Direction="20"
+                                          Color="Black"
+                                          Opacity="0.5"
+                                          BlurRadius="6">
+                        </DropShadowEffect>
+                    </Border.Effect>
+
+                </Border>
+                <!-- Border around the results -->
+                <Border Background="#FFFFFF"
+                        CornerRadius="10"
+                        VerticalAlignment="Center"
+                        BorderThickness="2"
+                        BorderBrush="#DEE2E6"
+                        Margin="10,10,10,10"
+                        Padding="10"
+                        Height="400"
+                        Width="400">
+
+
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                Margin="10"
+                                Width="auto"
+                                Height="auto">
+
+                        <!-- Results banner -->
+                        <TextBlock Text="RESULTS"
+                                   FontSize="64"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Margin="10"
+                                   Foreground="#2C3E50">
+
+                        </TextBlock>
+
+                        <!-- Label 1-->
+                        <Border Background="#68F38B"
+                                CornerRadius="10"
+                                BorderThickness="2,0,0,2"
+                                BorderBrush="#0FBD3B"
+                                Margin="10">
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Label1" Text="Flashcards studied:"
+                                            FontSize="18"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="10,5,10,5"
+                                            Foreground="#2C3E50">
+                                </TextBlock>
+
+                                <TextBlock x:Name="Text1" Text="{Binding TotalAnswers}"
+                                           FontSize="18"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="0,5,10,5"
+                                           Foreground="#2C3E50">
+                                </TextBlock>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Label 2 -->
+                        <Border Background="#FFB85C"
+                                CornerRadius="10"
+                                BorderThickness="2,0,0,2"
+                                BorderBrush="#F58B00"
+                                Margin="10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Label2" Text="Still learning:"
+                                            FontSize="18"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="10,5,10,5"
+                                            Foreground="#2C3E50">
+                                </TextBlock>
+
+                                <TextBlock x:Name="Text2" Text="{Binding StillLearning}"
+                                            FontSize="18"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="0,5,10,5"
+                                            Foreground="#2C3E50">
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Text="Want to revise again?"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="0,10,10,10"
+                                   Foreground="#2C3E50">
+
+                        </TextBlock>
+                        <!-- buttons-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Replay" 
+                                    Style="{StaticResource StudyModeButton}"
+                                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowClockwise}"
+                                    Command="{Binding NavigateRevisionModeCommand}"
+                                    Height="45"
+                                    Width="100"
+                                    Margin="10"/>
+
+                            <Button Content="Shuffle"
+                                    Style="{StaticResource StudyModeButton}"
+                                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Shuffle}"
+                                    Command="{Binding NavigateRevisionModeCommand}"
+                                    Height="45"
+                                    Width="100"
+                                    FontSize="14"
+                                    Margin="10"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

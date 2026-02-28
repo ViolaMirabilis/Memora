@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:controls="clr-namespace:Memora.Controls"
              mc:Ignorable="d" >
 
     <UserControl.Resources>
@@ -59,9 +60,9 @@
             <!-- Grid holding both borders together -->
             <Grid>
                 <Border Height="400"
-        Width="400"
-        CornerRadius="10"
-        Background="#E8EAEE">
+                Width="400"
+                CornerRadius="10"
+                Background="#E8EAEE">
                     <Border.Effect>
                         <DropShadowEffect
             ShadowDepth="4"
@@ -94,15 +95,22 @@
 
                         <!-- Results banner -->
                         <TextBlock Text="RESULTS"
-        FontSize="64"
-        FontWeight="Bold"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Margin="10"
-        Foreground="#2C3E50">
+                                    FontSize="64"
+                                    FontWeight="Bold"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Margin="10"
+                                    Foreground="#2C3E50">
 
                         </TextBlock>
-
+                        
+                        <!-- placeholder -->
+                        <controls:ResultLabel LeftShade="Purple"
+                                              BorderBackground="Yellow"
+                                              Label="Placeholder hehe: "
+                                              Text="{Binding TotalAnswers}">
+                        </controls:ResultLabel>
+                        
                         <!-- total/learning flashcards-->
                         <Border Background="#68F38B"
                 CornerRadius="10"
