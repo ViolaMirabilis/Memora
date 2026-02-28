@@ -83,7 +83,7 @@
                         <controls:ResultLabel LeftShade="#1B57DA"
                                           BorderBackground="#497CE9"
                                           Label="Total questions: "
-                                          Text="{Binding TotalAnswers}"
+                                          Text="{Binding TotalQuestions}"
                                           TextColor="#2C3E50">
                         </controls:ResultLabel>
 
@@ -92,7 +92,7 @@
                         <controls:ResultLabel LeftShade="#0FBD3B"
                                           BorderBackground="#68F38B"
                                           Label="Correct answers: "
-                                          Text="{Binding StillLearning}"
+                                          Text="{Binding CorrectAnswers}"
                                           TextColor="#2C3E50">
                         </controls:ResultLabel>
 
@@ -100,7 +100,7 @@
                         <controls:ResultLabel LeftShade="#E32626"
                                               BorderBackground="#E84A4A"
                                               Label="Incorrect answers: "
-                                              Text="{Binding StillLearning}"
+                                              Text="{Binding IncorrectAnswers}"
                                               TextColor="#2C3E50">
                         </controls:ResultLabel>
 

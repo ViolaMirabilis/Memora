@@ -3,6 +3,7 @@ using Memora.Interfaces;
 using Memora.Model;
 using Memora.Model.StudyModes;
 using Memora.Services;
+using Memora.View;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -53,11 +54,19 @@ public class QuizModeViewModel : ViewModel
         // Reference: https://stackoverflow.com/questions/58214948/on-button-click-i-want-to-send-the-button-text-to-viewmodel-mvvm
         //SelectAnswerCommand = new RelayCommand(obj => SelectedAnswer = obj.ToString(), _ => true);
         SelectAnswerCommand = new RelayCommand(obj => AssignSelectedAnswer(obj), _ => true);
-        CheckAnswersCommand = new RelayCommand(_ => CheckResults(), _ => CanCheckResults());
+        CheckAnswersCommand = new RelayCommand(_ => GoToResultPage(), _ => CanCheckResults());
     }
     #endregion
 
     #region Command Logic
+
+    public void GoToResultPage()
+    {
+        CheckResults();
+        var result = new Result { TotalAnswers = TotalFlashcards, CorrectAnswers = CorrectAnswers, IncorrectAnswers = IncorrectAnswers };
+        _sessionService.NewResult(result);
+        _navigation.NavigateTo<QuizResultViewModel>();
+    }
     private void CheckResults()
     {
         int correctAnswersCount = 0;
@@ -70,7 +79,7 @@ public class QuizModeViewModel : ViewModel
         }
         _quizService.CalculateResults(QuizAnswers);
         //Placeholder
-        MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
+        //MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
     }
     private bool CanCheckResults()
     {
@@ -89,13 +98,6 @@ public class QuizModeViewModel : ViewModel
         }
         // Recheks the command condition
         CheckAnswersCommand.RaiseCanExecuteChanged();
-    }
-    // placeholder
-    public void GoToResultPage()
-    {
-        var result = new Result { TotalAnswers = TotalFlashcards, CorrectAnswers = CorrectAnswers, IncorrectAnswers = IncorrectAnswers };
-        _sessionService.NewResult(result);      // testing purposes
-        Navigation.NavigateTo<RevisionResultViewModel>();
     }
 
     #endregion
