@@ -93,7 +93,9 @@ public class QuizModeViewModel : ViewModel
     // placeholder
     public void GoToResultPage()
     {
-        // to do
+        var result = new Result { TotalAnswers = TotalFlashcards, CorrectAnswers = CorrectAnswers, IncorrectAnswers = IncorrectAnswers };
+        _sessionService.NewResult(result);      // testing purposes
+        Navigation.NavigateTo<RevisionResultViewModel>();
     }
 
     #endregion
@@ -115,5 +117,5 @@ public class QuizModeViewModel : ViewModel
         _quizService.InitialiseQuizData();
         InitialiseQuizAnswers();
     }
-    
+
 }

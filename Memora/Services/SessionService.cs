@@ -29,4 +29,7 @@ public class SessionService
     {
         CurrentSession.Result = result;
     }
+
+    // to do
+    // Clear current session
 }

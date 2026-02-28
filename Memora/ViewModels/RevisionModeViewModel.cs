@@ -128,7 +128,6 @@ public class RevisionModeViewModel : ViewModel
         var result = new Result { TotalAnswers = TotalFlashcards };
         _sessionService.NewResult(result);      // testing purposes
         Navigation.NavigateTo<RevisionResultViewModel>();
-
     }
 
 
