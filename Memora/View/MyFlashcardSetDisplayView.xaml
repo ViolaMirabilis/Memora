@@ -98,7 +98,8 @@
                 <!-- each list view item is one custom control-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <controls:FlashcardSet>
+                        <controls:FlashcardSet SetName="{Binding Name}"
+                                               RenameCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
                         </controls:FlashcardSet>
                     </DataTemplate>
                 </ListView.ItemTemplate>

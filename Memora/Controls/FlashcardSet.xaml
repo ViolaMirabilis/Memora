@@ -156,7 +156,7 @@
                             VerticalAlignment="Center">
 
                     <!-- make text focusable via code behind -->
-                    <TextBox Text="{Binding SetName}"
+                    <TextBox Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         BorderThickness="0"
                         Background="Transparent"
                         TextWrapping="Wrap"

@@ -24,14 +24,35 @@ namespace Memora.Controls
         }
 
 
-        public static readonly DependencyProperty SetName =
+        public static readonly DependencyProperty SetNameProperty =
             DependencyProperty.Register(
                 name: "SetName",
                 propertyType: typeof(string),
                 ownerType: typeof(FlashcardSet),
                 typeMetadata: new FrameworkPropertyMetadata(defaultValue: "12345"));
 
+        public string SetName
+        {
+            get => (string)GetValue(SetNameProperty);
+            set => SetValue(SetNameProperty, value);
+        }
 
+        /// <summary>
+        ///  This is just a copy of command parameter, but for my custom control.
+        ///  @See: https://stackoverflow.com/questions/12486660/wpf-command-and-commandparameter-for-usercontrol
+        /// </summary>
+        public static readonly DependencyProperty CommandParameterProperty = 
+            DependencyProperty.Register(
+                name: "CommandParameter",
+                propertyType: typeof(object),
+                ownerType: typeof(FlashcardSet),
+                typeMetadata: new PropertyMetadata(null));
+
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
         /// <summary>
         /// Bindable three dots menu command
         /// </summary>
