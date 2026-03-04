@@ -12,11 +12,12 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/QuizQuestionButton.xaml"/>
+                <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Background="Transparent">
+    <Grid Style="{StaticResource LoadPageAnimation}" Background="Transparent">
 
         <ScrollViewer Width="auto">
             <StackPanel Orientation="Vertical">

@@ -3,46 +3,94 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:Memora.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
+                <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+
+    <Grid Style="{StaticResource LoadPageAnimation}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.9*"></RowDefinition>
+            <RowDefinition Height="0.10*"></RowDefinition>
+            <RowDefinition Height="0.90*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0"
-               Content="Flashcard Sets"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="35"
-               FontFamily="Sans Serif Collection"
-               FontWeight="SemiBold"
-               Foreground="#6366F1"></Label>
 
-        <Border
-            Grid.Row="1"
-            BorderBrush="#DEE2E6"
-            BorderThickness="2"
-            CornerRadius="4"
-            Background="#FFFFFF">
+        <StackPanel Grid.Column="0" 
+                    Orientation="Horizontal"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="auto"
+                    Width="auto">
 
-            <ListView
-          x:Name="FlashcardSetList" 
-          ItemsSource="{Binding FlashcardSets}"
-          Background="Transparent"
-          BorderThickness="0"
-          Margin="15"
-          ItemContainerStyle="{StaticResource FlashcardSetDesign}">
+            <Label Grid.Row="0"
+                   Content="Total flashcard sets: 4"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   FontFamily="Sans Serif Collection"
+                   FontWeight="SemiBold"
+                   Foreground="#6366F1"
+                   Margin="2"></Label>
+            
+            <Label Grid.Row="0"
+                   Content="Create a new set"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   FontFamily="Sans Serif Collection"
+                   FontWeight="SemiBold"
+                   Foreground="#6366F1"
+                   Margin="2"></Label>
+
+            <Button Content="+"
+                    Style="{StaticResource SmallSquareButton}"
+                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
+                    Command="{Binding AddNewFlashcardSet}"
+                    Height="35"
+                    Width="35"
+                    FontSize="18"
+                    Margin="2"
+                    HorizontalAlignment="Right"/>
+        </StackPanel>
+
+
+
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                BorderBrush="#DEE2E6"
+                BorderThickness="2"
+                CornerRadius="4"
+                Background="#FFFFFF">
+
+            <ListView x:Name="FlashcardSetList" 
+                      ItemsSource="{Binding FlashcardSets}"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Margin="2"
+                      Width="1000"
+                      ItemContainerStyle="{StaticResource FlashcardSetDesign}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      >
 
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Width="1000"  Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
 
             </ListView>
         </Border>
-
+        
     </Grid>
 </UserControl>

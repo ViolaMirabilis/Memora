@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Grid" x:Key="LoadPageAnimation">
+        <Setter Property="Opacity" Value="0"/>
+
+
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                 From="0"
+                                 To="1"
+                                 Duration="0:0:0.4"></DoubleAnimation>
+
+                        <!-- targets the TranslateTransform.Y property of the Render Transform -->
+                        <!-- CHECK THIS PROPERLY-->
+                        <!-- See: https://stackoverflow.com/questions/51803869/wpf-animation-how-do-i-make-it-slide-in -->
+                        <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(TranslateTransform.Y)"
+                                 From="15"
+                                 To="0"
+                                 Duration="0:0:0.4"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

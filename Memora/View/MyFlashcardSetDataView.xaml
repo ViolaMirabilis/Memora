@@ -16,6 +16,8 @@
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+                <ResourceDictionary Source="/Themes/AnimatedGrid.xaml"/>
+                <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
@@ -23,20 +25,26 @@
 
 
 
-    <Grid>
-
+    <Grid Style="{StaticResource LoadPageAnimation}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Left column -->
         <Border
             BorderBrush="#DEE2E6"
             BorderThickness="2"
             CornerRadius="10"
-            Margin="10"
+            Margin="10,10,0,10"
             Background="#FFFFFF">
         </Border>
 
-        <StackPanel Orientation="Horizontal"
+        <StackPanel Grid.Column="0" 
+            Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Margin="10,10,300,10">
+                    Margin="10">
 
             <Label Content="{Binding FlashcardsCount}"
                     FontWeight="Bold"
@@ -53,8 +61,8 @@
         </StackPanel>
 
 
-<!-- Horizontal Stackpanel for individual flashcards and study modes-->
-        <StackPanel
+        <!-- Horizontal Stackpanel for individual flashcards and study modes-->
+        <StackPanel Grid.Column="0"
             Orientation="Horizontal"
             HorizontalAlignment="Center"
             Margin="20,40,20,20">
@@ -89,135 +97,140 @@
                 </ListView>
             </Border>
 
+        </StackPanel>
 
-            <!-- rightside panel -->
-            <StackPanel 
-                Orientation="Vertical"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="15,0,0,0"
-                Height="auto">
+        <!-- Right Column -->
+        <!-- Sharing panel -->
+        <StackPanel Grid.Column="1" VerticalAlignment="Top">
+            <Grid >
 
-                <Border 
-                        Background="#FAFBFC"
-                        CornerRadius="10"
-                        VerticalAlignment="Bottom"
-                        BorderThickness="2"
-                        BorderBrush="#DEE2E6"
-                        Margin="10,10,10,10"
-                        Padding="10">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,10,5,5">
 
-                    <StackPanel Orientation="Vertical">
+                    <Button Content="🔗 Share this set?"
+                          FontSize="20"
+                          FontWeight="Regular"
+                          Foreground="#2C3E50"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                        Focusable="False"
+                           Cursor="Hand"
+                           Command="{Binding ShareSetCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
-                        <StackPanel>
+                    <Grid Visibility="{Binding IsSharing, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Top" Margin="10">
+                        <Border BorderThickness="2" BorderBrush="#DEE2E6" CornerRadius="10">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
 
-
-
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                <TextBlock Text="Share this set"
-                                           FontSize="28"
-                                           FontWeight="Bold"
-                                           Foreground="#2C3E50"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                                <Button Content="+"
-                                        Style="{StaticResource SmallSquareButton}"
-                                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.GlobeAmericas}"
-                                        Command="{Binding ShareSetCommand}"
-                                        Height="40"
-                                        Width="40"
-                                        Margin="10"/>
+                                <TextBlock Text="#"
+                                      FontSize="28"
+                                      FontWeight="Bold"
+                                      Foreground="#2C3E50"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                                <TextBox Text="G8D1J4"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    Height="50"
+                                    Width="auto"
+                                    FontSize="28"
+                                    FontWeight="Bold"
+                                    Margin="2"
+                                    Foreground="#2C3E50"
+                                    BorderThickness="0">
+                                </TextBox>
                             </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
 
-                            <Grid Visibility="{Binding IsSharing, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Top">
-                                <Border BorderThickness="2" BorderBrush="Gray" CornerRadius="10">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Visible">
 
-                                        <TextBlock Text="#"
-                               FontSize="28"
-                               FontWeight="Bold"
-                               Foreground="#2C3E50"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
-                                        <TextBox Text="G8D1J4"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             HorizontalContentAlignment="Center"
-                             Height="50"
-                             Width="auto"
-                             FontSize="28"
-                             FontWeight="Bold"
-                             Margin="2"
-                             Foreground="#2C3E50"
-                             BorderThickness="0">
-                                        </TextBox>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                        </StackPanel>
 
-                        <Label Content="Studying modes"
-                               Foreground="#2C3E50"
-                               FontSize="28"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               FontWeight="Bold"
-                               Margin="10"></Label>
+    <StackPanel Grid.Column="1"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="auto">
 
-                        <Button Content="Revision"
-                                Style="{StaticResource StudyModeButton}"
-                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Book}"
-                                Command="{Binding NavigateRevisionModeCommand}"
-                                Width="125"
-                                Height="55"
-                                Margin="5"/>
+            <Border 
+            Background="#FAFBFC"
+            CornerRadius="10"
+            VerticalAlignment="Bottom"
+            BorderThickness="2"
+            BorderBrush="#DEE2E6"
+            Margin="10,10,10,10"
+            Padding="10">
 
-                        <Button Content="Quiz"
-                                Style="{StaticResource StudyModeButton}"
-                                Tag="{x:Static
-                            iconPacks:PackIconBootstrapIconsKind.PatchQuestion}"
-                                Width="125"
-                                Height="55"
-                                Command="{Binding NavigateQuizModeCommand}"
-                                Margin="5"/>
+                <StackPanel Orientation="Vertical">
 
-                        <Button Content="Typing quiz"
-                                Style="{StaticResource StudyModeButton}"
-                                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Keyboard}"
-                                Command="{Binding}"
-                                Width="125"
-                                Height="55"
-                                Margin="5"/>
 
-                        <Label Content="Add a new flashcard"
-                               Foreground="#2C3E50"
-                               FontSize="22"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               FontWeight="Bold"
-                               Margin="10"></Label>
-                        <!-- add flashcard button-->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="+"
-                            Style="{StaticResource SmallSquareButton}"
-                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
-                            Command="{Binding AddFlashcardCommand}"
-                            Height="55"
-                            Width="55"
-                            Margin="10"/>
+                    <Label Content="Studying modes"
+                   Foreground="#2C3E50"
+                   FontSize="28"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold"
+                   Margin="10"></Label>
 
-                            <Button Content="Save changes"
-                            Style="{StaticResource GeneralConfirmButton}"
-                            Command="{Binding SaveChanges}"
-                            FontSize="14"
-                            FontWeight="Regular"/>
+                    <Button Content="Revision"
+                    Style="{StaticResource StudyModeButton}"
+                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Book}"
+                    Command="{Binding NavigateRevisionModeCommand}"
+                    Width="125"
+                    Height="55"
+                    Margin="5"/>
 
-                        </StackPanel>
+                    <Button Content="Quiz"
+                    Style="{StaticResource StudyModeButton}"
+                    Tag="{x:Static
+                iconPacks:PackIconBootstrapIconsKind.PatchQuestion}"
+                    Width="125"
+                    Height="55"
+                    Command="{Binding NavigateQuizModeCommand}"
+                    Margin="5"/>
+
+                    <Button Content="Typing quiz"
+                    Style="{StaticResource StudyModeButton}"
+                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Keyboard}"
+                    Command="{Binding}"
+                    Width="125"
+                    Height="55"
+                    Margin="5"/>
+
+                    <Label Content="Add a new flashcard"
+                   Foreground="#2C3E50"
+                   FontSize="22"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold"
+                   Margin="10"></Label>
+                    <!-- add flashcard button-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="+"
+                Style="{StaticResource SmallSquareButton}"
+                Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
+                Command="{Binding AddFlashcardCommand}"
+                Height="55"
+                Width="55"
+                Margin="10"/>
+
+                        <Button Content="Save changes"
+                Style="{StaticResource GeneralConfirmButton}"
+                Command="{Binding SaveChanges}"
+                FontSize="14"
+                FontWeight="Regular"/>
+
                     </StackPanel>
-                </Border>
-            </StackPanel>
-   
+                </StackPanel>
+            </Border>
         </StackPanel>
 
     </Grid>

@@ -26,6 +26,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     }
 
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
+    public RelayCommand AddNewFlashcardSet { get; set; }
 
     public MyFlashcardSetDisplayViewModel(INavigationService navService, FlashcardSetApiService flashcardSetService)
     {
@@ -43,6 +44,12 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         );
          
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
+        AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
+    }
+
+    private void AddSet()
+    {
+        FlashcardSets.Add(new FlashcardSet { FolderName = "New set" });
     }
 
     private async Task<List<FlashcardSet>> GetAllFlashcardSets()

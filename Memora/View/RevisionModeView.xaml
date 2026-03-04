@@ -13,11 +13,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+                <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid x:Name="FlashcardGrid">
+
+    <Grid Style="{StaticResource LoadPageAnimation}" x:Name="FlashcardGrid">
 
         <Border BorderBrush="#DEE2E6"
                 BorderThickness="1"
@@ -35,19 +37,19 @@
                                FlipDuration="0.5">
         </controls:_3DFlashcard>
 
-<!-- testing purposes placeholder-->
+        <!-- testing purposes placeholder-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top">
             <TextBlock Text="Revision finished: " Height="20" VerticalAlignment="Top"></TextBlock>
             <TextBlock Text="{Binding IsRevisionFinished}" Height="20" VerticalAlignment="Top"></TextBlock>
         </StackPanel>
         <!-- ends here-->
-                
-            <StackPanel Orientation="Horizontal"
+
+        <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Focusable="False"
                         Margin="0,0,0,30">
-                <Button Content="+"
+            <Button Content="+"
                         Style="{StaticResource SmallSquareButton}"
                         Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowLeft}"
                         Command="{Binding GoPreviousCommand}"
@@ -60,8 +62,8 @@
             <TextBlock Text="/" Margin="5,0,5,0" VerticalAlignment="Center" FontSize="18" Foreground="#2C3E50" FontWeight="Bold"></TextBlock>
             <TextBlock Text="{Binding TotalFlashcards}" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="18" Foreground="#2C3E50" FontWeight="Bold"></TextBlock>
 
-                
-                <Button Content="+"
+
+            <Button Content="+"
                         Style="{StaticResource SmallSquareButton}"
                         Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowRight}"
                         Command="{Binding GoNextCommand}"
@@ -69,7 +71,7 @@
                         Height="55"
                         Width="55"
                         Margin="10"/>
-            </StackPanel>
+        </StackPanel>
 
 
 

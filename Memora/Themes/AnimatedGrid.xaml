@@ -19,6 +19,7 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <!-- slide animation -->
+                        <!-- See: https://stackoverflow.com/questions/22630569/how-to-apply-a-rendertransform-translatetransform-on-a-grid-using-a-storyboard -->
                         <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                          From="-200" To="0"
                                          Duration="0:0:0.35"
