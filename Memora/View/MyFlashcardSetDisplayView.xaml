@@ -22,32 +22,21 @@
     <Grid Style="{StaticResource LoadPageAnimation}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.10*"></RowDefinition>
-            <RowDefinition Height="0.90*"></RowDefinition>
+            <RowDefinition Height="0.80*"></RowDefinition>
+            <RowDefinition Height="0.10*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" 
-                    Orientation="Horizontal"
-                    Margin="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Height="auto"
-                    Width="auto">
 
-            <Label Grid.Row="0"
-                   Content="Total flashcard sets: 4"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="18"
-                   FontFamily="Sans Serif Collection"
-                   FontWeight="SemiBold"
-                   Foreground="#6366F1"
-                   Margin="2"></Label>
+        <!-- Row 1 -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="20,0,20,0">
             
             <Label Grid.Row="0"
                    Content="Create a new set"
-                   HorizontalAlignment="Right"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="18"
+                   FontSize="16"
                    FontFamily="Sans Serif Collection"
                    FontWeight="SemiBold"
                    Foreground="#6366F1"
@@ -60,18 +49,19 @@
                     Height="35"
                     Width="35"
                     FontSize="18"
-                    Margin="2"
+                    Margin="4"
                     HorizontalAlignment="Right"/>
         </StackPanel>
 
 
-
+<!-- Row 2-->
         <Border Grid.Column="1"
                 Grid.Row="1"
                 BorderBrush="#DEE2E6"
                 BorderThickness="2"
                 CornerRadius="4"
-                Background="#FFFFFF">
+                Background="#FFFFFF"
+                Margin="10">
 
             <ListView x:Name="FlashcardSetList" 
                       ItemsSource="{Binding FlashcardSets}"
@@ -92,5 +82,16 @@
             </ListView>
         </Border>
         
+        <!-- Row 3-->
+
+        <Label Grid.Row="2"
+               Content="Page 1/7"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="16"
+               FontFamily="Sans Serif Collection"
+               FontWeight="SemiBold"
+               Foreground="#6366F1"
+               Margin="2"></Label>
     </Grid>
 </UserControl>

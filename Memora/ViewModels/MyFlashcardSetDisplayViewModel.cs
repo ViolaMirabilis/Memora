@@ -11,6 +11,9 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDisplayViewModel : ViewModel
 {
+    // placeholder
+    private int index = 1;
+
     private readonly FlashcardSetApiService _flashcardSetService;
     public ObservableCollection<FlashcardSet> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSet>();
 
@@ -47,9 +50,11 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
     }
 
+    // placeholder
     private void AddSet()
     {
-        FlashcardSets.Add(new FlashcardSet { FolderName = "New set" });
+        FlashcardSets.Add(new FlashcardSet { Name = $"New set {index}" });
+        index++;
     }
 
     private async Task<List<FlashcardSet>> GetAllFlashcardSets()
