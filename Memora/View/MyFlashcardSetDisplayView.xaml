@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:controls="clr-namespace:Memora.Controls"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -69,15 +70,41 @@
                       BorderThickness="0"
                       Margin="2"
                       Width="1000"
-                      ItemContainerStyle="{StaticResource FlashcardSetDesign}"
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       >
+                
+                <!-- disables selection of the item -->
 
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                </ListView.ItemContainerStyle>
+
+
+                <!-- content of the list view is in the wrap panel -->
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="1000"  Orientation="Horizontal"/>
+                        <WrapPanel Width="1000" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+
+                <!-- each list view item is one custom control-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:FlashcardSet>
+                        </controls:FlashcardSet>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                
+                
 
             </ListView>
         </Border>
