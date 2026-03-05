@@ -100,8 +100,7 @@
                     <DataTemplate>
                         <!-- bind this to "DisplayNewName" -->
                         <controls:FlashcardSet SetName="{Binding Name}"
-                                               RenameCommand="{Binding DataContext.DisplayNewName, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                               CommandParameter="{Binding}">
+                                               RenameCommand="{Binding DataContext.DisplayNewName, RelativeSource={RelativeSource AncestorType=ListView}}">
                         </controls:FlashcardSet>
                     </DataTemplate>
                 </ListView.ItemTemplate>
