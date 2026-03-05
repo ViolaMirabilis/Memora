@@ -23,7 +23,9 @@ namespace Memora.Controls
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Holds flashcard's set (folder) name
+        /// </summary>
         public static readonly DependencyProperty SetNameProperty =
             DependencyProperty.Register(
                 name: "SetName",
@@ -53,6 +55,23 @@ namespace Memora.Controls
             get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);
         }
+
+        /// <summary>
+        /// Command that executes when the user presses on the litsview item (the entire control)
+        /// </summary>
+        public static readonly DependencyProperty FlashcardSetClickCommandProperty =
+            DependencyProperty.Register(
+                name: "FlashcardSetClickCommand",
+                propertyType: typeof(ICommand),
+                ownerType: typeof(FlashcardSet),
+                typeMetadata: new PropertyMetadata(null));
+
+        public object FlashcardSetClickCommand
+        {
+            get => GetValue(FlashcardSetClickCommandProperty);
+            set => SetValue(FlashcardSetClickCommandProperty, value);
+        }
+
         /// <summary>
         /// Bindable three dots menu command
         /// </summary>

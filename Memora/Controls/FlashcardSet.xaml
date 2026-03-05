@@ -81,6 +81,13 @@
                 BorderThickness="1"
                 BorderBrush="#DEE2E6"
                 Background="Transparent">
+            <!-- Handling pressing on the entire control -->
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftClick"
+                              Command="{Binding FlashcardSetClickCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                </MouseBinding>
+            </Border.InputBindings>
 
             <StackPanel Orientation="Vertical"
                 Margin="5"
