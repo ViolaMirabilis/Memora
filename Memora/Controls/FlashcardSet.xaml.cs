@@ -71,7 +71,8 @@ namespace Memora.Controls
 
 
         /// <summary>
-        /// Bindable rename command property
+        /// Bindable rename command property.
+        /// This command is ran after pressing "ENTER" on the flashcard's set name textbox.
         /// </summary>
         public static readonly DependencyProperty RenameCommandProperty =
             DependencyProperty.Register(
@@ -102,5 +103,34 @@ namespace Memora.Controls
             set => SetValue(DeleteCommandProperty, value);
         }
 
+        // focuses the flashcard set's name
+        // selects the entire name
+        private void Rename_Click(object sender, RoutedEventArgs e)
+        {
+            // Focuses the text and selects it
+            FlashcardSetName.IsReadOnly = false;
+            FlashcardSetName.Focusable = true;
+            FlashcardSetName.Focus();
+            FlashcardSetName.SelectAll();
+        }
+
+        // on ENTER key press, the control's focus is disabled
+        // RenameCommand is ran (it has to be bound by the user via XAML)
+        private void FlashcardSetName_KeyDown(object sender, KeyEventArgs e)
+        {
+            // If user pressed enter and the flashcard set name is not empty
+            if (e.Key == Key.Enter && !string.IsNullOrEmpty(FlashcardSetName.Text))
+            {
+                // disable the focus on the textbox
+                FlashcardSetName.IsReadOnly = true;
+                FlashcardSetName.Focusable = false;
+                e.Handled = true;
+
+
+                // fire the "RenameCommand"
+                // it returns the FlashcardSetName.Text
+                RenameCommand.Execute(FlashcardSetName.Text);
+            }
+        }
     }
 }

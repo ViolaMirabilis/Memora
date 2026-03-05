@@ -136,8 +136,7 @@
                                     <Button Style="{StaticResource ButtonInsidePopUp}" 
                                             x:Name="Rename"
                                             Content="Rename"
-                                            Command="{Binding RenameCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                            Click="Rename_Click"/>
 
                                     <Button Style="{StaticResource ButtonInsidePopUp}" 
                                             x:Name="Delete"
@@ -158,7 +157,8 @@
                             VerticalAlignment="Center">
 
                     <!-- make text focusable via code behind -->
-                    <TextBox Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    <!-- Key down here is pressing the "enter" button to accept a new flashcard set name -->
+                    <TextBox x:Name="FlashcardSetName" Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         BorderThickness="0"
                         Background="Transparent"
                         TextWrapping="Wrap"
@@ -172,7 +172,9 @@
                         IsReadOnly="True"
                         Focusable="False"
                         Height="35"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        KeyDown="FlashcardSetName_KeyDown">
+                    </TextBox>
                     <iconPacks:PackIconBootstrapIcons Kind="CardText"
                         Height="74"
                         Width="74"

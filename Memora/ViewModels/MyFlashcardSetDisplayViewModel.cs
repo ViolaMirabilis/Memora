@@ -31,6 +31,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
 
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
     public RelayCommand AddNewFlashcardSet { get; set; }
+    public RelayCommand DisplayNewName { get; set; }
 
     public MyFlashcardSetDisplayViewModel(INavigationService navService, FlashcardSetApiService flashcardSetService)
     {
@@ -48,8 +49,13 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         );
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
         AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
+        DisplayNewName = new RelayCommand(obj => DisplayNewSetName(obj), _ => true);
     }
     // placeholder
+    private void DisplayNewSetName(object obj)
+    {
+        MessageBox.Show(obj.ToString());
+    }
     private void AddSet()
     {
         FlashcardSets.Add(new FlashcardSet { Name = $"New set {index}" });
