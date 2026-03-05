@@ -6,6 +6,7 @@ using System.Windows;
 using Memora.Model;
 
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Memora.ViewModels;
 
@@ -45,11 +46,9 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
             Navigation.NavigateTo<MyFlashcardSetDataViewModel>(
                 vm => _ = vm.LoadFlaschardsByIdAsync(set.Id)); }, _ => true
         );
-         
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
         AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
     }
-
     // placeholder
     private void AddSet()
     {

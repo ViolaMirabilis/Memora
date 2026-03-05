@@ -99,7 +99,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <controls:FlashcardSet SetName="{Binding Name}"
-                                               RenameCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
+                                               RenameCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                               CommandParameter="{Binding}">
                         </controls:FlashcardSet>
                     </DataTemplate>
                 </ListView.ItemTemplate>
