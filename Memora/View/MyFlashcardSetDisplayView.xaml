@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
+                <ResourceDictionary Source="/Themes/RoundedTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
@@ -37,14 +38,16 @@
             
             
             <!-- Search bar-->
-            <TextBox Grid.Column="0"
+            <TextBox Style="{StaticResource RoundedTextBox}"
+                    Grid.Column="0"
                      Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Tag="Search for a flashcard..."
                      HorizontalAlignment="Center"
                      HorizontalContentAlignment="Left"
                      VerticalAlignment="Center"
                      VerticalContentAlignment="Center"
                      Width="400"
-                     Height="35"
+                     Height="50"
                      Margin="2">
             </TextBox>
             
