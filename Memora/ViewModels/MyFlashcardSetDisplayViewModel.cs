@@ -32,7 +32,13 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
             if (!string.IsNullOrEmpty(_textSearch))
             {
                 // casting hte object to FlashcardSet to access its "name" property
-                FlashcardSetsView.Filter = new Predicate<object>(o => ((FlashcardSet)o).Name.Contains(TextSearch));
+                // both name and the input are checked as lowercase.
+                FlashcardSetsView.Filter = new Predicate<object>(o => ((FlashcardSet)o).Name.Contains(TextSearch, StringComparison.OrdinalIgnoreCase));
+            }
+            else
+            {
+                // removes the filter if empty
+                FlashcardSetsView?.Filter = null;
             }
 
             
