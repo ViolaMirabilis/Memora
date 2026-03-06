@@ -128,28 +128,37 @@ namespace Memora.Controls
         {
             // Focuses the text and selects it
             FlashcardSetName.IsReadOnly = false;
-            FlashcardSetName.Focusable = true;
             FlashcardSetName.Focus();
             FlashcardSetName.SelectAll();
         }
+
+        private void FlashcardSetName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            FocusManager.SetFocusedElement(this, null);
+            Keyboard.ClearFocus();
+            FlashcardSetName.IsReadOnly = true;  
+        }
+
 
         // on ENTER key press, the control's focus is disabled
         // RenameCommand is ran (it has to be bound by the user via XAML)
         private void FlashcardSetName_KeyDown(object sender, KeyEventArgs e)
         {
-            // If user pressed enter and the flashcard set name is not empty
-            if (e.Key == Key.Enter && !string.IsNullOrEmpty(FlashcardSetName.Text))
+
+            if (e.Key == Key.Enter)
             {
-                // disable the focus on the textbox
                 FlashcardSetName.IsReadOnly = true;
-                FlashcardSetName.Focusable = false;
-                e.Handled = true;
-
-
-                // fire the "RenameCommand"
-                // it returns the FlashcardSetName.Text
-                RenameCommand.Execute(FlashcardSetName.Text);
+                Keyboard.ClearFocus();
+                // Command parameter returns the entire object
+                RenameCommand.Execute(CommandParameter);
+            }
+            else if (e.Key == Key.Escape)
+            {
+                FlashcardSetName.IsReadOnly = true;
+                Keyboard.ClearFocus();
             }
         }
+
+        
     }
 }

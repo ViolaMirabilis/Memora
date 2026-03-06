@@ -176,16 +176,11 @@
                         FontWeight="Bold"
                         Margin="0"
                         Cursor="Hand"
-                        IsReadOnly="True"
-                        Focusable="False"
                         Height="35"
-                        TextAlignment="Center">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Enter"
-                                        Command="{Binding RenameCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        CommandParameter="{Binding}">
-                            </KeyBinding>
-                        </TextBox.InputBindings>
+                        TextAlignment="Center"
+                        IsReadOnly="True"
+                        KeyDown="FlashcardSetName_KeyDown">
+                        
                     </TextBox>
                     <iconPacks:PackIconBootstrapIcons Kind="CardText"
                         Height="74"

@@ -54,6 +54,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     // placeholder
     private void DisplayNewSetName(object obj)
     {
+        MessageBox.Show("asdasd");
         var f = obj as FlashcardSet;
         MessageBox.Show($"New name: {f.Name}\nId: {f.Id}");
     }
