@@ -7,16 +7,43 @@ using Memora.Model;
 
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace Memora.ViewModels;
 
 public class MyFlashcardSetDisplayViewModel : ViewModel
 {
+    #region placeholders
     // placeholder
     private int index = 1;
+    // temporary variable to store user's text from the searchbox
+    private string _textSearch;
+    public string TextSearch
+    {
+        get { return _textSearch; }
+        set {
+            _textSearch = value;
+            OnPropertyChanged(TextSearch);
+
+            // messagebox WORKS
+            //MessageBox.Show($"{_textSearch}");
+            // using a predicate to filter the collection
+            if (!string.IsNullOrEmpty(_textSearch))
+            {
+                // casting hte object to FlashcardSet to access its "name" property
+                FlashcardSetsView.Filter = new Predicate<object>(o => ((FlashcardSet)o).Name.Contains(TextSearch));
+            }
+
+            
+        }
+    }
+    #endregion
 
     private readonly FlashcardSetApiService _flashcardSetService;
     public ObservableCollection<FlashcardSet> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSet>();
+    // @see: https://stackoverflow.com/questions/37385532/implenting-listcollectionview-from-observablecollection
+    public ICollectionView FlashcardSetsView { get; set; }
 
     private INavigationService _navigation;
     public INavigationService Navigation
@@ -48,10 +75,13 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
                 vm => _ = vm.LoadFlaschardsByIdAsync(set.Id)); }, _ => true
         );
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
+        FlashcardSetsView = CollectionViewSource.GetDefaultView(FlashcardSets);
         AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
         DisplayNewName = new RelayCommand(obj => DisplayNewSetName(obj), _ => true);
+
     }
     // placeholder
+
     private void DisplayNewSetName(object obj)
     {
         MessageBox.Show("asdasd");

@@ -29,40 +29,55 @@
                    FontWeight="Medium"
                    Foreground="#6366F1"
                    HorizontalAlignment="Left"
-                   Margin="25,1,25,1">
+                   Margin="60,1,25,1">
                 </Label>
-                <TextBox Height="50"
-                         HorizontalContentAlignment="Left"
-                         VerticalContentAlignment="Center"
-                         FontSize="28"
-                         FontWeight="Medium"
-                         Foreground="#2C3E50"
-                         Background="#FAFBFC"
-                         BorderThickness="2"
-                         BorderBrush="#818CF8"
-                         Margin="25,1,25,10"
-                         Text="{Binding Username}">
-                </TextBox>
+                <!-- TO DO: a custom textbox -->
+                <Border BorderThickness="2"
+                        BorderBrush="#6366F1"
+                        Height="52"
+                        Width="277"
+                        Margin="25,1,25,10"
+                        CornerRadius="4">
+                    <TextBox Height="45"
+                             Width="270"
+                             HorizontalContentAlignment="Left"
+                             VerticalContentAlignment="Center"
+                             FontSize="28"
+                             FontWeight="Medium"
+                             Foreground="#2C3E50"
+                             Background="#FAFBFC"
+                             BorderThickness="0"
+                             Text="{Binding Username}">
+                    </TextBox>
+                </Border>
 
                 <Label Content="Password"
                        FontSize="20"
                        FontWeight="Medium"
                        Foreground="#6366F1"
                        HorizontalAlignment="Left"
-                       Margin="25,10,25,1">
+                       Margin="65,10,25,1">
                 </Label>
-                <TextBox Height="50"
-                         HorizontalContentAlignment="Left"
-                         VerticalContentAlignment="Center"
-                         FontSize="28"
-                         FontWeight="Medium"
-                         Foreground="#2C3E50"
-                         Background="#FAFBFC"
-                         BorderThickness="2"
-                         BorderBrush="#818CF8"
-                         Margin="25,1,25,1"
+
+                <Border BorderThickness="2"
+                        BorderBrush="#6366F1"
+                        Height="52"
+                        Width="277"
+                        Margin="25,1,25,10"
+                        CornerRadius="4">
+
+                    <TextBox Height="50"
+                             Width="270"
+                             HorizontalContentAlignment="Left"
+                             VerticalContentAlignment="Center"
+                             FontSize="28"
+                             FontWeight="Medium"
+                             Foreground="#2C3E50"
+                             Background="#FAFBFC"
+                             BorderThickness="0"
                          Text="{Binding Password}">
-                </TextBox>
+                    </TextBox>
+                </Border>
 
                 <Button Content="Login"
                         Foreground="#FAFBFC"

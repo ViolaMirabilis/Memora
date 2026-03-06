@@ -29,33 +29,57 @@
 
 
         <!-- Row 1 -->
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="20,0,20,0">
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
             
-            <Label Grid.Row="0"
-                   Content="Create a new set"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="16"
-                   FontFamily="Sans Serif Collection"
-                   FontWeight="SemiBold"
-                   Foreground="#6366F1"
-                   Margin="2"></Label>
+            
+            <!-- Search bar-->
+            <TextBox Grid.Column="0"
+                     Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     Width="400"
+                     Height="35"
+                     Margin="2">
+            </TextBox>
+            
+            <!-- new set label and button -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Label Grid.Row="0"
+                       Content="Create a new set"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       FontFamily="Sans Serif Collection"
+                       FontWeight="SemiBold"
+                       Foreground="#6366F1"
+                       Margin="2"></Label>
 
-            <Button Content="+"
-                    Style="{StaticResource SmallSquareButton}"
-                    Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
-                    Command="{Binding AddNewFlashcardSet}"
-                    Height="35"
-                    Width="35"
-                    FontSize="18"
-                    Margin="4"
-                    HorizontalAlignment="Right"/>
-        </StackPanel>
+                <Button Content="+"
+                        Style="{StaticResource SmallSquareButton}"
+                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
+                        Command="{Binding AddNewFlashcardSet}"
+                        Height="35"
+                        Width="35"
+                        FontSize="18"
+                        Margin="10,2,2,2"
+                        HorizontalAlignment="Right">
+                </Button>
+                
+            </StackPanel>
+        </Grid>
 
 
-<!-- Row 2-->
+
+
+        <!-- Row 2-->
         <Border Grid.Column="1"
                 Grid.Row="1"
                 BorderBrush="#DEE2E6"
@@ -65,7 +89,7 @@
                 Margin="10">
 
             <ListView x:Name="FlashcardSetList" 
-                      ItemsSource="{Binding FlashcardSets}"
+                      ItemsSource="{Binding FlashcardSetsView}"
                       Background="Transparent"
                       BorderThickness="0"
                       Margin="2"
