@@ -165,7 +165,7 @@
 
                     <!-- make text focusable via code behind -->
                     <!-- Key down here is pressing the "enter" button to accept a new flashcard set name -->
-                    <TextBox x:Name="FlashcardSetName" Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    <TextBox x:Name="FlashcardSetName" Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                         BorderThickness="0"
                         Background="Transparent"
                         TextWrapping="Wrap"
@@ -179,8 +179,13 @@
                         IsReadOnly="True"
                         Focusable="False"
                         Height="35"
-                        TextAlignment="Center"
-                        KeyDown="FlashcardSetName_KeyDown">
+                        TextAlignment="Center">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter"
+                                        Command="{Binding RenameCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}">
+                            </KeyBinding>
+                        </TextBox.InputBindings>
                     </TextBox>
                     <iconPacks:PackIconBootstrapIcons Kind="CardText"
                         Height="74"

@@ -99,7 +99,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <!-- CommandParameter returns THIS object from the item source-->
-                        <controls:FlashcardSet SetName="{Binding Name}"
+                        <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
                                                FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                                CommandParameter="{Binding}"
                                                RenameCommand="{Binding DataContext.DisplayNewName, RelativeSource={RelativeSource AncestorType=ListView}}">

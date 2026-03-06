@@ -65,7 +65,7 @@ public class LoginViewModel : ViewModel
         }
         catch (HttpRequestException ex)
         {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show($"An error ocurred during logging in.\nCode message: {ex.Message}");
         }
         catch (Exception ex)
         {

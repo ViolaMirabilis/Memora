@@ -27,7 +27,7 @@ public class AuthApiService
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new HttpRequestException($"Error ocurred:: {(int)response.StatusCode}");
+            throw new HttpRequestException($"Error ocurred: {(int)response.StatusCode}");
         }
 
         var result = await response.Content.ReadFromJsonAsync<LoginResponse>()
