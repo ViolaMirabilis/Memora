@@ -87,6 +87,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
     private void SwapFrontWithBack()
     {
         // creating a new "swapped flashcard" and assigning it to the old collection.
+        // the previous approach used a reference and operated on the same objects (flashcards)
+        // but now with new Flashcard(...) we're creating a completely new object
         ObservableCollection<Flashcard> swappedCollection = new ObservableCollection<Flashcard>(
             ModifiedFlashcards.Select(f => new Flashcard
             {
