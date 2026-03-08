@@ -210,7 +210,7 @@
                     <Button Content="Swap"
                             Style="{StaticResource StudyModeButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.ArrowLeftRight}"
-                            Command="{Binding NavigateRevisionModeCommand}"
+                            Command="{Binding SwapFrontWithBackCommand}"
                             Width="125"
                             Height="45"
                             Margin="5">

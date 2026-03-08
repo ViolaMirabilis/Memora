@@ -86,7 +86,6 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         DisplayNewName = new RelayCommand(obj => DisplayNewSetName(obj), _ => true);
 
     }
-    // placeholder
 
     private void DisplayNewSetName(object obj)
     {

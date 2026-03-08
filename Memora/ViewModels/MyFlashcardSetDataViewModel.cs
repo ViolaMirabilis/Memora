@@ -12,6 +12,8 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
+    // TO DO:
+    // MOVE SET'S LOGIC TO A SERVICE TO SEPARATE CONCERNS
     private INavigationService _navigation;
     public INavigationService Navigation
     {
@@ -53,6 +55,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand NavigateRevisionModeCommand { get; set; }
     public RelayCommand NavigateQuizModeCommand { get; set; }
     public RelayCommand ShareSetCommand { get; set; }
+    public RelayCommand SwapFrontWithBackCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -76,8 +79,25 @@ public class MyFlashcardSetDataViewModel : ViewModel
         NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
         // toggles the sharing mode ON and OFF
         ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
+        SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
     }
 
+    #region Placeholders
+    // temporary solution
+    private void SwapFrontWithBack()
+    {
+        // creating a new "swapped flashcard" and assigning it to the old collection.
+        ObservableCollection<Flashcard> swappedCollection = new ObservableCollection<Flashcard>(
+            ModifiedFlashcards.Select(f => new Flashcard
+            {
+                Front = f.Back,
+                Back = f.Front
+            }));
+
+        ModifiedFlashcards = swappedCollection;
+        OnPropertyChanged(nameof(ModifiedFlashcards));
+    }
+    #endregion
     #region Event Logic
     public void IncreaseCount()
     {
