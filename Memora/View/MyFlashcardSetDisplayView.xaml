@@ -28,58 +28,51 @@
             <RowDefinition Height="0.10*"></RowDefinition>
         </Grid.RowDefinitions>
 
-
-        <!-- Row 1 -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-            
-            
-            <!-- Search bar-->
-            <TextBox Style="{StaticResource RoundedTextBox}"
-                    Grid.Column="0"
-                     Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Tag="Search for a flashcard..."
-                     HorizontalAlignment="Center"
-                     HorizontalContentAlignment="Left"
-                     VerticalAlignment="Center"
-                     VerticalContentAlignment="Center"
-                     Width="400"
-                     Height="50"
-                     Margin="2">
-            </TextBox>
-            
-            <!-- new set label and button -->
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Label Grid.Row="0"
-                       Content="Create a new set"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       FontSize="16"
-                       FontFamily="Sans Serif Collection"
-                       FontWeight="SemiBold"
-                       Foreground="#6366F1"
-                       Margin="2"></Label>
+                <TextBox Style="{StaticResource RoundedTextBox}"
+                        Grid.Column="0"
+                        Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Tag="Search for a flashcard..."
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Width="400"
+                        Height="50"
+                        Margin="10,2,10,2">
+                </TextBox>
 
-                <Button Content="+"
-                        Style="{StaticResource SmallSquareButton}"
-                        Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
-                        Command="{Binding AddNewFlashcardSet}"
-                        Height="35"
-                        Width="35"
-                        FontSize="18"
-                        Margin="10,2,2,2"
-                        HorizontalAlignment="Right">
-                </Button>
-                
-            </StackPanel>
+                <!-- new set label and button -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10,2,10,2">
+
+                <!-- New set and Import buttons -->
+                    <Button Content="New set"
+                            Style="{StaticResource StudyModeButton}"
+                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
+                            Width="110"
+                            Height="45"
+                            Command="{Binding AddNewFlashcardSet}"
+                            Margin="5"/>
+
+                    <Button Content="Import"
+                            Style="{StaticResource StudyModeButton}"
+                            Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
+                            Width="110"
+                            Height="45"
+                            Command="{Binding AddNewFlashcardSet}"
+                            Margin="5"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+
+                </StackPanel>
         </Grid>
-
-
 
 
         <!-- Row 2-->
@@ -96,7 +89,7 @@
                       Background="Transparent"
                       BorderThickness="0"
                       Margin="2"
-                      Width="1000"
+                      Width="auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       >
                 
@@ -118,7 +111,7 @@
                 <!-- content of the list view is in the wrap panel -->
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="1000" Orientation="Horizontal"/>
+                        <WrapPanel Width="1100" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
 

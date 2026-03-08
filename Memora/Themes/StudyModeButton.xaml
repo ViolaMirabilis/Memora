@@ -21,16 +21,18 @@
                         CornerRadius="10"
                         Background="{TemplateBinding Background}">
                         <!-- displays an icon and text. The icon is bound to the "Tag" that exists on a button. -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{TemplateBinding Width}">
                             <iconPacks:PackIconBootstrapIcons Kind="{TemplateBinding Tag}"
                                                               Height="25"
                                                               Width="25"
                                                               VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center"
+                                                              HorizontalAlignment="Left"
                                                               Margin="10,5,10,5">
                             </iconPacks:PackIconBootstrapIcons>
-                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                            <!-- displays text-->
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center">
                             </ContentPresenter>
                         </StackPanel>
                         

@@ -77,7 +77,7 @@
         <Border Height="150"
                 Width="150"
                 CornerRadius="4"
-                Margin="5"
+                Margin="2,5,5,2"
                 BorderThickness="1"
                 BorderBrush="#DEE2E6"
                 Background="Transparent">
