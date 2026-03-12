@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:controls="clr-namespace:Memora.Controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
@@ -18,6 +19,7 @@
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
                 <ResourceDictionary Source="/Themes/AnimatedGrid.xaml"/>
                 <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
+                <ResourceDictionary Source="/Themes/RoundedTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
@@ -173,7 +175,7 @@
 
 
 
-    <StackPanel Grid.Column="1"
+        <StackPanel Grid.Column="1"
                     Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -201,7 +203,7 @@
                     <Button Content="Import"
                             Style="{StaticResource StudyModeButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
-                            Command="{Binding NavigateRevisionModeCommand}"
+                            Command="{Binding ImportFromCodeCommand}"
                             Width="125"
                             Height="45"
                             Margin="5">
@@ -255,5 +257,13 @@
             </Border>
         </StackPanel>
 
+        <!-- Dimmed screen with an import pop up on top -->
+        <Grid Grid.ColumnSpan="2"
+              Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}">
+            <Rectangle Width="auto" Height="auto" Fill="Black" Opacity="0.3"></Rectangle>
+            <!-- a pop up-->
+            <controls:ImportFromCodePopUp
+                Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"/>
+        </Grid>
     </Grid>
 </UserControl>

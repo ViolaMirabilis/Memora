@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Memora.View.ImportFromTextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Memora.View"
+             mc:Ignorable="d">
+    <Grid>
+        <Border Width="400" Height="400" BorderThickness="1" BorderBrush="Yellow">
+            <StackPanel Orientation="Vertical">
+                <Label Content="IMPORT FROM TEXT" FontSize="18" Foreground="Purple" HorizontalAlignment="Center"></Label>
+            <ScrollViewer Width="auto">
+                <TextBox Background="LightGray" TextWrapping="Wrap" Text="LOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUM" FontSize="18" Foreground="Black">
+                    
+                </TextBox>
+            </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

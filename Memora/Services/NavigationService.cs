@@ -1,5 +1,6 @@
 ﻿using Memora.Core;
 using Memora.Interfaces;
+using System.Windows;
 namespace Memora.Services;
 
 public class NavigationService : ObservableObject, INavigationService

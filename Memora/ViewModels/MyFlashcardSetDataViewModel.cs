@@ -12,6 +12,13 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
+    // placeholder
+    private bool _isImportOpen;
+    public bool IsImportOpen
+    {
+        get => _isImportOpen;
+        set { _isImportOpen = value; OnPropertyChanged();}
+    }
     // TO DO:
     // MOVE SET'S LOGIC TO A SERVICE TO SEPARATE CONCERNS
     private INavigationService _navigation;
@@ -56,6 +63,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand NavigateQuizModeCommand { get; set; }
     public RelayCommand ShareSetCommand { get; set; }
     public RelayCommand SwapFrontWithBackCommand { get; set; }
+    public RelayCommand ImportFromCodeCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -80,9 +88,14 @@ public class MyFlashcardSetDataViewModel : ViewModel
         // toggles the sharing mode ON and OFF
         ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
         SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
+        ImportFromCodeCommand = new RelayCommand(_ => CodeImport(), _ => true);
     }
 
     #region Placeholders
+    private void CodeImport()
+    {
+        IsImportOpen = !IsImportOpen;
+    }
     // temporary solution
     private void SwapFrontWithBack()
     {

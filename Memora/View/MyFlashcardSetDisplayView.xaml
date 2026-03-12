@@ -10,11 +10,13 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
-                <ResourceDictionary Source="/Themes/RoundedTextBox.xaml"/>
+                <ResourceDictionary Source="/Themes/SearchBar.xaml"/>
+                <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
@@ -33,7 +35,7 @@
                 <ColumnDefinition Width="0.7*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-                <TextBox Style="{StaticResource RoundedTextBox}"
+            <TextBox Style="{StaticResource SearchBar}"
                         Grid.Column="0"
                         Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Tag="Search for a flashcard..."
@@ -66,7 +68,7 @@
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
                             Width="110"
                             Height="45"
-                            Command="{Binding AddNewFlashcardSet}"
+                            Command="{Binding ImportFromTextCommand}"
                             Margin="5"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"/>
@@ -75,6 +77,7 @@
         </Grid>
 
 
+        
         <!-- Row 2-->
         <Border Grid.Column="1"
                 Grid.Row="1"
@@ -84,7 +87,10 @@
                 Background="#FFFFFF"
                 Margin="10">
 
-            <ListView x:Name="FlashcardSetList" 
+            <!-- needed so the content can be stacked on top of each other-->
+            <Grid>
+
+                <ListView x:Name="FlashcardSetList" 
                       ItemsSource="{Binding FlashcardSetsView}"
                       Background="Transparent"
                       BorderThickness="0"
@@ -92,47 +98,64 @@
                       Width="auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       >
-                
-                <!-- disables selection of the item -->
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListViewItem">
-                                <ContentPresenter/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                </ListView.ItemContainerStyle>
+                    <!-- disables selection of the item -->
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
 
-                <!-- content of the list view is in the wrap panel -->
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Width="1100" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                    <!-- content of the list view is in the wrap panel -->
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="1100" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
 
-                <!-- each list view item is one custom control-->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!-- CommandParameter returns THIS object from the item source-->
-                        <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
+                    <!-- each list view item is one custom control-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- CommandParameter returns THIS object from the item source-->
+                            <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
                                                FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                                CommandParameter="{Binding}"
                                                RenameCommand="{Binding DataContext.DisplayNewName, RelativeSource={RelativeSource AncestorType=ListView}}">
-                        </controls:FlashcardSet>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                            </controls:FlashcardSet>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                
-                
-
-            </ListView>
+                </ListView>
+            </Grid>
         </Border>
+
+
+        <!-- OVERLAY -->
+        <!-- Grid overlay with import from text window-->
+        <Rectangle Grid.RowSpan="3"
+           Width="auto"
+           Height="auto"
+           Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"
+           Fill="Black"
+           Opacity="0.5">
+        </Rectangle>
         
+        <!-- ImportFromText PopUp/Overlay -->
+        <controls:ImportFromTextPopUp Grid.Row="1" Grid.RowSpan="3"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}">
+        </controls:ImportFromTextPopUp>
+
+
         <!-- Row 3-->
 
         <Label Grid.Row="2"

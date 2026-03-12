@@ -11,10 +11,15 @@
             <!-- resource dictionary for styles -->
             <ResourceDictionary.MergedDictionaries>
                 <!-- Flashcard Set design-->
-                <ResourceDictionary Source="/Themes/FlashcardSetDesign.xaml"/>
+                <ResourceDictionary Source="/Themes/AnimatedGrid.xaml"/>
                 <ResourceDictionary Source="/Themes/FlashcardDataDesign.xaml"/>
+                <ResourceDictionary Source="/Themes/FlashcardSetDesign.xaml"/>
                 <ResourceDictionary Source="/Themes/GeneralConfirmButton.xaml"/>
                 <ResourceDictionary Source="/Themes/HomeButtons.xaml"/>
+                <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
+                <ResourceDictionary Source="/Themes/QuizQuestionButton.xaml"/>
+                <ResourceDictionary Source="/Themes/RoundedTextBox.xaml"/>
+                <ResourceDictionary Source="/Themes/RoundedTextBoxWithPlaceholder.xaml"/>
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
                 <ResourceDictionary Source="/Themes/StudyModeButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>

@@ -65,6 +65,13 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
     public RelayCommand AddNewFlashcardSet { get; set; }
     public RelayCommand DisplayNewName { get; set; }
+    public RelayCommand ImportFromTextCommand { get; set; }
+    private bool _isImportOpen;
+    public bool IsImportOpen
+    {
+        get => _isImportOpen;
+        set { _isImportOpen = value; OnPropertyChanged(); }
+    }
 
     public MyFlashcardSetDisplayViewModel(INavigationService navService, FlashcardSetApiService flashcardSetService)
     {
@@ -84,12 +91,16 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         FlashcardSetsView = CollectionViewSource.GetDefaultView(FlashcardSets);
         AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
         DisplayNewName = new RelayCommand(obj => DisplayNewSetName(obj), _ => true);
+        ImportFromTextCommand = new RelayCommand(_ => ToggleImport(), _ => true);
 
     }
 
+    private void ToggleImport()
+    {
+        IsImportOpen = !IsImportOpen;
+    }
     private void DisplayNewSetName(object obj)
     {
-        MessageBox.Show("asdasd");
         var f = obj as FlashcardSet;
         MessageBox.Show($"New name: {f.Name}\nId: {f.Id}");
     }
