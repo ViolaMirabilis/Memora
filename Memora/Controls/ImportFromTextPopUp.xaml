@@ -58,7 +58,8 @@
                            FontWeight="Bold"
                            FontSize="14"/>
                 <!-- textbox -->
-                <TextBox Style="{StaticResource RoundedTextBox}"
+                <TextBox x:Name="ImportedFlashcards" 
+                         Style="{StaticResource RoundedTextBox}"
                         Grid.Column="0"
                         Text=""
                         TextWrapping="Wrap"
@@ -76,8 +77,9 @@
 
         <Grid Grid.Row="1">
             <!-- flashcard separator and a button -->
+            <!-- Command handles the bindable command and returns the textboxes content-->
             <StackPanel Orientation="Horizontal"
-                Margin="15,5,15,15"
+                        Margin="15,5,15,15"
                         HorizontalAlignment="Center">
                 <TextBox Style="{StaticResource RoundedTextBox}"
                 Grid.Column="0"
@@ -98,7 +100,8 @@
                 Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
                 Width="125"
                 Height="45"
-                Command="{Binding NavigateQuizModeCommand}"
+                Command="{Binding ImportCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CommandParameter="{Binding ElementName=ImportedFlashcards, Path=Text}"
                 Margin="5"/>
             </StackPanel>
         </Grid>

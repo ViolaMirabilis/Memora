@@ -149,11 +149,11 @@
         </Rectangle>
         
         <!-- ImportFromText PopUp/Overlay -->
-        <controls:ImportFromTextPopUp Grid.Row="1" Grid.RowSpan="3"
+        <controls:ImportFromCodePopUp Grid.Row="1" Grid.RowSpan="3"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
                                       Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}">
-        </controls:ImportFromTextPopUp>
+        </controls:ImportFromCodePopUp>
 
 
         <!-- Row 3-->

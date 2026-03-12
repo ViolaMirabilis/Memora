@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="/Themes/SmallSquareButton.xaml"/>
                 <ResourceDictionary Source="/Themes/AnimatedGrid.xaml"/>
                 <ResourceDictionary Source="/Themes/LoadPageGridAnimation.xaml"/>
+                <ResourceDictionary Source="/Themes/SearchBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
@@ -57,7 +58,7 @@
                        FontWeight="Bold"
                        FontSize="14"/>
                 <!-- textbox -->
-                <TextBox Style="{StaticResource RoundedTextBoxWithPlaceholder}"
+                <TextBox Style="{StaticResource SearchBar}"
                     Grid.Column="0"
                     TextWrapping="Wrap"
                     Tag="#CODE"

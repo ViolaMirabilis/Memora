@@ -203,7 +203,7 @@
                     <Button Content="Import"
                             Style="{StaticResource StudyModeButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
-                            Command="{Binding ImportFromCodeCommand}"
+                            Command="{Binding ToggleIsOpenCommand}"
                             Width="125"
                             Height="45"
                             Margin="5">
@@ -262,8 +262,12 @@
               Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}">
             <Rectangle Width="auto" Height="auto" Fill="Black" Opacity="0.3"></Rectangle>
             <!-- a pop up-->
-            <controls:ImportFromCodePopUp
-                Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"/>
+            <controls:ImportFromTextPopUp
+                Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"
+                ImportCommand="{Binding ImportFlashcardsFromTextCommand}"
+                ImportCommandParameter="{Binding}">
+                
+            </controls:ImportFromTextPopUp>
         </Grid>
     </Grid>
 </UserControl>

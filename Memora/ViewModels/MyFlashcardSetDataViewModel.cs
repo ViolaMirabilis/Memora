@@ -63,7 +63,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand NavigateQuizModeCommand { get; set; }
     public RelayCommand ShareSetCommand { get; set; }
     public RelayCommand SwapFrontWithBackCommand { get; set; }
-    public RelayCommand ImportFromCodeCommand { get; set; }
+    public RelayCommand ToggleIsOpenCommand { get; set; }
+    public RelayCommand ImportFlashcardsFromTextCommand { get; set; }
     //public RelayCommand RemoveFlashcardAsyncCommand { get; set; }
     //public RelayCommand SaveAllFlashcardsAsyncCommand { get; set; }
 
@@ -88,11 +89,32 @@ public class MyFlashcardSetDataViewModel : ViewModel
         // toggles the sharing mode ON and OFF
         ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
         SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
-        ImportFromCodeCommand = new RelayCommand(_ => CodeImport(), _ => true);
+        ToggleIsOpenCommand = new RelayCommand(_ => ToggleIsOpen(), _ => true);
+        ImportFlashcardsFromTextCommand = new RelayCommand(obj => DisplayData(obj), _ => true);
     }
 
     #region Placeholders
-    private void CodeImport()
+    private void DisplayData(object obj)
+    {
+        int tabCounter = 0, newLineCounter = 0;
+        var text = obj.ToString();
+        var length = text.Length;
+        foreach (var letter in text)
+        {
+            if (letter == '\n')
+            {
+                newLineCounter++;
+            }
+            else if (letter == '\t')
+            {
+                tabCounter++;
+            }
+        }
+
+        MessageBox.Show($"Text: {text}\n Characters: {length}\n Tabs: {tabCounter}\n New lines: {newLineCounter}");
+        IsImportOpen = !IsImportOpen;
+    }
+    private void ToggleIsOpen()
     {
         IsImportOpen = !IsImportOpen;
     }
