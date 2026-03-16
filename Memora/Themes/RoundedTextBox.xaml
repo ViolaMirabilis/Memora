@@ -38,6 +38,7 @@
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
                              AcceptsTab="True"
+                             MaxLength="{TemplateBinding MaxLength}"
                              Panel.ZIndex="2">
                             </TextBox>
                             <!-- Placeholder text, bound to the Tag -->

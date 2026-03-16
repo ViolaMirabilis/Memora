@@ -39,14 +39,14 @@ namespace Memora.Controls
         /// <summary>
         /// Bindable char value to keep track of what the current "separator character" is.
         /// </summary>
-        public char Separator
+        public string Separator
         {
-            get => (char)GetValue(SeparatorProperty);
+            get => (string)GetValue(SeparatorProperty);
             set => SetValue(SeparatorProperty, value);
         }
 
         public static readonly DependencyProperty SeparatorProperty =
-            DependencyProperty.Register(nameof(Separator), typeof(char), typeof(ImportFromTextPopUp), new PropertyMetadata(' '));
+            DependencyProperty.Register(nameof(Separator), typeof(string), typeof(ImportFromTextPopUp), new PropertyMetadata(null));
 
         /// <summary>
         /// Bindable command to the "Import" button.

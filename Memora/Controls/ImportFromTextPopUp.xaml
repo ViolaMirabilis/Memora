@@ -81,9 +81,11 @@
             <StackPanel Orientation="Horizontal"
                         Margin="15,5,15,15"
                         HorizontalAlignment="Center">
-                <TextBox Style="{StaticResource RoundedTextBox}"
+                <TextBox x:Name="SeparatorChar" 
+                Style="{StaticResource RoundedTextBox}"
+                         MaxLength="3"
                 Grid.Column="0"
-                Text=""
+                Text="{Binding Separator, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 TextWrapping="Wrap"
                 FontFamily="Sans Serif Collection"
                 Tag="Separator"

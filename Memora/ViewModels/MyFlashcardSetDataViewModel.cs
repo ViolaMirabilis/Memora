@@ -12,7 +12,14 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
-    // placeholder
+    // PLACEHOLDER. Holds the separator character.
+    private string _separator = string.Empty;
+    public string Separator
+    {
+        get => _separator;
+        set { _separator = value; OnPropertyChanged(); }
+    }
+    // PLACEHOLDER. Holds the IsOpen value needed for displaying the popup.
     private bool _isImportOpen;
     public bool IsImportOpen
     {
@@ -49,6 +56,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         set { _flashcardsCount = value; OnPropertyChanged();
         }
     }
+    private readonly ImportFlashcardFromTextService _importFromText;
     private readonly FlashcardApiService _flashcardApiService;
     // stores all the flashcards fetched from the API.
     private List<Flashcard> _fetchedFlashcards = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
@@ -70,8 +78,9 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
     #endregion
 
-    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService, SessionService sessionService)
+    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService, SessionService sessionService, ImportFlashcardFromTextService importFromText)
     {
+        _importFromText = importFromText;
         _sessionService = sessionService;
         Navigation = navService;
         _flashcardApiService = flashcardApiService;
@@ -90,28 +99,19 @@ public class MyFlashcardSetDataViewModel : ViewModel
         ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
         SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
         ToggleIsOpenCommand = new RelayCommand(_ => ToggleIsOpen(), _ => true);
-        ImportFlashcardsFromTextCommand = new RelayCommand(obj => DisplayData(obj), _ => true);
+        ImportFlashcardsFromTextCommand = new RelayCommand(obj => ImportFromText(obj), _ => true);
     }
 
     #region Placeholders
-    private void DisplayData(object obj)
+    private void ImportFromText(object obj)
     {
-        int tabCounter = 0, newLineCounter = 0;
-        var text = obj.ToString();
-        var length = text.Length;
-        foreach (var letter in text)
-        {
-            if (letter == '\n')
-            {
-                newLineCounter++;
-            }
-            else if (letter == '\t')
-            {
-                tabCounter++;
-            }
-        }
-
-        MessageBox.Show($"Text: {text}\n Characters: {length}\n Tabs: {tabCounter}\n New lines: {newLineCounter}");
+        MessageBox.Show($"Separator: {Separator}");
+        // converts the unformatted object to string
+        string unformattedFlashcards = obj.ToString();
+        // takes unformatted string of flashcards and a separator
+        var formattedFlashcards = _importFromText.SplitFlashcards(unformattedFlashcards, Separator);
+        _importFromText.AppendFlashcardList(ModifiedFlashcards, formattedFlashcards);
+        OnPropertyChanged(nameof(ModifiedFlashcards));
         IsImportOpen = !IsImportOpen;
     }
     private void ToggleIsOpen()

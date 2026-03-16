@@ -63,6 +63,7 @@ namespace Memora
             services.AddTransient<QuizModeViewModel>();
             services.AddTransient<QuizModeService>();
             services.AddTransient<QuizResultViewModel>();
+            services.AddSingleton<ImportFlashcardFromTextService>();
 
             // navigation service
             services.AddSingleton<INavigationService, NavigationService>();
