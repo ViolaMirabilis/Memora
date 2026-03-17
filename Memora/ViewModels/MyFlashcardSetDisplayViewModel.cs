@@ -26,8 +26,6 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
             _textSearch = value;
             OnPropertyChanged(TextSearch);
 
-            // messagebox WORKS
-            //MessageBox.Show($"{_textSearch}");
             // using a predicate to filter the collection
             if (!string.IsNullOrEmpty(_textSearch))
             {
@@ -63,9 +61,11 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     }
 
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
-    public RelayCommand AddNewFlashcardSet { get; set; }
+    public RelayCommand AddNewFlashcardSetAsync { get; set; }
     public RelayCommand DisplayNewName { get; set; }
     public RelayCommand ImportFromTextCommand { get; set; }
+    public RelayCommand UpdateNameCommandAsync { get; set; }
+    public RelayCommand DeleteFlashcardSetCommandAsync { get; set; }
     private bool _isImportOpen;
     public bool IsImportOpen
     {
@@ -89,9 +89,10 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         );
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
         FlashcardSetsView = CollectionViewSource.GetDefaultView(FlashcardSets);
-        AddNewFlashcardSet = new RelayCommand(_ => AddSet(), _ => true);
-        DisplayNewName = new RelayCommand(obj => DisplayNewSetName(obj), _ => true);
+        AddNewFlashcardSetAsync = new RelayCommand(async _ => await AddFlashcardSetAsync(), _ => true);
         ImportFromTextCommand = new RelayCommand(_ => ToggleImport(), _ => true);
+        UpdateNameCommandAsync = new RelayCommand(async obj => await UpdateFlashcardSetNameAsync(obj), _ => true);
+        DeleteFlashcardSetCommandAsync = new RelayCommand(async obj => await DeleteFlashcardSetAsync(obj), _ => true);
 
     }
 
@@ -99,15 +100,45 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     {
         IsImportOpen = !IsImportOpen;
     }
-    private void DisplayNewSetName(object obj)
+
+    /// <summary>
+    /// Updates the flashcard set's name in the collection AND in the db via an API
+    /// </summary>
+    /// <returns></returns>
+    private async Task DeleteFlashcardSetAsync(object obj)
     {
-        var f = obj as FlashcardSet;
-        MessageBox.Show($"New name: {f.Name}\nId: {f.Id}");
+        if (obj is FlashcardSet set)
+        {
+            var setId = set.Id;
+            await _flashcardSetService.DeleteFlashcardSet(setId);
+            FlashcardSets.Remove(set);
+        }
     }
-    private void AddSet()
+
+
+    private async Task UpdateFlashcardSetNameAsync(object obj)
     {
-        FlashcardSets.Add(new FlashcardSet { Name = $"New set {index}" });
+        if (obj is FlashcardSet set)
+        {
+            var updatedName = new UpdatedNameFlashcardSet {Id = set.Id, Name = set.Name };
+            await _flashcardSetService.UpdateFlashcardSetName(updatedName);
+        }
+    }
+
+    /// <summary>
+    /// Adds the flashcard set both to the observable collection and to the DB via an API
+    /// </summary>
+    /// <returns></returns>
+    private async Task AddFlashcardSetAsync()
+    {
+        var newSet = new FlashcardSet { Name = $"New set {index}" };
+        // Adds set to the observable collection
+        FlashcardSets.Add(newSet);
+        // Index keeps track of "newly created" sets, e.g. Set(1), Set(2), Set(3), etc.
         index++;
+
+        // POST set to API
+        await _flashcardSetService.CreateFlashcardSet(newSet);
     }
 
     private async Task<List<FlashcardSet>> GetAllFlashcardSets()

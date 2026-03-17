@@ -60,7 +60,7 @@
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
                             Width="110"
                             Height="45"
-                            Command="{Binding AddNewFlashcardSet}"
+                            Command="{Binding AddNewFlashcardSetAsync}"
                             Margin="5"/>
 
                     <Button Content="Import"
@@ -128,7 +128,8 @@
                             <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
                                                FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                                CommandParameter="{Binding}"
-                                               RenameCommand="{Binding DataContext.DisplayNewName, RelativeSource={RelativeSource AncestorType=ListView}}">
+                                               RenameCommand="{Binding DataContext.UpdateNameCommandAsync, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                               DeleteCommand="{Binding DataContext.DeleteFlashcardSetCommandAsync, RelativeSource={RelativeSource AncestorType=ListView}}">
                             </controls:FlashcardSet>
                         </DataTemplate>
                     </ListView.ItemTemplate>

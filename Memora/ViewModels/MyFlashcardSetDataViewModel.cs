@@ -65,6 +65,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     #region Commands
     public RelayCommand AddFlashcardCommand { get; set; }
     public RelayCommand RemoveFlashcardCommand { get; set; }
+    // only one needed?
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
     public RelayCommand SaveChanges { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }

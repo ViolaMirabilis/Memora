@@ -107,6 +107,23 @@ namespace Memora.Controls
         }
 
         /// <summary>
+        /// CommandParameter strictly for RenameCommand
+        /// </summary>
+        public static readonly DependencyProperty RenameCommandParameterProperty =
+            DependencyProperty.Register(
+                name: "RenameCommandParameter",
+                propertyType: typeof(object),
+                ownerType: typeof(FlashcardSet),
+                typeMetadata: new PropertyMetadata(null));
+
+        public object RenameCommandParameter
+        {
+            get => GetValue(RenameCommandParameterProperty);
+            set => SetValue(RenameCommandParameterProperty, value);
+        }
+
+
+        /// <summary>
         /// Bindable delete command property
         /// </summary>
         public static readonly DependencyProperty DeleteCommandProperty =
@@ -149,7 +166,7 @@ namespace Memora.Controls
             {
                 FlashcardSetName.IsReadOnly = true;
                 Keyboard.ClearFocus();
-                // Command parameter returns the entire object
+                // runs the RenameCommand and its logic AND returns CommandParameter (the object itself)
                 RenameCommand.Execute(CommandParameter);
             }
             else if (e.Key == Key.Escape)
@@ -159,6 +176,14 @@ namespace Memora.Controls
             }
         }
 
-        
+        /// <summary>
+        /// Runs the command and returns THIS object once clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteCommand.Execute(CommandParameter);
+        }
     }
 }

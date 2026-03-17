@@ -267,7 +267,7 @@
                 ImportCommand="{Binding ImportFlashcardsFromTextCommand}"
                 ImportCommandParameter="{Binding}"
                 Separator="{Binding Separator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                
+
             </controls:ImportFromTextPopUp>
         </Grid>
     </Grid>

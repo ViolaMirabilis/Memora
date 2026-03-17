@@ -143,12 +143,13 @@
                                     <Button Style="{StaticResource ButtonInsidePopUp}" 
                                             x:Name="Rename"
                                             Content="Rename"
-                                            Click="Rename_Click"/>
+                                            Click="Rename_Click"
+                                            CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
                                     <Button Style="{StaticResource ButtonInsidePopUp}" 
                                             x:Name="Delete"
                                             Content="Delete"
-                                            Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            Click="Delete_Click"
                                             CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                                 </StackPanel>
                             </Border>
