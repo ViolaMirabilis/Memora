@@ -61,8 +61,8 @@
                 <TextBox Style="{StaticResource SearchBar}"
                     Grid.Column="0"
                     TextWrapping="Wrap"
+                    Text="{Binding CodeText, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Tag="#CODE"
-                         Text=""
                     FontSize="16"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Left"
@@ -82,7 +82,7 @@
             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
             Width="125"
             Height="45"
-            Command="{Binding NavigateQuizModeCommand}"
+            Command="{Binding ImportCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
             Margin="5"/>
         </Grid>
     </Grid>

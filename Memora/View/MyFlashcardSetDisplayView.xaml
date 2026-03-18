@@ -68,7 +68,7 @@
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Download}"
                             Width="110"
                             Height="45"
-                            Command="{Binding ImportFromTextCommand}"
+                            Command="{Binding ToggleIsOpenCommand}"
                             Margin="5"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"/>
@@ -153,7 +153,9 @@
         <controls:ImportFromCodePopUp Grid.Row="1" Grid.RowSpan="3"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
-                                      Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}">
+                                      Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"
+                                      CodeText="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ImportCommand="{Binding DataContext.ImportFromCodeCommandAsync, RelativeSource={RelativeSource AncestorType=UserControl}}">
         </controls:ImportFromCodePopUp>
 
 

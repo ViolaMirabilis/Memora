@@ -15,6 +15,12 @@ namespace Memora.ViewModels;
 public class MyFlashcardSetDisplayViewModel : ViewModel
 {
     #region placeholders
+    private string _code = string.Empty;
+    public string Code
+    {
+        get => _code;
+        set { _code = value; OnPropertyChanged(); }
+    }
     // placeholder
     private int index = 1;
     // temporary variable to store user's text from the searchbox
@@ -43,7 +49,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         }
     }
     #endregion
-
+    private readonly FlashcardApiService _flashcardApiService;
     private readonly FlashcardSetApiService _flashcardSetService;
     private readonly SessionService _sessionService;
     public ObservableCollection<FlashcardSet> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSet>();
@@ -64,9 +70,10 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
     public RelayCommand CreateNewFlashcardSetAsync { get; set; }
     public RelayCommand DisplayNewName { get; set; }
-    public RelayCommand ImportFromTextCommand { get; set; }
+    public RelayCommand ImportFromCodeCommandAsync { get; set; }
     public RelayCommand UpdateNameCommandAsync { get; set; }
     public RelayCommand DeleteFlashcardSetCommandAsync { get; set; }
+    public RelayCommand ToggleIsOpenCommand { get; set; }
     private bool _isImportOpen;
     public bool IsImportOpen
     {
@@ -75,9 +82,11 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     }
 
     public MyFlashcardSetDisplayViewModel(INavigationService navService,
+        FlashcardApiService flashcardApiService,
         FlashcardSetApiService flashcardSetService,
         SessionService session)
     {
+        _flashcardApiService = flashcardApiService;
         _navigation = navService;
         _flashcardSetService = flashcardSetService;
         _sessionService = session;
@@ -96,12 +105,20 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
         FlashcardSetsView = CollectionViewSource.GetDefaultView(FlashcardSets);
         CreateNewFlashcardSetAsync = new RelayCommand(async _ => await CreateFlashcardSetAsync(), _ => true);
-        ImportFromTextCommand = new RelayCommand(_ => ToggleImport(), _ => true);
+        ImportFromCodeCommandAsync = new RelayCommand(async _ => await ImportFromCodeAsync(), _ => true);
         UpdateNameCommandAsync = new RelayCommand(async obj => await UpdateFlashcardSetNameAsync(obj), _ => true);
         DeleteFlashcardSetCommandAsync = new RelayCommand(async obj => await DeleteFlashcardSetAsync(obj), _ => true);
+        ToggleIsOpenCommand = new RelayCommand(_ => ToggleIsOpen(), _ => true);
 
     }
 
+    private void ToggleIsOpen()
+    {
+        // toggles the bool
+        IsImportOpen = !IsImportOpen;
+        // clears the code
+        Code = string.Empty;
+    }
     private void SaveContextAndNavigate(object obj)
     {
         if (obj is FlashcardSet set)
@@ -112,9 +129,24 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         
     }
 
-    private void ToggleImport()
+    private async Task ImportFromCodeAsync()
     {
         IsImportOpen = !IsImportOpen;
+        // retrieves the flashcard set by a sharing code
+        FlashcardSet set = await _flashcardSetService.GetFlashcardSetByCode(Code);
+        // gets all the flashcards from a shared set
+        List<Flashcard> flashcardsFromSharedSet = await _flashcardApiService.GetAllSharedFlaschardsByIdAsync(set.Id);
+        
+        // adds the empty set to the user's database via API
+        await _flashcardSetService.CreateFlashcardSet(set);
+        // gets the last flashcard set from the DB
+        FlashcardSet newSet = await _flashcardSetService.GetLastFlashcard();
+        // clones the flashcard from the original to the copy
+        await _flashcardApiService.CloneFlashcardsToNewSet(newSet.Id, flashcardsFromSharedSet);
+
+        // adds it to the local list
+        FlashcardSets.Add(newSet);
+
     }
 
     /// <summary>

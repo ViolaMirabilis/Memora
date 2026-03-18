@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Text;
 using Memora.Model;
 using Memora.Authentication;
+using System.Windows;
 
 namespace Memora.Services
 {
@@ -27,5 +28,47 @@ namespace Memora.Services
                 throw new InvalidOperationException("Error while getting Flashcards information");
             return result;
         }
+
+        public async Task<List<Flashcard>> GetAllSharedFlaschardsByIdAsync(int id)
+        {
+            try
+            {
+                var response = await _http.GetAsync($"/set/{id}/shared");
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"An error ocurred while retrieving flashcards from a shared set.\nCode message: {response.StatusCode}");
+                }
+                var result = await response.Content.ReadFromJsonAsync<List<Flashcard>>();
+                if (result is null)
+                    throw new InvalidOperationException("Error while getting shared flashcards information");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            // returns empty if failed
+            return new List<Flashcard>();
+        }
+
+        public async Task CloneFlashcardsToNewSet(int setId, List<Flashcard> flashcards)
+        {
+            var request = new CloneFlashcardsRequest { SetId = setId, Flashcards = flashcards };
+            try
+            {
+                var response = await _http.PostAsJsonAsync($"/Copy", request);
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"An error ocurred while cloning flashcards from a shared set.\nCode message: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
     }
 }
