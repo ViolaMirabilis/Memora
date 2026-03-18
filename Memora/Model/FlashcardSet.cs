@@ -6,6 +6,8 @@ public class FlashcardSet
     public string Name { get; set; } = string.Empty;
     public int? FolderId { get; set; }
     public string? FolderName { get; set; } = "NULL";
+    public bool IsSharing { get; set; } = false;
+    public string SharingCode { get; set; } = string.Empty;
 
     public override string ToString()
     {

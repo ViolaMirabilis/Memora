@@ -1,4 +1,5 @@
-﻿using Memora.Model;
+﻿using Memora.Controls;
+using Memora.Model;
 using Memora.Model.StudyModes;
 namespace Memora.Services;
 
@@ -8,26 +9,21 @@ namespace Memora.Services;
 public class SessionService
 {
     // initialises an empty session
-    public Session CurrentSession { get; set; } = null!;        // cannot be null
+    public Session CurrentSession { get; set; } = new Session();
 
     public void NewSession(List<Flashcard> flashcards)
     {
-        CurrentSession = new Session { FlashcardsCollection = flashcards };
+        //CurrentSession.FlashcardsCollection = flashcards;
     }
 
-    public void NewSession(FlashcardSet flashcardSet)
+    public void NewFlashcardSet(Memora.Model.FlashcardSet set)
     {
-        CurrentSession = new Session { FlashcardSet = flashcardSet };
-    }
-
-    public void NewSession(List<Flashcard> flashcards, FlashcardSet flashcardSet)
-    {
-        CurrentSession = new Session { FlashcardsCollection = flashcards, FlashcardSet = flashcardSet };
+        //CurrentSession.FlashcardSet = set;
     }
 
     public void NewResult(Result result)
     {
-        CurrentSession.Result = result;
+        //CurrentSession.Result = result;
     }
 
     // to do

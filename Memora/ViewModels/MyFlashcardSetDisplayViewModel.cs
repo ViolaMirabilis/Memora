@@ -45,6 +45,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     #endregion
 
     private readonly FlashcardSetApiService _flashcardSetService;
+    private readonly SessionService _sessionService;
     public ObservableCollection<FlashcardSet> FlashcardSets { get; set; } = new ObservableCollection<FlashcardSet>();
     // @see: https://stackoverflow.com/questions/37385532/implenting-listcollectionview-from-observablecollection
     public ICollectionView FlashcardSetsView { get; set; }
@@ -61,7 +62,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     }
 
     public RelayCommand NavigateFlashcardDataCommand { get; set; }
-    public RelayCommand AddNewFlashcardSetAsync { get; set; }
+    public RelayCommand CreateNewFlashcardSetAsync { get; set; }
     public RelayCommand DisplayNewName { get; set; }
     public RelayCommand ImportFromTextCommand { get; set; }
     public RelayCommand UpdateNameCommandAsync { get; set; }
@@ -73,27 +74,42 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         set { _isImportOpen = value; OnPropertyChanged(); }
     }
 
-    public MyFlashcardSetDisplayViewModel(INavigationService navService, FlashcardSetApiService flashcardSetService)
+    public MyFlashcardSetDisplayViewModel(INavigationService navService,
+        FlashcardSetApiService flashcardSetService,
+        SessionService session)
     {
         _navigation = navService;
         _flashcardSetService = flashcardSetService;
+        _sessionService = session;
 
+        
+        NavigateFlashcardDataCommand = new RelayCommand(obj => SaveContextAndNavigate(obj), _ => true);
+        // OLD
         // We're using the overloaded method from NavigationService. vm => _ = vm... is set to the TViewModel instance
         // and we're just using the method this way
-        NavigateFlashcardDataCommand = new RelayCommand(o =>
-        {
-            if (o is not FlashcardSet set) return;
+        //{
+        /*if (o is not FlashcardSet set) return;
 
-            Navigation.NavigateTo<MyFlashcardSetDataViewModel>(
-                vm => _ = vm.LoadFlaschardsByIdAsync(set.Id)); }, _ => true
-        );
+        Navigation.NavigateTo<MyFlashcardSetDataViewModel>(
+            vm => _ = vm.LoadFlaschardsByIdAsync(set.Id)); }, _ => true*/
+        //);
         _ = LoadFlaschardSetsAsync();      // fire and forget with the "discard" operator
         FlashcardSetsView = CollectionViewSource.GetDefaultView(FlashcardSets);
-        AddNewFlashcardSetAsync = new RelayCommand(async _ => await AddFlashcardSetAsync(), _ => true);
+        CreateNewFlashcardSetAsync = new RelayCommand(async _ => await CreateFlashcardSetAsync(), _ => true);
         ImportFromTextCommand = new RelayCommand(_ => ToggleImport(), _ => true);
         UpdateNameCommandAsync = new RelayCommand(async obj => await UpdateFlashcardSetNameAsync(obj), _ => true);
         DeleteFlashcardSetCommandAsync = new RelayCommand(async obj => await DeleteFlashcardSetAsync(obj), _ => true);
 
+    }
+
+    private void SaveContextAndNavigate(object obj)
+    {
+        if (obj is FlashcardSet set)
+        {
+            _sessionService.CurrentSession.SetFlashcardSet(set);
+            Navigation.NavigateTo<MyFlashcardSetDataViewModel>(vm => _ = vm.LoadFlaschardsByIdAsync(set.Id));
+        }
+        
     }
 
     private void ToggleImport()
@@ -129,16 +145,18 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     /// Adds the flashcard set both to the observable collection and to the DB via an API
     /// </summary>
     /// <returns></returns>
-    private async Task AddFlashcardSetAsync()
+    private async Task CreateFlashcardSetAsync()
     {
-        var newSet = new FlashcardSet { Name = $"New set {index}" };
+        var tmpSet = new FlashcardSet { Name = $"New set {index}" };
+        // POST set to API
+        // the API assigns the ID, its unknown here, because it's auto incremented in the API
+        await _flashcardSetService.CreateFlashcardSet(tmpSet);
+        var newSet = await _flashcardSetService.GetLastFlashcard();
         // Adds set to the observable collection
         FlashcardSets.Add(newSet);
         // Index keeps track of "newly created" sets, e.g. Set(1), Set(2), Set(3), etc.
         index++;
-
-        // POST set to API
-        await _flashcardSetService.CreateFlashcardSet(newSet);
+        
     }
 
     private async Task<List<FlashcardSet>> GetAllFlashcardSets()

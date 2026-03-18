@@ -64,7 +64,7 @@ public class QuizModeViewModel : ViewModel
     {
         CheckResults();
         var result = new Result { TotalAnswers = TotalFlashcards, CorrectAnswers = CorrectAnswers, IncorrectAnswers = IncorrectAnswers };
-        _sessionService.NewResult(result);
+        _sessionService.CurrentSession.SetResult(result);
         _navigation.NavigateTo<QuizResultViewModel>();
     }
     private void CheckResults()

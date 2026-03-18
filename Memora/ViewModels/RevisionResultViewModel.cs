@@ -63,7 +63,7 @@ public class RevisionResultViewModel : ViewModel
     private void Shuffle()
     {
         var shuffledList = _sessionService.CurrentSession.FlashcardsCollection!.Shuffle();
-        _sessionService.CurrentSession.FlashcardsCollection = shuffledList.ToList();
+        _sessionService.CurrentSession.SetFlashcardCollection(shuffledList.ToList());
         Navigation.NavigateTo<RevisionModeViewModel>();
     }
 }

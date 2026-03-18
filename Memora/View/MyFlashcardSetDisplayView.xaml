@@ -60,7 +60,7 @@
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.Plus}"
                             Width="110"
                             Height="45"
-                            Command="{Binding AddNewFlashcardSetAsync}"
+                            Command="{Binding CreateNewFlashcardSetAsync}"
                             Margin="5"/>
 
                     <Button Content="Import"

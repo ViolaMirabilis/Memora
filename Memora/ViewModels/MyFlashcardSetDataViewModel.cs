@@ -12,6 +12,12 @@ namespace Memora.ViewModels;
 
 public class MyFlashcardSetDataViewModel : ViewModel
 {
+    private string _sharingCode = string.Empty;
+    public string SharingCode
+    {
+        get => _sharingCode;
+        set { _sharingCode = value; OnPropertyChanged(); }
+    }
     // PLACEHOLDER. Holds the separator character.
     private string _separator = string.Empty;
     public string Separator
@@ -58,6 +64,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     }
     private readonly ImportFlashcardFromTextService _importFromText;
     private readonly FlashcardApiService _flashcardApiService;
+    private readonly FlashcardSetApiService _flashcardSetApiService;
     // stores all the flashcards fetched from the API.
     private List<Flashcard> _fetchedFlashcards = new List<Flashcard>();     // contains flashcards that are fetched from the API ("the original flashcards")
     public ObservableCollection<Flashcard> ModifiedFlashcards { get; set; } = new ObservableCollection<Flashcard>();   // all the operations are done on this one, in order to compare them to the original and update only the changed flashcards
@@ -79,12 +86,17 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
     #endregion
 
-    public MyFlashcardSetDataViewModel(INavigationService navService, FlashcardApiService flashcardApiService, SessionService sessionService, ImportFlashcardFromTextService importFromText)
+    public MyFlashcardSetDataViewModel(INavigationService navService,
+        FlashcardApiService flashcardApiService,
+        FlashcardSetApiService flashcardSetApiService,
+        SessionService sessionService,
+        ImportFlashcardFromTextService importFromText)
     {
         _importFromText = importFromText;
         _sessionService = sessionService;
         Navigation = navService;
         _flashcardApiService = flashcardApiService;
+        _flashcardSetApiService = flashcardSetApiService;
         OnCountChanged += IncreaseCount;
         AddFlashcardCommand = new RelayCommand(_ => AddEmptyFlashcardToList(), _ => true);
         // checks if the parameter is a flashcard, then removes it from the list
@@ -97,16 +109,58 @@ public class MyFlashcardSetDataViewModel : ViewModel
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, _ => true);        // Navigates to the Revision mode
         NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
         // toggles the sharing mode ON and OFF
-        ShareSetCommand = new RelayCommand(_ => { IsSharing = !IsSharing; }, _ => true);
+        ShareSetCommand = new RelayCommand(async _ => await GetSharingCode(), _ => true);
         SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
         ToggleIsOpenCommand = new RelayCommand(_ => ToggleIsOpen(), _ => true);
         ImportFlashcardsFromTextCommand = new RelayCommand(obj => ImportFromText(obj), _ => true);
+
+        InitializeSharingWindow();
     }
 
     #region Placeholders
+    // method name to change
+    /// <summary>
+    /// Checks if the set is already marked as "Sharing". If it does, the user does not have to reopen the "share" window and the code is visible right away.
+    /// </summary>
+    private void InitializeSharingWindow()
+    {
+        var set = _sessionService.CurrentSession.FlashcardSet;
+        // Initializes the IsSharing VM property
+        if (set.IsSharing == true)
+        {
+            //VM property
+            IsSharing = true;
+            SharingCode = set.SharingCode;
+        }
+    }
+    private async Task GetSharingCode()
+    {
+        // VM bindable property
+        IsSharing = true;
+        FlashcardSet set = _sessionService.CurrentSession.FlashcardSet!;
+        // if set is not being marked as "shared", send an API request
+        if (set.IsSharing == false)
+        {
+            set.IsSharing = true;
+            await _flashcardSetApiService.ShareFlashcardSet(set.Id);
+            // gets the sharing code
+            var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
+            // sets the sharing code both on the FlaschardSet property AND the VM
+            set.SharingCode = code;
+            SharingCode = code;
+            OnPropertyChanged(nameof(SharingCode));
+            
+        }
+        else if (set.IsSharing == true)
+        {
+            var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
+            // sets the sharing code
+            SharingCode = code;
+            OnPropertyChanged(nameof(SharingCode));
+        }
+    }
     private void ImportFromText(object obj)
     {
-        MessageBox.Show($"Separator: {Separator}");
         // converts the unformatted object to string
         string unformattedFlashcards = obj.ToString();
         // takes unformatted string of flashcards and a separator
@@ -241,7 +295,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
     // Assigns session data to the singleton SessionService.
     private void SetSessionData()
     {
-        _sessionService.NewSession(ModifiedFlashcards.ToList());
+        _sessionService.CurrentSession.SetFlashcardCollection(ModifiedFlashcards.ToList());
+        //_sessionService.NewSession(ModifiedFlashcards.ToList());
     }
 
 

@@ -126,7 +126,7 @@ public class RevisionModeViewModel : ViewModel
     private void GoToResultPage()
     {
         var result = new Result { TotalAnswers = TotalFlashcards };
-        _sessionService.NewResult(result);      // testing purposes
+        _sessionService.CurrentSession.SetResult(result);
         Navigation.NavigateTo<RevisionResultViewModel>();
     }
 

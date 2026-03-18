@@ -55,7 +55,7 @@ namespace Memora
             services.AddSingleton<MyFoldersViewModel>();
             services.AddSingleton<MyProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
-            services.AddSingleton<MyFlashcardSetDataViewModel>();
+            services.AddTransient<MyFlashcardSetDataViewModel>();
             services.AddTransient<RevisionModeViewModel>();
             services.AddSingleton<SessionService>();
             services.AddTransient<RevisionResultViewModel>();       // I believe transient is a better choice, but will decide once the implementation is done.
