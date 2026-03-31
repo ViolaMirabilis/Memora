@@ -1,5 +1,5 @@
 # Memora
-## A desktop flashcard program designed to help with learning.
+A desktop flashcard program designed to help with learning.
 
 ## Prerequisities
 * .NET 8.0 or higher
