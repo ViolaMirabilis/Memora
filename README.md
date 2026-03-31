@@ -1,4 +1,4 @@
-#Memora
+# Memora
 ## A desktop flashcard program designed to help with learning.
 
 ## Prerequisities
