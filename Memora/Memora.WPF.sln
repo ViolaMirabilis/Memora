@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11619.145 insiders
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoraWPF", "MemoraWPF.csproj", "{B31656D7-96F6-806D-452F-0417D51CA086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoraAPI", "..\..\APIs\SimpleAUTH\SimpleAUTH\MemoraAPI.csproj", "{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memora.API", "Memora.API", "{B0D479E4-F31E-4129-B959-522F8B20696F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memora.WPF", "Memora.WPF", "{FF3274C1-666D-4ABA-AB17-D6781E3DF848}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B31656D7-96F6-806D-452F-0417D51CA086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31656D7-96F6-806D-452F-0417D51CA086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31656D7-96F6-806D-452F-0417D51CA086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31656D7-96F6-806D-452F-0417D51CA086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B31656D7-96F6-806D-452F-0417D51CA086} = {FF3274C1-666D-4ABA-AB17-D6781E3DF848}
+		{F1D0AE8F-0CD3-AEFA-948D-6AC62972EE65} = {B0D479E4-F31E-4129-B959-522F8B20696F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB7DC88C-0E0E-4946-99CE-CC1075D50817}
+	EndGlobalSection
+EndGlobal
