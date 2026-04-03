@@ -93,7 +93,7 @@ namespace SimpleAUTH.Controllers
             {
                 Id = created.Id,
                 Name = created.Name,
-                FolderId = created.Id,
+                FolderId = created.Folder?.Id,
                 FolderName = created.Folder?.Name
             };
 
