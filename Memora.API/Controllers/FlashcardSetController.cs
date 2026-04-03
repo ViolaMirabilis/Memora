@@ -161,7 +161,7 @@ namespace SimpleAUTH.Controllers
         }
 
         // gets the flashcard set by sending in the code
-        [HttpGet("{code}")]
+        [HttpGet("shared/{code}")]
         public async Task<ActionResult<FlashcardSet>> GetBySharingCodeFlashcardSet(string code)
         {
             var existingFlashcardSet = await _flashcardSetService.GetFlashcardSetBySharingCode(code);
@@ -184,7 +184,7 @@ namespace SimpleAUTH.Controllers
         }
 
         // gets the last added flashcard for a given user
-        [HttpGet("/LastAdded")]
+        [HttpGet("/last-added")]
         public async Task<ActionResult<FlashcardSet>> GetLastFlashcardSet()
         {
             int userId = CurrentUserId;

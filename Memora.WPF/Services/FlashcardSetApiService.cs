@@ -155,7 +155,7 @@ public class FlashcardSetApiService
     {
         try
         {
-            var response = await _http.GetAsync($"api/FlashcardSet/{code}");
+            var response = await _http.GetAsync($"api/FlashcardSet/shared/{code}");
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException("An error ocurred while retrieving a flashcard set by code");
@@ -182,7 +182,7 @@ public class FlashcardSetApiService
     {
         try
         {
-            var response = await _http.GetAsync("LastAdded");
+            var response = await _http.GetAsync("last-added");
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException("An error ocurred while retrieving the last flashcard set");
