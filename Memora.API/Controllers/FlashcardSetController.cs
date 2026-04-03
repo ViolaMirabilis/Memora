@@ -104,7 +104,7 @@ namespace SimpleAUTH.Controllers
         public async Task<ActionResult<FlashcardSet>> UpdateFlashcardSet(int id, FlashcardSet updatedFlashcardSet)
         {
             int userId = CurrentUserId;
-            var result = _flashcardSetService.UpdateFlashcardSet(userId, id, updatedFlashcardSet);
+            var result = await _flashcardSetService.UpdateFlashcardSet(userId, id, updatedFlashcardSet);
             if (result == null)
                 return NotFound();
 
@@ -130,7 +130,7 @@ namespace SimpleAUTH.Controllers
             int setId = dto.Id;
             var result = await _flashcardSetService.UpdateFlashcardSetName(userId, setId, dto);
             if (!result)
-                return false;
+                return NotFound();
 
             return Ok(result); 
         }
@@ -142,7 +142,7 @@ namespace SimpleAUTH.Controllers
             int userId = CurrentUserId;
             var result = await _flashcardSetService.ShareFlashcardSet(userId, id);
             if (!result)
-                return false;
+                return NotFound();
 
             return Ok(result);
         }

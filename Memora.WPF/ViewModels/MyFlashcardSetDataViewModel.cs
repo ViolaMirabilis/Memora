@@ -135,29 +135,36 @@ public class MyFlashcardSetDataViewModel : ViewModel
     }
     private async Task GetSharingCode()
     {
-        // VM bindable property
-        IsSharing = true;
-        FlashcardSet set = _sessionService.CurrentSession.FlashcardSet!;
-        // if set is not being marked as "shared", send an API request
-        if (set.IsSharing == false)
+        try
         {
-            set.IsSharing = true;
-            await _flashcardSetApiService.ShareFlashcardSet(set.Id);
-            // gets the sharing code
-            var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
-            // sets the sharing code both on the FlaschardSet property AND the VM
-            set.SharingCode = code;
-            SharingCode = code;
-            OnPropertyChanged(nameof(SharingCode));
-            
-        }
-        else if (set.IsSharing == true)
+            // VM bindable property
+            IsSharing = true;
+            FlashcardSet set = _sessionService.CurrentSession.FlashcardSet!;
+            // if set is not being marked as "shared", send an API request
+            if (set.IsSharing == false)
+            {
+                await _flashcardSetApiService.ShareFlashcardSet(set.Id);
+                set.IsSharing = true;
+                // gets the sharing code
+                var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
+                // sets the sharing code both on the FlaschardSet property AND the VM
+                set.SharingCode = code;
+                SharingCode = code;
+                OnPropertyChanged(nameof(SharingCode));
+
+            }
+            else if (set.IsSharing == true)
+            {
+                var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
+                // sets the sharing code
+                SharingCode = code;
+                OnPropertyChanged(nameof(SharingCode));
+            }
+        } catch(HttpRequestException ex)
         {
-            var code = await _flashcardSetApiService.GetFlashcardSetSharingCode(set.Id);
-            // sets the sharing code
-            SharingCode = code;
-            OnPropertyChanged(nameof(SharingCode));
+            MessageBox.Show($"An error ocurred while obtaining the sharing code.\nError message: {ex.Message}");
         }
+        
     }
     private void ImportFromText(object obj)
     {
@@ -251,6 +258,8 @@ public class MyFlashcardSetDataViewModel : ViewModel
 
     public async Task LoadFlaschardsByIdAsync(int id)
     {
+        try
+        {
         _setId = id;        // sets the ID, then calls the method
         var flashcards = await GetAllFlashcardsById();
         _fetchedFlashcards.Clear();      // clears the set, so they don't get duplicated
@@ -269,27 +278,22 @@ public class MyFlashcardSetDataViewModel : ViewModel
             });
 
         }
-        SetSessionData();       // sets session data here, because this method is called first (from another vm)
-        OnCountChanged?.Invoke();
+            SetSessionData();       // sets session data here, because this method is called first (from another vm)
+            OnCountChanged?.Invoke();
+
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"An error ocurred while loading all flashcards.\nError message: {ex.Message}");
+        }
+
     }
 
     private async Task<List<Flashcard>> GetAllFlashcardsById()
     {
-        try
-        {
-            var result = await _flashcardApiService.GetAllFlashcardsByIdAsync(_setId);
-            return result;
-        }
-        catch (HttpRequestException ex)
-        {
-            MessageBox.Show(ex.ToString());
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.ToString());
-        }
-
-        return new List<Flashcard>();     // returns empty list if fails
+        // exception handled in the GetAllFlashcardsByIdAsync method
+        var result = await _flashcardApiService.GetAllFlashcardsByIdAsync(_setId);
+        return result;
     }
 
     // Assigns session data to the singleton SessionService.
