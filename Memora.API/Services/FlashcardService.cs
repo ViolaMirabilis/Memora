@@ -88,7 +88,7 @@ namespace SimpleAUTH.Services
         }
 
         // gets flashcard from a passed in List<Flashcard> and creates new objects of it, assigning it to another user.
-        public async Task CopyFlashcardsFromSharedSet(int userId, CopyFlashcardsToNewSet dto)
+        public async Task CopyFlashcardsFromSharedSet(int userId, CopyFlashcardsToNewSetDTO dto)
         {
             // list of FlashcardDTOs
             var flashcards = dto.Flashcards;

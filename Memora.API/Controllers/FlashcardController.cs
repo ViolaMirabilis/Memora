@@ -150,7 +150,7 @@ namespace SimpleAUTH.Controllers
 
         // overwrite / update ALL flashcards
         [HttpPost("/Copy")]
-        public async Task<IActionResult> CopyFromSharedSet(int id, CopyFlashcardsToNewSet dto)
+        public async Task<IActionResult> CopyFromSharedSet(int id, CopyFlashcardsToNewSetDTO dto)
         {
             int userId = CurrentUserId;
             // awaits the method. It has no return, so just awaiting without assigning

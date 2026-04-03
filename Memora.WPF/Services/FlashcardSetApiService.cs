@@ -110,7 +110,7 @@ public class FlashcardSetApiService
     {
         try
         {
-            var response = await _http.PostAsync($"/api/FlashcardSet/{id}/share", null);
+            var response = await _http.PostAsync($"/api/FlashcardSet/{id}/sharing", null);
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException($"An error ocurred while sharing the flashcard set.\nCode message: {response.StatusCode}");
@@ -131,7 +131,7 @@ public class FlashcardSetApiService
         try
         {
             // temporary endpoint, will be changed later
-            var response = await _http.GetAsync($"/api/FlashcardSet/{id}/sharingcode");
+            var response = await _http.GetAsync($"/api/FlashcardSet/{id}/sharing-code");
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException($"An error ocurred while getting the shared code.\nCode message: {response.StatusCode}");

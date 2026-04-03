@@ -136,7 +136,7 @@ namespace SimpleAUTH.Controllers
         }
 
         // shares the flashcard set
-        [HttpPost("{id}/share")]
+        [HttpPost("{id}/sharing")]
         public async Task<ActionResult<bool>> ShareFlashcardSet(int id)
         {
             int userId = CurrentUserId;
@@ -148,7 +148,7 @@ namespace SimpleAUTH.Controllers
         }
 
         // retrieves the "sharing code"
-        [HttpGet("{id}/sharingcode")]
+        [HttpGet("{id}/sharing-code")]
         public async Task<ActionResult<string>> GetSharingCodeFlashcardSet(int id)
         {
             int userId = CurrentUserId;

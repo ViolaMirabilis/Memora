@@ -12,6 +12,6 @@ namespace SimpleAUTH.Interfaces
         Task<Flashcard> UpdateFlashcard(int userId, int id, Flashcard updatedFlashcard);
         Task<string?> DeleteFlashcard(int userId, int id);
         Task<List<Flashcard>> GetSharedFlashcardsFromSet(int setId);
-        Task CopyFlashcardsFromSharedSet(int userId, CopyFlashcardsToNewSet flashcards);
+        Task CopyFlashcardsFromSharedSet(int userId, CopyFlashcardsToNewSetDTO flashcards);
     }
 }
