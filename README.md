@@ -1,11 +1,11 @@
 # Memora
 A desktop flashcard program designed to help with learning.
 
-<img width="180" height="537" alt="1" src="https://github.com/user-attachments/assets/9504faea-adec-4ace-b798-8e85e33c7d60" />
-<img width="180" height="538" alt="2" src="https://github.com/user-attachments/assets/5f85c0fd-613e-4e30-9567-1b94f1f8cf25" />
-<img width="180" height="541" alt="3" src="https://github.com/user-attachments/assets/f9cc5c4b-dc7f-4eea-a272-208d4b104fa8" />
-<img width="180" height="544" alt="4" src="https://github.com/user-attachments/assets/99ab7728-27be-42cc-a7d9-30033de79a11" />
-<img width="180" height="538" alt="6" src="https://github.com/user-attachments/assets/9cdad322-0793-4531-8879-4c0e7a8b78de" />
+<img width="250" alt="1" src="https://github.com/user-attachments/assets/9504faea-adec-4ace-b798-8e85e33c7d60" />
+<img width="250" alt="2" src="https://github.com/user-attachments/assets/5f85c0fd-613e-4e30-9567-1b94f1f8cf25" />
+<img width="250" alt="3" src="https://github.com/user-attachments/assets/f9cc5c4b-dc7f-4eea-a272-208d4b104fa8" />
+<img width="250" alt="4" src="https://github.com/user-attachments/assets/99ab7728-27be-42cc-a7d9-30033de79a11" />
+<img width="250" alt="6" src="https://github.com/user-attachments/assets/9cdad322-0793-4531-8879-4c0e7a8b78de" />
 
 
 
