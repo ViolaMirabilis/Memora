@@ -27,14 +27,19 @@ Press on the Gear button next to the green arrow and press `Configure startup pr
 
 # Current features
 * Adding, deleting and modifying flashcards,
-* revising flashcards by flipping between the front and the back,
-* shuffling all the flashcards,
-* test mode, in which the user clicks on one of four ABCD answers,
+* swapping flashcards from front to back,
 * grouping flashcards in folders,
 * grouping flashcards in flashcard sets,
-* replaying currently selected mode (replay revision, replay test mode...)
-* sharing the flashcard sets with other users by providing a "sharing code".
+* replaying currently selected mode
+* sharing the flashcard sets with other users,
+* shuffling all the flashcards
+## Revision modes
+* Revision - flipping flashcards between front and back,
+* Test - choosing one of four answers,
+* Typing - typing the answer via keyboard (TO BE DONE),
+
 
 # To be added:
 - typing mode, where the user types in the answer.
+- home view with "recent" statistics,
 - ... more as requested.
