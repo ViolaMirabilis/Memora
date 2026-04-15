@@ -74,6 +74,17 @@ namespace Memora.Controls
             DependencyProperty.Register(nameof(ImportCommandParameter), typeof(object), typeof(ImportFromTextPopUp), new PropertyMetadata(null));
 
 
-        
+        /// <summary>
+        /// For a bindable command that is executed once the "X" button is clicked
+        /// </summary>
+        public ICommand CloseCommand
+        {
+            get => (ICommand)GetValue(CloseCommandProperty);
+            set => SetValue(CloseCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty CloseCommandProperty =
+            DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(ImportFromCodePopUp), new PropertyMetadata(null));
+
     }
 }

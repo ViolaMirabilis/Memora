@@ -96,7 +96,7 @@
                       BorderThickness="0"
                       Margin="2"
                       Width="auto"
-                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"         
                       >
 
                     <!-- disables selection of the item -->
@@ -155,7 +155,8 @@
                                       VerticalAlignment="Center"
                                       Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"
                                       CodeText="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      ImportCommand="{Binding DataContext.ImportFromCodeCommandAsync, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                      ImportCommand="{Binding DataContext.ImportFromCodeCommandAsync, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CloseCommand="{Binding ToggleIsOpenCommand}">
         </controls:ImportFromCodePopUp>
 
 

@@ -43,7 +43,7 @@
                 <Button Content="+"
                             Style="{StaticResource SmallSquareButton}"
                             Tag="{x:Static iconPacks:PackIconBootstrapIconsKind.X}"
-                            Command="{Binding AddFlashcardCommand}"
+                            Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                             Height="25"
                             Width="25"
                             Margin="10,10,10,0"

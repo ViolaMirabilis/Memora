@@ -36,6 +36,9 @@ namespace Memora.Controls
             set => SetValue(CodeTextProperty, value);
         }
 
+        /// <summary>
+        /// For a bindable command that is executed once the "Import" button is clicked
+        /// </summary>
         public ICommand ImportCommand
         {
             get => (ICommand)GetValue(ImportCommandProperty);
@@ -44,5 +47,17 @@ namespace Memora.Controls
 
         public static readonly DependencyProperty ImportCommandProperty =
             DependencyProperty.Register(nameof(ImportCommand), typeof(ICommand), typeof(ImportFromCodePopUp), new PropertyMetadata(null));
+
+        /// <summary>
+        /// For a bindable command that is executed once the "X" button is clicked
+        /// </summary>
+        public ICommand CloseCommand
+        {
+            get => (ICommand)GetValue(CloseCommandProperty);
+            set => SetValue(CloseCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty CloseCommandProperty =
+            DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(ImportFromCodePopUp), new PropertyMetadata(null));
     }
 }
