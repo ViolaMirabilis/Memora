@@ -266,6 +266,7 @@
                 Visibility="{Binding IsImportOpen, Converter={StaticResource BoolToVisibility}}"
                 ImportCommand="{Binding ImportFlashcardsFromTextCommand}"
                 ImportCommandParameter="{Binding}"
+                CloseCommand="{Binding ToggleIsOpenCommand}"
                 Separator="{Binding Separator, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
             </controls:ImportFromTextPopUp>

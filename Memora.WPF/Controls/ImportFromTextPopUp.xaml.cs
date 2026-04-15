@@ -84,7 +84,7 @@ namespace Memora.Controls
         }
 
         public static readonly DependencyProperty CloseCommandProperty =
-            DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(ImportFromCodePopUp), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(ImportFromTextPopUp), new PropertyMetadata(null));
 
     }
 }
