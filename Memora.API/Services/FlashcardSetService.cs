@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using SimpleAUTH.Data;
 using SimpleAUTH.DTO;
 using SimpleAUTH.Helpers;
@@ -135,6 +136,25 @@ namespace SimpleAUTH.Services
             // return the LAST ADDED flashcard set where the user ID matches. Sort by flashcard set ID
             return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).OrderBy(f => f.Id).LastOrDefaultAsync();   // verifies original user ID with provided one
         }
+
+        /// <summary>
+        /// Updates the "LastStudied" property on the flashcard set.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateLastStudied(int userId, int id)
+        {
+            var existingFlashcardSet = await _dbContext.FlashcardSets.FirstOrDefaultAsync(u => u.Id == id && u.UserId == userId);
+
+            if (existingFlashcardSet == null)
+                return false;
+
+            existingFlashcardSet.LastStudied = DateTime.Now;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
     }
 
 }

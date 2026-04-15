@@ -207,5 +207,18 @@ namespace SimpleAUTH.Controllers
 
             return Ok(result);
         }
+
+        [HttpPatch("{id}/last-studied")]
+        public async Task<ActionResult> UpdateLastStudied(int id)
+        {
+            int userId = CurrentUserId;
+
+            var updatedSet = await _flashcardSetService.UpdateLastStudied(userId, id);
+
+            if (!updatedSet)
+                return NotFound("A flashcard set with this ID hasn't been found");
+
+            return NoContent();
+        }
     }
 }
