@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
              xmlns:controls="clr-namespace:Memora.Controls"
+             xmlns:attachedproperties="clr-namespace:MemoraWPF.AttachedProperties"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:placeholder="clr-namespace:Memora.Design"
              d:DataContext="{d:DesignInstance Type=placeholder:MyFlashcardSetDataDesign, IsDesignTimeCreatable=True}"
@@ -88,6 +89,19 @@
                     ScrollViewer.VerticalScrollBarVisibility="Visible"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
+                    <!-- overriding the style here to attach the property and bind the rest via properties above-->
+                    <ListView.Template>
+                        <ControlTemplate TargetType="ListView">
+                            <ScrollViewer attachedproperties:ScrollViewerAttachedProperties.ScrollToBottomOnChange="{Binding DataContext.FlashcardsCount, RelativeSource={RelativeSource AncestorType=ListView}}"
+                             CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}" 
+                             VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                             HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    
+                    
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Vertical"/>

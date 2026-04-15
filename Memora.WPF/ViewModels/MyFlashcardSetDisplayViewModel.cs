@@ -30,7 +30,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         get { return _textSearch; }
         set {
             _textSearch = value;
-            OnPropertyChanged(TextSearch);
+            OnPropertyChanged(nameof(TextSearch));
 
             // using a predicate to filter the collection
             if (!string.IsNullOrEmpty(_textSearch))
