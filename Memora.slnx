@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="SimpleAUTH/MemoraWPF.csproj" />
+  <Project Path="Memora.API/MemoraAPI.csproj" />
+  <Project Path="Memora.WPF/MemoraWPF.csproj" />
 </Solution>

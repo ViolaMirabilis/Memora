@@ -67,10 +67,6 @@ public class LoginViewModel : ViewModel
         {
             MessageBox.Show($"An error ocurred during logging in.\nCode message: {ex.Message}");
         }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
     }
 
 }

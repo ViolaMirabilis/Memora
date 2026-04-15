@@ -131,21 +131,28 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
 
     private async Task ImportFromCodeAsync()
     {
-        IsImportOpen = !IsImportOpen;
-        // retrieves the flashcard set by a sharing code
-        FlashcardSet set = await _flashcardSetService.GetFlashcardSetByCode(Code);
-        // gets all the flashcards from a shared set
-        List<Flashcard> flashcardsFromSharedSet = await _flashcardApiService.GetAllSharedFlaschardsByIdAsync(set.Id);
-        
-        // adds the empty set to the user's database via API
-        await _flashcardSetService.CreateFlashcardSet(set);
-        // gets the last flashcard set from the DB
-        FlashcardSet newSet = await _flashcardSetService.GetLastFlashcard();
-        // clones the flashcard from the original to the copy
-        await _flashcardApiService.CloneFlashcardsToNewSet(newSet.Id, flashcardsFromSharedSet);
+        try
+        {
+            IsImportOpen = !IsImportOpen;
+            // retrieves the flashcard set by a sharing code
+            FlashcardSet set = await _flashcardSetService.GetFlashcardSetByCode(Code);
+            // gets all the flashcards from a shared set
+            List<Flashcard> flashcardsFromSharedSet = await _flashcardApiService.GetAllSharedFlaschardsByIdAsync(set.Id);
 
-        // adds it to the local list
-        FlashcardSets.Add(newSet);
+            // adds the empty set to the user's database via API
+            await _flashcardSetService.CreateFlashcardSet(set);
+            // gets the last flashcard set from the DB
+            FlashcardSet newSet = await _flashcardSetService.GetLastFlashcard();
+            // clones the flashcard from the original to the copy
+            await _flashcardApiService.CloneFlashcardsToNewSet(newSet.Id, flashcardsFromSharedSet);
+
+            // adds it to the local list
+            FlashcardSets.Add(newSet);
+        } catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"An error ocurred while importing the flashcard set from code.\nError message: {ex.Message}");
+        }
+        
 
     }
 
@@ -179,6 +186,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
     /// <returns></returns>
     private async Task CreateFlashcardSetAsync()
     {
+        // creates a temporary object for the visual side
         var tmpSet = new FlashcardSet { Name = $"New set {index}" };
         // POST set to API
         // the API assigns the ID, its unknown here, because it's auto incremented in the API
