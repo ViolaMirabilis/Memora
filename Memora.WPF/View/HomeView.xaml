@@ -20,75 +20,165 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical"
-                        Grid.Row="0"
-                        Grid.Column="0">
-                <Label  Content="Studying streak: 7" FontSize="18" Foreground="#4F46E5" FontFamily="Sans Serif" Margin="5"/>
-            </StackPanel>
 
-            <StackPanel Orientation="Vertical"
-                        Grid.Row="0"
-                        Grid.Column="1">
-                <Label  Content="Studying streak: 7" FontSize="18" Foreground="#4F46E5" FontFamily="Sans Serif" Margin="5"/>
-            </StackPanel>
+            <Label  Content="Welcome back, Mirabilis!"
+                    FontSize="24"
+                    Foreground="#4F46E5"
+                    FontFamily="Sans Serif"
+                    FontWeight="Bold"
+                    Margin="25"
+                    HorizontalAlignment="Left"/>
+            
+            <!-- border around Day Streak-->
+            <Border Grid.Column="0"
+                    BorderBrush="#DEE2E6"
+                    BorderThickness="2"
+                    CornerRadius="4"
+                    Background="#FFFFFF"
+                    Margin="10"
+                    Height="100"
+                    Width="250">
+                <Border.Effect>
+                    <DropShadowEffect
+                        Opacity="0.4"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="0"
+                            Grid.Column="0">
+                    <Label  Content="Streak: 7 days"
+                            FontSize="24"
+                            Foreground="#4F46E5"
+                            FontFamily="Sans Serif"
+                            FontWeight="Bold"
+                            Margin="5,25"
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            
+
+            <!-- Border around Studied This Week-->
+            <Border Grid.Column="1"
+                    BorderBrush="#DEE2E6"
+                    BorderThickness="2"
+                    CornerRadius="4"
+                    Background="#FFFFFF"
+                    Margin="10"
+                    Height="100"
+                    Width="250">
+                <Border.Effect>
+                    <DropShadowEffect
+                        Opacity="0.4"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="0"
+                            Grid.Column="1">
+                    <Label  Content="This week: 22 cards"
+                            FontSize="24"
+                            Foreground="#4F46E5"
+                            FontFamily="Sans Serif"
+                            FontWeight="Bold"
+                            Margin="5,25"
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            
 
 
         </Grid>
 
-        <StackPanel Grid.Row="1">
-            <Label  Content="Recently studied"
+        <!-- Border around the Recently Studied-->
+        <Border Grid.Row="1" 
+                BorderBrush="#DEE2E6"
+                BorderThickness="2"
+                CornerRadius="4"
+                Background="#FFFFFF"
+                Margin="15">
+            <Border.Effect>
+                <DropShadowEffect
+                    Opacity="0.4"/>
+            </Border.Effect>
+
+            <StackPanel Grid.Row="1">
+                <Label  Content="Recently studied"
+                        FontSize="18"
+                        Foreground="#4F46E5"
+                        FontFamily="Sans Serif"
+                        FontWeight="Bold"
+                        Margin="5"/>
+
+                <!-- copy pasted from another class. Should be remade into a custom control maybe? -->
+                <ListView x:Name="FlashcardSetList" 
+                          ItemsSource="{Binding FlashcardSetsView}"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Margin="2"
+                          Width="auto"
+                          Height="auto"
+                          ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+              >
+
+                    <!-- disables selection of the item -->
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+
+                    <!-- content of the list view is in the wrap panel -->
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Width="1100" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <!-- each list view item is one custom control-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- CommandParameter returns THIS object from the item source-->
+                            <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
+                       FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                       CommandParameter="{Binding}">
+                            </controls:FlashcardSet>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackPanel>
+
+        </Border>
+
+
+        <Border Grid.Row="2" 
+                BorderBrush="#DEE2E6"
+                BorderThickness="2"
+                CornerRadius="4"
+                Background="#FFFFFF"
+                Margin="15">
+            <Border.Effect>
+                <DropShadowEffect
+                    Opacity="0.4"/>
+            </Border.Effect>
+
+            <Label  Content="This month's progress"
                     FontSize="18"
                     Foreground="#4F46E5"
                     FontFamily="Sans Serif"
+                    FontWeight="Bold"
                     Margin="5"/>
-            
-            <!-- copy pasted from another class. Should be remade into a custom control maybe? -->
-            <ListView x:Name="FlashcardSetList" 
-                      ItemsSource="{Binding FlashcardSetsView}"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      Margin="2"
-                      Width="auto"
-                      Height="auto"
-                      ScrollViewer.CanContentScroll="False"
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                      >
 
-                <!-- disables selection of the item -->
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <ContentPresenter/>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
+        </Border>
 
-
-                <!-- content of the list view is in the wrap panel -->
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Width="1100" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-
-                <!-- each list view item is one custom control-->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!-- CommandParameter returns THIS object from the item source-->
-                        <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
-                               FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                               CommandParameter="{Binding}">
-                        </controls:FlashcardSet>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-        </StackPanel>
 
     </Grid>
 </UserControl>
