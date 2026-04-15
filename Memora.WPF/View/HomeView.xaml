@@ -4,9 +4,91 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:controls="clr-namespace:Memora.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Home view" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" FontFamily="Calibri" Foreground="WhiteSmoke"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="0"
+                        Grid.Column="0">
+                <Label  Content="Studying streak: 7" FontSize="18" Foreground="#4F46E5" FontFamily="Sans Serif" Margin="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="0"
+                        Grid.Column="1">
+                <Label  Content="Studying streak: 7" FontSize="18" Foreground="#4F46E5" FontFamily="Sans Serif" Margin="5"/>
+            </StackPanel>
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <Label  Content="Recently studied"
+                    FontSize="18"
+                    Foreground="#4F46E5"
+                    FontFamily="Sans Serif"
+                    Margin="5"/>
+            
+            <!-- copy pasted from another class. Should be remade into a custom control maybe? -->
+            <ListView x:Name="FlashcardSetList" 
+                      ItemsSource="{Binding FlashcardSetsView}"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Margin="2"
+                      Width="auto"
+                      Height="auto"
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      >
+
+                <!-- disables selection of the item -->
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+
+                <!-- content of the list view is in the wrap panel -->
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Width="1100" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <!-- each list view item is one custom control-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- CommandParameter returns THIS object from the item source-->
+                        <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
+                               FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                               CommandParameter="{Binding}">
+                        </controls:FlashcardSet>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackPanel>
+
     </Grid>
 </UserControl>
