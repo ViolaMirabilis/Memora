@@ -10,5 +10,6 @@ namespace SimpleAUTH.DTO
         public string? FolderName { get; set; }
         public bool IsSharing { get; set; } = false;
         public string SharingCode { get; set; } = string.Empty;
+        public DateTime LastStudied { get; set; } = DateTime.MinValue;
     }
 }

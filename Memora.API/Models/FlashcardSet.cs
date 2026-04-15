@@ -15,6 +15,8 @@
         public string FolderName { get; } = string.Empty;
         public string? SharingCode { get; set; }
         public bool IsSharing { get; set; } = false;
+        // MinVal is set by default
+        public DateTime LastStudied { get; set; } = DateTime.MinValue;
         //Navigation only
         public User User { get; set; } = null!;
         public FlashcardFolder? Folder { get; set; }
