@@ -8,7 +8,7 @@ public class FlashcardSet
     public string? FolderName { get; set; } = "NULL";
     public bool IsSharing { get; set; } = false;
     public string SharingCode { get; set; } = string.Empty;
-    public DateTime LastStudied { get; set; } = DateTime.MinValue;
+    public DateTime LastStudied { get; set; }
 
     public override string ToString()
     {

@@ -92,7 +92,7 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         _sessionService = session;
 
         
-        NavigateFlashcardDataCommand = new RelayCommand(obj => SaveContextAndNavigate(obj), _ => true);
+        NavigateFlashcardDataCommand = new RelayCommand(async obj => await SaveContextAndNavigate(obj), _ => true);
         // OLD
         // We're using the overloaded method from NavigationService. vm => _ = vm... is set to the TViewModel instance
         // and we're just using the method this way
@@ -119,10 +119,11 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         // clears the code
         Code = string.Empty;
     }
-    private void SaveContextAndNavigate(object obj)
+    private async Task SaveContextAndNavigate(object obj)
     {
         if (obj is FlashcardSet set)
         {
+            await _flashcardSetService.UpdateLastStudied(set.Id);
             _sessionService.CurrentSession.SetFlashcardSet(set);
             Navigation.NavigateTo<MyFlashcardSetDataViewModel>(vm => _ = vm.LoadFlaschardsByIdAsync(set.Id));
         }

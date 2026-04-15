@@ -199,4 +199,14 @@ public class FlashcardSetApiService
 
         return new FlashcardSet();
     }
+
+    public async Task UpdateLastStudied(int setId)
+    {
+        var response = await _http.PatchAsync($"api/FlashcardSet/{setId}/last-studied", null);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"An error ocurred while updating date on the flashcard set. Error message: {response.StatusCode}");
+        }
+    }
 }
