@@ -184,7 +184,7 @@ namespace SimpleAUTH.Controllers
         }
 
         // gets the last added flashcard for a given user
-        [HttpGet("/last-added")]
+        [HttpGet("last-added")]
         public async Task<ActionResult<FlashcardSet>> GetLastFlashcardSet()
         {
             int userId = CurrentUserId;
