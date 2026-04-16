@@ -33,9 +33,12 @@ namespace SimpleAUTH.Controllers
                 Id = set.Id,
                 Name = set.Name,
                 FolderId = set.FolderId,
-                FolderName = set.Folder?.Name,
+                FolderName = set.FolderName,
                 IsSharing = set.IsSharing,
-                SharingCode = set.SharingCode
+                SharingCode = set.SharingCode,
+                LastStudied = set.LastStudied,
+                // using the navigation property here to count the flashcards in the set
+                FlashcardsCount = set.Flashcards.Count
             }) 
             .ToList();
 
@@ -244,9 +247,10 @@ namespace SimpleAUTH.Controllers
                 Id = set.Id,
                 Name = set.Name,
                 FolderId = set.FolderId,
-                FolderName = set.Folder?.Name,
+                FolderName = set.FolderName,
                 IsSharing = set.IsSharing,
-                SharingCode = set.SharingCode,
+                // if null, set to empty
+                SharingCode = set.SharingCode ?? string.Empty,
                 LastStudied = set.LastStudied
             })
             .ToList();

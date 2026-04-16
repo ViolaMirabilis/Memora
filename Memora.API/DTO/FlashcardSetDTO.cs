@@ -11,5 +11,6 @@ namespace SimpleAUTH.DTO
         public bool IsSharing { get; set; } = false;
         public string SharingCode { get; set; } = string.Empty;
         public DateTime LastStudied { get; set; } = DateTime.MinValue;
+        public int FlashcardsCount { get; set; }
     }
 }

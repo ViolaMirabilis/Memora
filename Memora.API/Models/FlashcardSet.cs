@@ -17,10 +17,10 @@
         public bool IsSharing { get; set; } = false;
         // MinVal is set by default
         public DateTime LastStudied { get; set; } = DateTime.MinValue;
+        public int FlashcardsCount { get; set; }
         //Navigation only
         public User User { get; set; } = null!;
         public FlashcardFolder? Folder { get; set; }
-
         public ICollection<Flashcard> Flashcards { get; set; } = new List<Flashcard>();
     }
 }

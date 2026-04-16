@@ -9,7 +9,7 @@ using SimpleAUTH.Models;
 
 namespace SimpleAUTH.Services
 {
-    public class FlashcardSetService : IFlashcardSetService
+    public class FlashcardSetService :  IFlashcardSetService
     {
         private readonly FlashcardsDbContext _dbContext;
         private readonly SharingCode sharingCode = new SharingCode();
@@ -45,7 +45,12 @@ namespace SimpleAUTH.Services
 
         public async Task<List<FlashcardSet>> GetAllFlashcardSets(int userId)
         {
-            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).ToListAsync();        // verifies original user ID with provided one
+            // returns a list of flashcard sets where the user ID matches.
+            // including the navigation properties here
+            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId)
+                .Include(f => f.Flashcards)
+                .Include(f => f.Folder)
+                .ToListAsync();
         }
 
         public async Task<FlashcardSet> GetFlashcardSetById(int userId, int id)
@@ -163,7 +168,7 @@ namespace SimpleAUTH.Services
         /// <returns></returns>
         public async Task<List<FlashcardSet>> GetRecentlyStudiedFlashcardSets(int userId)
         {
-            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).OrderByDescending(f => f.LastStudied).Take(5).ToListAsync();     // verifies original user ID with provided one
+            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).OrderByDescending(f => f.LastStudied).Take(5).ToListAsync();
         }
 
     }
