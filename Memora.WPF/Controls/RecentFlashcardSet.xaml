@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Memora.Controls.RecentFlashcardSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Memora.Controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Cursor="Hand" Height="170" Width="225">
+        <!-- outer border with the shadow on-->
+        <Border CornerRadius="4"
+                BorderThickness="1"
+                BorderBrush="#DEE2E6"
+                Background="#FFFFFF"
+                Margin="10,0,10,0"
+                Height="150">
+            <Border.Effect>
+                <DropShadowEffect
+                    Opacity="0.2"
+                    Direction="270"
+                    ShadowDepth="2"
+                    BlurRadius="9"/>
+            </Border.Effect>
+            <!-- actual border inside, "invisible"-->
+            <Border Height="150"
+                CornerRadius="4">
+
+                <!-- Handling pressing on the entire control -->
+                <Border.InputBindings>
+                    <MouseBinding Gesture="LeftClick"
+                              Command="{Binding FlashcardSetClickCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                    </MouseBinding>
+                </Border.InputBindings>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="1"
+                            CanHorizontallyScroll="False">
+
+                    <!-- Flashcard's set name -->
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <!-- make text focusable via code behind -->
+                        <TextBox x:Name="FlashcardSetName"
+                                 Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        TextWrapping="Wrap"
+                        Foreground="#2C3E50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Margin="0,5,0,0"
+                        Cursor="Hand"
+                        Height="35"
+                        TextAlignment="Center"
+                        IsReadOnly="True">
+
+                        </TextBox>
+
+                        <!-- flashcard's icon -->
+                        <iconPacks:PackIconBootstrapIcons Kind="CardText"
+                        Height="74"
+                        Width="74"
+                        Margin="2"
+                        Foreground="#4F46E5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Cursor="Hand">
+                        </iconPacks:PackIconBootstrapIcons>
+
+                        <!-- flashcards count -->
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- count -->
+                            <TextBox x:Name="FlashcardSetCount" Text="{Binding SetCount, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                                    BorderThickness="0"
+                                    Background="Transparent"
+                                    TextWrapping="Wrap"
+                                    Foreground="#BABABF"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="13"
+                                    FontWeight="Bold"
+                                    Margin="0"
+                                    Cursor="Hand"
+                                    Height="35"
+                                    TextAlignment="Center"
+                                    IsReadOnly="True"></TextBox>
+                            <!-- "flashcards" -->
+                            <TextBox Text="flashcards"
+                                    BorderThickness="0"
+                                    Background="Transparent"
+                                    TextWrapping="Wrap"
+                                    Foreground="#BABABF"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="13"
+                                    FontWeight="light"
+                                    Margin="0"
+                                    Cursor="Hand"
+                                    Height="35"
+                                    TextAlignment="Center"
+                                    IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        
+
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+</UserControl>

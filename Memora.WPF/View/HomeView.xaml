@@ -223,7 +223,10 @@
                 Margin="15,10,15,10">
             <Border.Effect>
                 <DropShadowEffect
-                    Opacity="0.4"/>
+                    Opacity="0.2"
+                    Direction="270"
+                    ShadowDepth="2"
+                    BlurRadius="9"/>
             </Border.Effect>
 
             <StackPanel Grid.Row="1">
@@ -245,8 +248,7 @@
                           HorizontalContentAlignment="Left"
                           ScrollViewer.CanContentScroll="False"
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-              >
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
                     <!-- disables selection of the item -->
                     <ListView.ItemContainerStyle>
@@ -273,10 +275,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <!-- CommandParameter returns THIS object from the item source-->
-                            <controls:FlashcardSet SetName="{Binding Name, Mode=TwoWay}"
-                       FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                       CommandParameter="{Binding}">
-                            </controls:FlashcardSet>
+                            <controls:RecentFlashcardSet SetName="{Binding Name, Mode=TwoWay}">
+                            </controls:RecentFlashcardSet>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
@@ -294,7 +294,10 @@
                 Margin="15">
             <Border.Effect>
                 <DropShadowEffect
-                    Opacity="0.4"/>
+                    Opacity="0.2"
+                    Direction="270"
+                    ShadowDepth="2"
+                    BlurRadius="9"/>
             </Border.Effect>
 
             <Label  Content="This month's progress"
