@@ -16,74 +16,200 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
 
-            <Label  Content="Welcome back, Mirabilis!"
-                    FontSize="24"
-                    Foreground="#4F46E5"
-                    FontFamily="Sans Serif"
-                    FontWeight="Bold"
-                    Margin="25"
-                    HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <Label  Content="Welcome back, "
+                        FontSize="24"
+                        Foreground="#4F46E5"
+                        FontFamily="Sans Serif"
+                        FontWeight="Bold"
+                        Margin="15,5,0,0"
+                        HorizontalAlignment="Left"/>
+                <Label  Content="Mirabilis!"
+                        FontSize="24"
+                        Foreground="#4F46E5"
+                        FontFamily="Sans Serif"
+                        FontWeight="Bold"
+                        Margin="0,5,0,0"/>
+            </StackPanel>
             
-            <!-- border around Day Streak-->
-            <Border Grid.Column="0"
+            
+            <!-- border around DAY STREAK -->
+            <Border Grid.Row="0" 
+                    Grid.Column="0"
                     BorderBrush="#DEE2E6"
                     BorderThickness="2"
                     CornerRadius="4"
                     Background="#FFFFFF"
-                    Margin="10"
+                    Margin="15,50,15,10"
                     Height="100"
-                    Width="250">
+                    Width="350"
+                    HorizontalAlignment="Left">
                 <Border.Effect>
                     <DropShadowEffect
-                        Opacity="0.4"/>
+                        Opacity="0.2"
+                        Direction="270"
+                        ShadowDepth="2"
+                        BlurRadius="9"/>
                 </Border.Effect>
 
                 <StackPanel Orientation="Vertical"
                             Grid.Row="0"
-                            Grid.Column="0">
-                    <Label  Content="Streak: 7 days"
-                            FontSize="24"
+                            Grid.Column="0"
+                            VerticalAlignment="Center">
+                    <!-- "Current streak" -->
+                    <Label  Content="CURRENT STREAK"
+                            FontSize="18"
                             Foreground="#4F46E5"
                             FontFamily="Sans Serif"
                             FontWeight="Bold"
-                            Margin="5,25"
-                            HorizontalAlignment="Center"/>
+                            Margin="7, 1,1,1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"/>
+                    <!-- amount of days -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Content="2"
+                                FontSize="32"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                        <!-- "days"-->
+                        <Label  Content="days"
+                                FontSize="12"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                    </StackPanel>
+
                 </StackPanel>
+
             </Border>
             
-
-            <!-- Border around Studied This Week-->
-            <Border Grid.Column="1"
+            <!-- border around THIS WEEK -->
+            <Border Grid.Row="0" 
+                    Grid.Column="1"
                     BorderBrush="#DEE2E6"
                     BorderThickness="2"
                     CornerRadius="4"
                     Background="#FFFFFF"
-                    Margin="10"
+                    Margin="15,50,15,10"
                     Height="100"
-                    Width="250">
+                    Width="350"
+                    HorizontalAlignment="Left">
                 <Border.Effect>
                     <DropShadowEffect
-                        Opacity="0.4"/>
+                        Opacity="0.2"
+                        Direction="270"
+                        ShadowDepth="2"
+                        BlurRadius="9"/>
                 </Border.Effect>
 
                 <StackPanel Orientation="Vertical"
                             Grid.Row="0"
-                            Grid.Column="1">
-                    <Label  Content="This week: 22 cards"
-                            FontSize="24"
+                            Grid.Column="0"
+                            VerticalAlignment="Center">
+                    <!-- "Current streak" -->
+                    <Label  Content="THIS WEEK"
+                            FontSize="18"
                             Foreground="#4F46E5"
                             FontFamily="Sans Serif"
                             FontWeight="Bold"
-                            Margin="5,25"
-                            HorizontalAlignment="Center"/>
+                            Margin="7, 1,1,1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"/>
+                    <!-- amount of days -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Content="57"
+                                FontSize="32"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                        <!-- "days"-->
+                        <Label  Content="cards"
+                                FontSize="12"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                    </StackPanel>
+
                 </StackPanel>
+
             </Border>
-            
+
+            <!-- border around THIS MONTH -->
+            <Border Grid.Row="0" 
+                    Grid.Column="2"
+                    BorderBrush="#DEE2E6"
+                    BorderThickness="2"
+                    CornerRadius="4"
+                    Background="#FFFFFF"
+                    Margin="15,50,15,10"
+                    Height="100"
+                    Width="350"
+                    HorizontalAlignment="Left">
+                <Border.Effect>
+                    <DropShadowEffect
+                        Opacity="0.2"
+                        Direction="270"
+                        ShadowDepth="2"
+                        BlurRadius="9"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            VerticalAlignment="Center">
+                    <!-- "Current streak" -->
+                    <Label  Content="THIS MONTH"
+                            FontSize="18"
+                            Foreground="#4F46E5"
+                            FontFamily="Sans Serif"
+                            FontWeight="Bold"
+                            Margin="7, 1,1,1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"/>
+                    <!-- amount of days -->
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Content="147"
+                                FontSize="32"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                        <!-- "days"-->
+                        <Label  Content="cards"
+                                FontSize="12"
+                                Foreground="#4F46E5"
+                                FontFamily="Sans Serif"
+                                FontWeight="Bold"
+                                Margin="7, 1,1,1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+
 
 
         </Grid>
@@ -94,7 +220,7 @@
                 BorderThickness="2"
                 CornerRadius="4"
                 Background="#FFFFFF"
-                Margin="15">
+                Margin="15,10,15,10">
             <Border.Effect>
                 <DropShadowEffect
                     Opacity="0.4"/>
@@ -116,6 +242,7 @@
                           Margin="2"
                           Width="auto"
                           Height="auto"
+                          HorizontalContentAlignment="Left"
                           ScrollViewer.CanContentScroll="False"
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
