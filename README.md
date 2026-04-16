@@ -27,6 +27,7 @@ Press on the Gear button next to the green arrow and press `Configure startup pr
 
 # Current features
 * Adding, deleting and modifying flashcards,
+* displaying recently studied sets,
 * importing flashcards from text,
 * swapping flashcards from front to back,
 * grouping flashcards in folders,
