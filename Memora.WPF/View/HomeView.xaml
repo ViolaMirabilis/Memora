@@ -239,7 +239,7 @@
 
                 <!-- copy pasted from another class. Should be remade into a custom control maybe? -->
                 <ListView x:Name="FlashcardSetList" 
-                          ItemsSource="{Binding FlashcardSetsView}"
+                          ItemsSource="{Binding FlashcardSets}"
                           Background="Transparent"
                           BorderThickness="0"
                           Margin="2"

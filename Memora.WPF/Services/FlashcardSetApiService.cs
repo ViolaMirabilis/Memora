@@ -209,4 +209,29 @@ public class FlashcardSetApiService
             throw new HttpRequestException($"An error ocurred while updating date on the flashcard set. Error message: {response.StatusCode}");
         }
     }
+
+    /// <summary>
+    /// Fetches the 5 recently studied flashcard sets
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="HttpRequestException"></exception>
+    public async Task<List<FlashcardSet>> GetRecentFlashcardSets()
+    {
+        var response = await _http.GetAsync("api/FlashcardSet/recently-studied");
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"An error ocurred while retrieving the Recently Studied Sets.\nError message: {response.StatusCode}");
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<List<FlashcardSet>>();
+        if (result == null)
+        {
+            return new List<FlashcardSet>();     // temporarily returns an empty list
+        }
+
+        return result;
+    }
+
+
+
 }
