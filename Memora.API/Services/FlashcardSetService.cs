@@ -168,7 +168,12 @@ namespace SimpleAUTH.Services
         /// <returns></returns>
         public async Task<List<FlashcardSet>> GetRecentlyStudiedFlashcardSets(int userId)
         {
-            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).OrderByDescending(f => f.LastStudied).Take(5).ToListAsync();
+            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId)
+                .Include(f => f.Flashcards)
+                .Include(f => f.Folder)
+                .OrderByDescending(f => f.LastStudied)
+                .Take(5)
+                .ToListAsync();
         }
 
     }

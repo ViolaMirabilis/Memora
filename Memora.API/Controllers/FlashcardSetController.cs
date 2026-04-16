@@ -252,7 +252,7 @@ namespace SimpleAUTH.Controllers
                 // if null, set to empty
                 SharingCode = set.SharingCode ?? string.Empty,
                 LastStudied = set.LastStudied,
-                FlashcardsCount = set.FlashcardsCount
+                FlashcardsCount = set.Flashcards.Count
             })
             .ToList();
 
