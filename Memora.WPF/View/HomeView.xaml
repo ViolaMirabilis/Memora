@@ -275,7 +275,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <!-- CommandParameter returns THIS object from the item source-->
-                            <controls:RecentFlashcardSet SetName="{Binding Name, Mode=TwoWay}">
+                            <controls:RecentFlashcardSet SetName="{Binding Name, Mode=TwoWay}"
+                                                         SetCount="{Binding FlashcardsCount, Mode=TwoWay}">
                             </controls:RecentFlashcardSet>
                         </DataTemplate>
                     </ListView.ItemTemplate>

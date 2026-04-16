@@ -9,6 +9,7 @@ public class FlashcardSet
     public bool IsSharing { get; set; } = false;
     public string SharingCode { get; set; } = string.Empty;
     public DateTime LastStudied { get; set; }
+    public int FlashcardsCount { get; set; }
 
     public override string ToString()
     {

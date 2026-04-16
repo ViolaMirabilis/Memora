@@ -251,7 +251,8 @@ namespace SimpleAUTH.Controllers
                 IsSharing = set.IsSharing,
                 // if null, set to empty
                 SharingCode = set.SharingCode ?? string.Empty,
-                LastStudied = set.LastStudied
+                LastStudied = set.LastStudied,
+                FlashcardsCount = set.FlashcardsCount
             })
             .ToList();
 
