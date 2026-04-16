@@ -208,6 +208,12 @@ namespace SimpleAUTH.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Patches the set to include the current date as the last studied date
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
         [HttpPatch("{id}/last-studied")]
         public async Task<ActionResult> UpdateLastStudied(int id)
         {
@@ -220,5 +226,34 @@ namespace SimpleAUTH.Controllers
 
             return NoContent();
         }
+
+
+
+        [HttpGet("recently-studied")]
+        public async Task<ActionResult<List<FlashcardSetDTO>>> GetRecentlyStudiedFlashcardSets()
+        {
+            int userId = CurrentUserId;
+            var existingFlashcardSets = await _flashcardSetService.GetRecentlyStudiedFlashcardSets(userId);
+
+            if (existingFlashcardSets.Count == 0)
+                return Ok(new List<FlashcardSetDTO>());     // returning an empty list instead of 404 not found
+
+            // maps the original list to a list of DTOs
+            var result = existingFlashcardSets.Select(set => new FlashcardSetDTO
+            {
+                Id = set.Id,
+                Name = set.Name,
+                FolderId = set.FolderId,
+                FolderName = set.Folder?.Name,
+                IsSharing = set.IsSharing,
+                SharingCode = set.SharingCode,
+                LastStudied = set.LastStudied
+            })
+            .ToList();
+
+
+            return Ok(result);
+        }
+
     }
 }

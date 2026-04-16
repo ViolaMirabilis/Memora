@@ -17,5 +17,6 @@ namespace SimpleAUTH.Interfaces
         Task<FlashcardSet> GetFlashcardSetBySharingCode( string code);
         Task<FlashcardSet> GetLastFlashcardSet(int userId);
         Task<bool> UpdateLastStudied(int userId, int id);
+        Task<List<FlashcardSet>> GetRecentlyStudiedFlashcardSets(int userId);
     }
 }

@@ -155,6 +155,17 @@ namespace SimpleAUTH.Services
             return true;
         }
 
+
+        /// <summary>
+        /// Retrieves the 5 most recently studied flashcards sets for a given user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<List<FlashcardSet>> GetRecentlyStudiedFlashcardSets(int userId)
+        {
+            return await _dbContext.FlashcardSets.Where(u => u.UserId == userId).OrderByDescending(f => f.LastStudied).Take(5).ToListAsync();     // verifies original user ID with provided one
+        }
+
     }
 
 }
