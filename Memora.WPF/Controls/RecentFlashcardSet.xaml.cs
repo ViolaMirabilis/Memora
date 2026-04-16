@@ -51,7 +51,7 @@ namespace Memora.Controls
             DependencyProperty.Register(
                 name: "CommandParameter",
                 propertyType: typeof(object),
-                ownerType: typeof(FlashcardSet),
+                ownerType: typeof(RecentFlashcardSet),
                 typeMetadata: new PropertyMetadata(null));
 
         public object CommandParameter
