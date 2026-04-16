@@ -73,128 +73,150 @@
     </UserControl.Resources>
 
 
-    <Grid Cursor="Hand">
-        <Border Height="150"
-                Width="150"
+    <Grid Cursor="Hand" Height="155" Width="155">
+
+        <!-- outer border with shadow-->
+        <Border Height="145"
+                Width="145"
                 CornerRadius="4"
                 Margin="2,5,5,2"
                 BorderThickness="1"
                 BorderBrush="#DEE2E6"
                 Background="Transparent">
-            <!-- Handling pressing on the entire control -->
-            <Border.InputBindings>
-                <MouseBinding Gesture="LeftClick"
-                              Command="{Binding FlashcardSetClickCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                              CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                </MouseBinding>
-            </Border.InputBindings>
-
-            <StackPanel Orientation="Vertical"
-                Margin="5"
-                CanHorizontallyScroll="False">
-                <!-- Three dots button in the top right corner -->
-                <!-- AncestorType=UserControl looks for the DataContext of wherever the control is used-->
-                <ToggleButton x:Name="FlashcardSetToggleButton"
-                        Height="20"
-                        Width="20"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        Cursor="Hand"
-                        Command="{Binding ThreeDotsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                    <ToggleButton.Style>
-                        <Style TargetType="ToggleButton">
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ToggleButton">
-                                        <Grid Background="{TemplateBinding Background}">
-                                            <ContentPresenter />
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ToggleButton.Style>
-                        <StackPanel>
-                        <!-- Three dots icon -->
-                        <iconPacks:PackIconBootstrapIcons Kind="ThreeDots"
-                                Height="15"
-                                Width="15"
-                                Margin="2"
-                                Foreground="#4F46E5"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Cursor="Hand">
-                        </iconPacks:PackIconBootstrapIcons>
-                        <!-- what appears after clicking the toggle button -->
-                        <!-- The Binding to IsOpen checks whether the toggle button is pressed or not-->
-                        <!-- @see https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/popup-overview -->
-                                <Popup Style="{StaticResource PopUpContent}"
-                                       IsOpen="{Binding IsChecked, ElementName=FlashcardSetToggleButton}"
-                                       PlacementTarget="{Binding ElementName=FlashcardSetToggleButton}">
-                                    <Border Style="{StaticResource AnimatedBorder}">
-                                <StackPanel Orientation="Vertical"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center">
-                                    <Button Style="{StaticResource ButtonInsidePopUp}" 
-                                            x:Name="Rename"
-                                            Content="Rename"
-                                            Click="Rename_Click"
-                                            CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-
-                                    <Button Style="{StaticResource ButtonInsidePopUp}" 
-                                            x:Name="Delete"
-                                            Content="Delete"
-                                            Click="Delete_Click"
-                                            CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-                                </StackPanel>
-                            </Border>
-                        </Popup>
-                    </StackPanel>
-
-
-                </ToggleButton>
-
-                <!-- Flashcard's set name -->
-                <StackPanel Orientation="Vertical"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-
-                    <!-- make text focusable via code behind -->
-                    <!-- Key down here is pressing the "enter" button to accept a new flashcard set name -->
-                    <TextBox x:Name="FlashcardSetName" Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        TextWrapping="Wrap"
-                        Foreground="#2C3E50"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Margin="0"
-                        Cursor="Hand"
-                        Height="35"
-                        TextAlignment="Center"
-                        IsReadOnly="True"
-                        KeyDown="FlashcardSetName_KeyDown">
-                        
-                    </TextBox>
-                    <iconPacks:PackIconBootstrapIcons Kind="CardText"
-                        Height="74"
-                        Width="74"
-                        Margin="2"
-                        Foreground="#4F46E5"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Cursor="Hand">
-                    </iconPacks:PackIconBootstrapIcons>
-
-                </StackPanel>
-            </StackPanel>
+            <Border.Effect>
+                <DropShadowEffect
+                    Opacity="0.4"
+                    Direction="270"
+                    ShadowDepth="3"
+                    BlurRadius="6"/>
+            </Border.Effect>
         </Border>
+
+
+        <Border Height="145"
+                Width="145"
+                CornerRadius="4"
+                Margin="2,5,5,2"
+                BorderThickness="0"
+                BorderBrush="Transparent"
+                Background="#FFFFFF">
+
+                <!-- Handling pressing on the entire control -->
+                <Border.InputBindings>
+                    <MouseBinding Gesture="LeftClick"
+                                  Command="{Binding FlashcardSetClickCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                  CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                    </MouseBinding>
+                </Border.InputBindings>
+
+                <StackPanel Orientation="Vertical"
+                    Margin="5"
+                    CanHorizontallyScroll="False">
+                    <!-- Three dots button in the top right corner -->
+                    <!-- AncestorType=UserControl looks for the DataContext of wherever the control is used-->
+                    <ToggleButton x:Name="FlashcardSetToggleButton"
+                            Height="20"
+                            Width="20"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Cursor="Hand"
+                            Command="{Binding ThreeDotsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ToggleButton.Style>
+                        <StackPanel>
+                            <!-- Three dots icon -->
+                            <iconPacks:PackIconBootstrapIcons Kind="ThreeDots"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="2"
+                                    Foreground="#4F46E5"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Cursor="Hand">
+                            </iconPacks:PackIconBootstrapIcons>
+                            <!-- what appears after clicking the toggle button -->
+                            <!-- The Binding to IsOpen checks whether the toggle button is pressed or not-->
+                            <!-- @see https://learn.microsoft.com/en-us/dotnet/desktop/wpf/controls/popup-overview -->
+                            <Popup Style="{StaticResource PopUpContent}"
+                                           IsOpen="{Binding IsChecked, ElementName=FlashcardSetToggleButton}"
+                                           PlacementTarget="{Binding ElementName=FlashcardSetToggleButton}">
+                                <Border Style="{StaticResource AnimatedBorder}">
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <Button Style="{StaticResource ButtonInsidePopUp}" 
+                                                x:Name="Rename"
+                                                Content="Rename"
+                                                Click="Rename_Click"
+                                                CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+
+                                        <Button Style="{StaticResource ButtonInsidePopUp}" 
+                                                x:Name="Delete"
+                                                Content="Delete"
+                                                Click="Delete_Click"
+                                                CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+                        </StackPanel>
+
+
+                    </ToggleButton>
+
+                    <!-- Flashcard's set name -->
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <!-- make text focusable via code behind -->
+                        <!-- Key down here is pressing the "enter" button to accept a new flashcard set name -->
+                        <TextBox x:Name="FlashcardSetName" Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            TextWrapping="Wrap"
+                            Foreground="#2C3E50"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            FontSize="14"
+                            FontWeight="Bold"
+                            Margin="0"
+                            Cursor="Hand"
+                            Height="35"
+                            TextAlignment="Center"
+                            IsReadOnly="True"
+                            KeyDown="FlashcardSetName_KeyDown">
+
+                        </TextBox>
+                        <iconPacks:PackIconBootstrapIcons Kind="CardText"
+                            Height="74"
+                            Width="74"
+                            Margin="2"
+                            Foreground="#4F46E5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Cursor="Hand">
+                        </iconPacks:PackIconBootstrapIcons>
+
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
     </Grid>
 </UserControl>

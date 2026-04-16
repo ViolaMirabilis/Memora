@@ -8,43 +8,50 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Cursor="Hand" Height="170" Width="225">
+
         <!-- outer border with the shadow on-->
         <Border CornerRadius="4"
                 BorderThickness="1"
                 BorderBrush="#DEE2E6"
-                Background="#FFFFFF"
+                Background="Transparent"
                 Margin="10,0,10,0"
                 Height="150">
             <Border.Effect>
                 <DropShadowEffect
-                    Opacity="0.2"
+                    Opacity="0.4"
                     Direction="270"
-                    ShadowDepth="2"
-                    BlurRadius="9"/>
+                    ShadowDepth="3"
+                    BlurRadius="6"/>
             </Border.Effect>
-            <!-- actual border inside, "invisible"-->
-            <Border Height="150"
-                CornerRadius="4">
+        </Border>
+        
+        <!-- actual border inside, "invisible"-->
+        <Border CornerRadius="4"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    Background="#FFFFFF"
+                    Margin="10,0,10,0"
+                    Height="150">
 
-                <!-- Handling pressing on the entire control -->
-                <Border.InputBindings>
-                    <MouseBinding Gesture="LeftClick"
+            <!-- Handling pressing on the entire control -->
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftClick"
                               Command="{Binding FlashcardSetClickCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                               CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                    </MouseBinding>
-                </Border.InputBindings>
+                </MouseBinding>
+            </Border.InputBindings>
 
-                <StackPanel Orientation="Vertical"
+            <StackPanel Orientation="Vertical"
                             Margin="1"
                             CanHorizontallyScroll="False">
 
-                    <!-- Flashcard's set name -->
-                    <StackPanel Orientation="Vertical"
+                <!-- Flashcard's set name -->
+                <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
 
-                        <!-- make text focusable via code behind -->
-                        <TextBox x:Name="FlashcardSetName"
+                    <!-- make text focusable via code behind -->
+                    <TextBox x:Name="FlashcardSetName"
                                  Text="{Binding SetName, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                         BorderThickness="0"
                         Background="Transparent"
@@ -60,10 +67,10 @@
                         TextAlignment="Center"
                         IsReadOnly="True">
 
-                        </TextBox>
+                    </TextBox>
 
-                        <!-- flashcard's icon -->
-                        <iconPacks:PackIconBootstrapIcons Kind="CardText"
+                    <!-- flashcard's icon -->
+                    <iconPacks:PackIconBootstrapIcons Kind="CardText"
                         Height="74"
                         Width="74"
                         Margin="2"
@@ -71,13 +78,13 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Cursor="Hand">
-                        </iconPacks:PackIconBootstrapIcons>
+                    </iconPacks:PackIconBootstrapIcons>
 
-                        <!-- flashcards count -->
+                    <!-- flashcards count -->
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <!-- count -->
-                            <TextBox x:Name="FlashcardSetCount" Text="{Binding SetCount, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <!-- count -->
+                        <TextBox x:Name="FlashcardSetCount" Text="{Binding SetCount, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}"
                                     BorderThickness="0"
                                     Background="Transparent"
                                     TextWrapping="Wrap"
@@ -91,8 +98,8 @@
                                     Height="35"
                                     TextAlignment="Center"
                                     IsReadOnly="True"></TextBox>
-                            <!-- "flashcards" -->
-                            <TextBox Text="flashcards"
+                        <!-- "flashcards" -->
+                        <TextBox Text="flashcards"
                                     BorderThickness="0"
                                     Background="Transparent"
                                     TextWrapping="Wrap"
@@ -106,12 +113,11 @@
                                     Height="35"
                                     TextAlignment="Center"
                                     IsReadOnly="True"></TextBox>
-                        </StackPanel>
-                        
-
                     </StackPanel>
+
+
                 </StackPanel>
-            </Border>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>
