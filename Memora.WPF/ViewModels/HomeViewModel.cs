@@ -24,14 +24,39 @@ public class HomeViewModel : ViewModel
     }
 
     private readonly FlashcardSetApiService _flashcardSetApiService;
+    private readonly SessionService _sessionService;
 
-    public HomeViewModel(INavigationService navigation, FlashcardSetApiService flashcardService)
+    #region Commands
+    public RelayCommand NavigateFlashcardDataCommand { get; set; }
+    #endregion
+
+    public HomeViewModel(INavigationService navigation, FlashcardSetApiService flashcardService, SessionService sessionService)
     {
         _flashcardSetApiService = flashcardService;
+        _sessionService = sessionService;
         _navigation = navigation;
         _ = LoadRecentFlaschardSetsAsync();
 
+        NavigateFlashcardDataCommand = new RelayCommand(async obj => await SaveContextAndNavigate(obj), _ => true);
+
     }
+
+    /// <summary>
+    /// reused from MyFlashcardSetDisplayViewModel, maybe can be refactor to a helper class later on if too much duplication is made
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    private async Task SaveContextAndNavigate(object obj)
+    {
+        if (obj is FlashcardSet set)
+        {
+            await _flashcardSetApiService.UpdateLastStudied(set.Id);
+            _sessionService.CurrentSession.SetFlashcardSet(set);
+            Navigation.NavigateTo<MyFlashcardSetDataViewModel>(vm => _ = vm.LoadFlaschardsByIdAsync(set.Id));
+        }
+
+    }
+
 
     /// <summary>
     ///  retrieves flashcards by the API request

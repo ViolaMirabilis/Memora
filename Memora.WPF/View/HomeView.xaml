@@ -320,7 +320,9 @@
                         <DataTemplate>
                             <!-- CommandParameter returns THIS object from the item source-->
                             <controls:RecentFlashcardSet SetName="{Binding Name, Mode=TwoWay}"
-                                                         SetCount="{Binding FlashcardsCount, Mode=TwoWay}">
+                                                         SetCount="{Binding FlashcardsCount, Mode=TwoWay}"
+                                                         FlashcardSetClickCommand="{Binding DataContext.NavigateFlashcardDataCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                         CommandParameter="{Binding}">
                             </controls:RecentFlashcardSet>
                         </DataTemplate>
                     </ListView.ItemTemplate>
