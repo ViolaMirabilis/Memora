@@ -127,7 +127,6 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
             _sessionService.CurrentSession.SetFlashcardSet(set);
             Navigation.NavigateTo<MyFlashcardSetDataViewModel>(vm => _ = vm.LoadFlaschardsByIdAsync(set.Id));
         }
-        
     }
 
     private async Task ImportFromCodeAsync()

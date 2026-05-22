@@ -24,7 +24,7 @@ public class QuizModeService
     public void InitialiseFlashcards(ICollection<Flashcard> flashcards)
     {
         _flashcards = flashcards.ToList();
-        TotalQuestions = flashcards.ToList().Count;
+        TotalQuestions = _flashcards.Count;
     }
 
     public void InitialiseQuizData()

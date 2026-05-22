@@ -19,6 +19,7 @@ public static class ScrollViewerAttachedProperties
     /// <summary>
     /// This method is called once the attached property is changed.
     /// It scrolls the scroll viewer to the very bottom
+    /// DependencyObject here is basically the original scroll viewer that we set teh attached property on
     /// </summary>
     /// <param name="dependencyObject"></param>
     /// <param name="args"></param>
