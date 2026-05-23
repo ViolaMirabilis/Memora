@@ -69,6 +69,10 @@
                 <view:QuizModeView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:TypingModeViewModel}">
+                <view:TypingModeView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:QuizResultViewModel}">
                 <view:QuizResultView/>
             </DataTemplate>

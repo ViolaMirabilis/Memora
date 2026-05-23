@@ -1,5 +1,6 @@
 ﻿namespace Memora.Model.StudyModes;
 
+// perhaps an abstract class for all study modes, and then a specific StudyModeReuslt class for each mode
 /// <summary>
 /// Stores data about the result of one session.
 /// Includes total/correct/incorrect answers.

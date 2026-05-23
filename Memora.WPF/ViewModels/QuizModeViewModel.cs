@@ -96,7 +96,7 @@ public class QuizModeViewModel : ViewModel
             quizAnswer.SelectedAnswer = rb.Content.ToString() ?? string.Empty;
             //MessageBox.Show($"Selected answeR: {quizAnswer.SelectedAnswer.ToString()}");
         }
-        // Recheks the command condition
+        // Rechecks the command condition
         CheckAnswersCommand.RaiseCanExecuteChanged();
     }
 

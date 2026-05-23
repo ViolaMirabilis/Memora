@@ -16,7 +16,7 @@ namespace Memora.View
     /// <summary>
     /// Interaction logic for TypingModeView.xaml
     /// </summary>
-    public partial class TypingModeView : Page
+    public partial class TypingModeView : UserControl
     {
         public TypingModeView()
         {

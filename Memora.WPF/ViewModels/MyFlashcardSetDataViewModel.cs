@@ -2,7 +2,6 @@
 using Memora.Interfaces;
 using Memora.Model;
 using Memora.Services;
-using Memora.ViewModels.StudyModes;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Windows;
@@ -77,6 +76,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     public RelayCommand SaveChanges { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }
     public RelayCommand NavigateQuizModeCommand { get; set; }
+    public RelayCommand NavigateTypingModeCommand { get; set; }
     public RelayCommand ShareSetCommand { get; set; }
     public RelayCommand SwapFrontWithBackCommand { get; set; }
     public RelayCommand ToggleIsOpenCommand { get; set; }
@@ -108,6 +108,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
         SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, _ => true);        // Navigates to the Revision mode
         NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
+        NavigateTypingModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<TypingModeViewModel>(); }, _ => true);
         // toggles the sharing mode ON and OFF
         ShareSetCommand = new RelayCommand(async _ => await GetSharingCode(), _ => true);
         SwapFrontWithBackCommand = new RelayCommand(_ => SwapFrontWithBack(), _ => true);
