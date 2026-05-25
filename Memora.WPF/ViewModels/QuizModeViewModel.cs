@@ -69,14 +69,6 @@ public class QuizModeViewModel : ViewModel
     }
     private void CheckResults()
     {
-        int correctAnswersCount = 0;
-        foreach (var quizAnswer in QuizAnswers)
-        {
-            if (quizAnswer.SelectedAnswer == quizAnswer.CorrectAnswer)
-            {
-                correctAnswersCount++;
-            }
-        }
         _quizService.CalculateResults(QuizAnswers);
         //Placeholder
         //MessageBox.Show($"Correct answers: {correctAnswersCount}\nIncorrect answers: {TotalFlashcards - correctAnswersCount}");
