@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Memora.View"
+             xmlns:controls="clr-namespace:MemoraWPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -66,17 +67,10 @@
                         Margin="25,1,25,10"
                         CornerRadius="4">
 
-                    <TextBox Height="50"
-                             Width="270"
-                             HorizontalContentAlignment="Left"
-                             VerticalContentAlignment="Center"
-                             FontSize="28"
-                             FontWeight="Medium"
-                             Foreground="#2C3E50"
-                             Background="#FAFBFC"
-                             BorderThickness="0"
-                         Text="{Binding Password}">
-                    </TextBox>
+                    <controls:BindablePasswordbox Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+                    </controls:BindablePasswordbox>
+
                 </Border>
 
                 <Button Content="Login"
@@ -125,6 +119,7 @@
                             <ContentPresenter />
                         </ControlTemplate>
                     </Button.Template>
+                    
                     
                 </Button>
                 

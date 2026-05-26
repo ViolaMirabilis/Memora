@@ -2,6 +2,7 @@
 using Memora.Interfaces;
 using Memora.Model;
 using Memora.Services;
+using MemoraWPF.Model.ApiModels;
 using System.Net.Http;
 using System.Windows;
 

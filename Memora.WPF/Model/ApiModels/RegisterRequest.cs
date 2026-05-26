@@ -1,4 +1,4 @@
-﻿namespace Memora.Model;
+﻿namespace MemoraWPF.Model.ApiModels;
 
 /// <summary>
 /// TO BE DONE

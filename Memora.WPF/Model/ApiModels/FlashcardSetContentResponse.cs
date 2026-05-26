@@ -1,4 +1,4 @@
-﻿namespace MemoraWPF.Model;
+﻿namespace MemoraWPF.Model.ApiModels;
 
 public class FlashcardSetContentResponse
 {

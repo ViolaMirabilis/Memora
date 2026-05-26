@@ -1,4 +1,6 @@
-﻿namespace Memora.Model;
+﻿using Memora.Model;
+
+namespace MemoraWPF.Model.ApiModels;
 
 public class CloneFlashcardsRequest
 {

@@ -1,6 +1,7 @@
 ﻿using Memora.Authentication;
 using Memora.Model;
 using MemoraWPF.Model;
+using MemoraWPF.Model.ApiModels;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

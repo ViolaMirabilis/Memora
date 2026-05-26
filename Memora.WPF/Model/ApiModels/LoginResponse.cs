@@ -1,4 +1,4 @@
-﻿namespace Memora.Model;
+﻿namespace MemoraWPF.Model.ApiModels;
 
 /// <summary>
 /// Api returns a LoginResponse, which holds the token.

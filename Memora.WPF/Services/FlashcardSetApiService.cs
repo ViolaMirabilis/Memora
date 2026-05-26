@@ -1,6 +1,7 @@
 ﻿using Memora.Interfaces;
 using Memora.Model;
 using MemoraWPF.Model;
+using MemoraWPF.Model.ApiModels;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Windows;
