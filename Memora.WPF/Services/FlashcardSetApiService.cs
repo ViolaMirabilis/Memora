@@ -1,5 +1,6 @@
 ﻿using Memora.Interfaces;
 using Memora.Model;
+using MemoraWPF.Model;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Windows;
@@ -230,6 +231,22 @@ public class FlashcardSetApiService
         }
 
         return result;
+    }
+
+    public async Task UpdateFlashcardSetContent(int setId, List<Flashcard> flashcards)
+    {
+        // taking the Flashcard data and transforming it into the DTO response expected by the API. Passing just the front/back as it's all that's necessary by the endpoint.
+        var request = new FlashcardSetContentResponse
+        {
+            // assigning a new list of flashcards here
+            Flashcards = flashcards.Select(f => new SimpleFlashcardDTO { Front = f.Front, Back = f.Back })  
+            .ToList()
+        };  
+
+        var response = await _http.PutAsJsonAsync($"/api/FlashcardSet/{setId}", request);
+        if (!response.IsSuccessStatusCode)
+            // just throwing here, catching in the view model
+            throw new HttpRequestException($"An error ocurred while updating the flashcard set.");
     }
 
 

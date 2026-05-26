@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Memora.Authentication;
+using Memora.Model;
+using MemoraWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
-using Memora.Model;
-using Memora.Authentication;
 using System.Windows;
 
 namespace Memora.Services
@@ -68,7 +69,6 @@ namespace Memora.Services
                 MessageBox.Show(ex.ToString());
             }
         }
-
 
     }
 }

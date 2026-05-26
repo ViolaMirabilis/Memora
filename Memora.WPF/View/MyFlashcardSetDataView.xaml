@@ -124,7 +124,7 @@
 
                 <Button Content="Save changes"
                             Style="{StaticResource GeneralConfirmButton}"
-                            Command="{Binding SaveChanges}"
+                            Command="{Binding SaveChangesAsync}"
                             FontSize="14"
                             Height="45"
                             FontWeight="Regular">

@@ -1,8 +1,4 @@
 <Solution>
-  <Folder Name="/Memora.API/">
     <Project Path="Memora.API/MemoraAPI.csproj" />
-  </Folder>
-  <Folder Name="/Memora.WPF/">
     <Project Path="Memora.WPF/MemoraWPF.csproj" />
-  </Folder>
 </Solution>

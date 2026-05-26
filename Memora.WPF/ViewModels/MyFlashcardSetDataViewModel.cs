@@ -74,6 +74,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
     // only one needed?
     public RelayCommand SaveFlashcardsAsyncCommand { get; set; }
     public RelayCommand SaveChanges { get; set; }
+    public RelayCommand SaveChangesAsync { get; set; }
     public RelayCommand NavigateRevisionModeCommand { get; set; }
     public RelayCommand NavigateQuizModeCommand { get; set; }
     public RelayCommand NavigateTypingModeCommand { get; set; }
@@ -105,7 +106,7 @@ public class MyFlashcardSetDataViewModel : ViewModel
             if (f is not Flashcard flashcard) return;
             RemoveFlashcardFromList(flashcard);
         }, _ => CanRemoveFlashcardFromList());
-        SaveChanges = new RelayCommand(_ => SetSessionData(), o => true);
+        SaveChangesAsync = new RelayCommand(async _ => await SaveFlashcardAsync(), _ => true);
         NavigateRevisionModeCommand = new RelayCommand(o => { Navigation.NavigateTo<RevisionModeViewModel>(); }, _ => true);        // Navigates to the Revision mode
         NavigateQuizModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<QuizModeViewModel>(); }, _ => true);
         NavigateTypingModeCommand = new RelayCommand(_ => { Navigation.NavigateTo<TypingModeViewModel>(); }, _ => true);
@@ -250,9 +251,21 @@ public class MyFlashcardSetDataViewModel : ViewModel
         return modifiedList;        // returns a fully modified list, which can be passed to the API later on.
     }
     
-    // TO BE DONE
-    private async Task SaveFlashcardAsync()
+    public async Task SaveFlashcardAsync()
     {
+        int setId = _sessionService.CurrentSession.FlashcardSet.Id;
+
+        try
+        {
+            await _flashcardSetApiService.UpdateFlashcardSetContent(setId, ModifiedFlashcards.ToList());
+            // if successful, set dession data again, so the most recent set is up to date.
+            SetSessionData();
+            MessageBox.Show("Successfully updated the flashcard set!");
+        }
+        catch (HttpRequestException ex)
+        {
+            MessageBox.Show($"An error ocurred while updating the flashcard set.\nError message: {ex.Message}");
+        }
 
     }
     #endregion
