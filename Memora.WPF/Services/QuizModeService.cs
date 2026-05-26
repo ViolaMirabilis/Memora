@@ -1,4 +1,5 @@
-﻿using Memora.Model;
+﻿using Memora.Extensions;
+using Memora.Model;
 using Memora.Model.StudyModes;
 using System.Windows;
 
@@ -29,6 +30,7 @@ public class QuizModeService
 
     public void InitialiseQuizData()
     {
+        _quizAnswers.Clear();
         // initialises the quizData list from the fetched flashcards
         SetQuestionsWithCorrectAnswers(_flashcards.ToList());
         // adds wrong answers to the quiz data list, so each question has 1 correct and 3 wrong answers
@@ -68,33 +70,34 @@ public class QuizModeService
         }
     }
 
-    // returns a string[3] with 3 wrong answers. Needs to be called on each QuizAnswer individually
+    // returns a collection of 4 answers, 3 wrong and 1 correct
     public ICollection<string> SetWrongAnswerPerFlashcard(ICollection<QuizAnswer> quizAnswers, QuizAnswer originalAnswer)
     {
-        // creates an array to hold 3 "wrong" answers
-        // after changing the return type to LIST, I believe we can change this to a List as well, but I will keep it as an array for now since we know the size is always 4 (3 wrong + 1 correct)
-        string[] randomAnswers = new string[4];
+        // holds results, i.e. 3 wrong answers and 1 correct
+        List<string> result = new List<string>();
         // gets a copy of the flashcards list so we dont erase data after each iteration
         var flashcardsCopy = quizAnswers.ToList();
         // shuffling the list of Flashcards, so we can freely take elements 0, 1, 2 without using random here
         flashcardsCopy.Shuffle();
-        int i = 0;
         // Runs while we have less than 3 wrong answers AND the list with answers isn't empty.
         foreach (var randomFlashcard in flashcardsCopy)
         {
-            if (i >= 3) break;
+            // exits once the result list is 'full' with 3 wrong answers
+            if (result.Count >= 3) break;
             // if random answer is equal to correct answer (random compared to the original) OR wrong answers already ocntians the answer OR the answer is null = continue;
-            if (randomFlashcard.CorrectAnswer == originalAnswer.CorrectAnswer || randomAnswers.Contains(randomFlashcard.CorrectAnswer))
+            if (randomFlashcard.CorrectAnswer == originalAnswer.CorrectAnswer || result.Contains(randomFlashcard.CorrectAnswer))
                 continue;
 
-            // if no duplicate was found, we assign a "wrong" answer to the array
-            randomAnswers[i] = randomFlashcard.CorrectAnswer;
-            i++;
+            // if no duplicate was found, a wrong answer is added to the list
+            result.Add(randomFlashcard.CorrectAnswer);
         }
-        // Adds the original answer on the last index
-        randomAnswers[3] = originalAnswer.CorrectAnswer;
-        randomAnswers.Shuffle();    // shuffles elements in the array
-        return randomAnswers.ToList();
+
+        result.Add(originalAnswer.CorrectAnswer);
+        ListExtension.Shuffle(result);
+        //result.Shuffle();
+        // added for debugging because the last answer is always the correct one. Seems like shuffle does not work here?
+        MessageBox.Show(string.Join(",", result));
+        return result;
     }
 
     public void CalculateResults(ICollection<QuizAnswer> quizAnswers)
