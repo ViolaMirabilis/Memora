@@ -95,8 +95,6 @@ public class QuizModeService
         result.Add(originalAnswer.CorrectAnswer);
         ListExtension.Shuffle(result);
         //result.Shuffle();
-        // added for debugging because the last answer is always the correct one. Seems like shuffle does not work here?
-        MessageBox.Show(string.Join(",", result));
         return result;
     }
 
