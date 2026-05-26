@@ -24,7 +24,7 @@ namespace SimpleAUTH.Services
             flashcardSet.UserId = userId;       // FlashcardSet userId is set to the one taken from JWT token
             flashcardSet.Id = 0;                // setting it to 0 here, but it's changed later on by DB. Prevents client injection
             var savedFlashcardSet = await _dbContext.FlashcardSets.AddAsync(flashcardSet);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             return savedFlashcardSet.Entity;
         }
@@ -57,19 +57,24 @@ namespace SimpleAUTH.Services
         {
             FlashcardSet savedFlashcardSet = await _dbContext.FlashcardSets.FirstOrDefaultAsync(u => u.Id == id && u.UserId == userId);
             if (savedFlashcardSet == null)
-                throw new Exception("Flashcard set not found");
+                return null;
+
             return savedFlashcardSet;
         }
 
         public async Task<FlashcardSet> UpdateFlashcardSet(int userId, int id, FlashcardSet updatedFlashcardSet)
         {
-            FlashcardSet savedFlashcardSet = await _dbContext.FlashcardSets.FirstOrDefaultAsync(u => u.Id == id && u.UserId == userId);
+            FlashcardSet savedFlashcardSet = await _dbContext.FlashcardSets
+                .Include(u => u.Flashcards)         // loads all the flashcards related to teh flashcard set. Otherwise, the collection would be empty.
+                .FirstOrDefaultAsync(u => u.Id == id && u.UserId == userId);
 
             if (savedFlashcardSet == null)
                 throw new Exception("Flashcard set not found");
 
-            savedFlashcardSet.Name = updatedFlashcardSet.Name;
-            savedFlashcardSet.FolderId = updatedFlashcardSet.FolderId;
+            // temporarily not updating name + folderId. Might move it to a separate endpoint
+            //savedFlashcardSet.Name = updatedFlashcardSet.Name;
+            //savedFlashcardSet.FolderId = updatedFlashcardSet.FolderId;
+            savedFlashcardSet.Flashcards = updatedFlashcardSet.Flashcards;
 
             //_dbContext.Entry(savedFlashcardSet).CurrentValues.SetValues(updatedFlashcardSet);
             await _dbContext.SaveChangesAsync();
