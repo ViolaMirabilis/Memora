@@ -152,6 +152,10 @@ public class MyFlashcardSetDisplayViewModel : ViewModel
         {
             MessageBox.Show($"An error ocurred while importing the flashcard set from code.\nError message: {ex.Message}");
         }
+        catch(Exception ex)
+        {
+            MessageBox.Show($"An error ocurred while importing the flashcard set from code.\nError message: {ex.Message}");
+        }
         
 
     }

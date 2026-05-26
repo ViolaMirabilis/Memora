@@ -154,8 +154,6 @@ public class FlashcardSetApiService
     /// <exception cref="HttpRequestException"></exception>
     public async Task<FlashcardSet> GetFlashcardSetByCode(string code)
     {
-        try
-        {
             var response = await _http.GetAsync($"api/FlashcardSet/shared/{code}");
             if (!response.IsSuccessStatusCode)
             {
@@ -170,13 +168,6 @@ public class FlashcardSetApiService
             }
 
             return result;
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.ToString());
-        }
-
-        return null;
     }
 
     public async Task<FlashcardSet> GetLastFlashcard()
